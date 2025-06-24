@@ -2,7 +2,7 @@ import CasinoBets from '@/components/casino-bets';
 
 export default function HeroSection() {
   return (
-    <section className="text-center mt-16 md:mt-24">
+    <section className="text-center mt-4 md:mt-8">
       <h1
         className="text-4xl md:text-6xl font-bold text-primary !leading-tight font-headline mb-4 opacity-0 animate-fade-in-down"
         style={{ animationDelay: '0.2s' }}
