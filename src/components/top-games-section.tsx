@@ -42,7 +42,7 @@ export default function TopGamesSection() {
                 <WinRateProgressBar winRate={game.distributionMoment} />
               </div>
               <p><strong>Total sacado hoje:</strong> <WithdrawnToday initialAmount={53942.09} /></p>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 text-sm">
                 <strong>Status do sistema:</strong>
                 <span className="flex items-center gap-2 text-primary font-bold">
                     <span className="relative flex h-3 w-3">
