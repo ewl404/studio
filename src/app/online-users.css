@@ -59,32 +59,20 @@
 
 .user-text {
     display: flex;
-    flex-direction: column;
+    align-items: baseline;
+    gap: 0.4rem;
+    flex-wrap: wrap;
     flex-grow: 1;
+    line-height: 1;
 }
 
 .user-count {
     font-size: 1.125rem; /* text-lg */
     font-weight: 700;
     color: hsl(var(--foreground));
-    line-height: 1;
 }
 
 .user-label {
     font-size: 0.875rem; /* text-sm */
     color: hsl(var(--muted-foreground));
-    margin-bottom: 0.25rem;
-}
-
-.clock {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    font-size: 0.75rem; /* text-xs */
-    color: hsl(var(--muted-foreground));
-}
-
-.clock svg {
-    width: 0.875rem; /* h-3.5 */
-    height: 0.875rem; /* w-3.5 */
 }
