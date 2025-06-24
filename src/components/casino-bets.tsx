@@ -14,9 +14,9 @@ interface Bet {
 
 const gameIcons: { [key: string]: string } = {
     "fortune_tiger": "https://i.imgur.com/tmp57ua.png",
-    "sweet_bonanza": "https://placehold.co/40x40.png",
-    "buffalo_king": "https://placehold.co/40x40.png",
-    "mines": "https://placehold.co/40x40.png",
+    "sweet_bonanza": "https://i.imgur.com/tmp57ua.png",
+    "buffalo_king": "https://i.imgur.com/tmp57ua.png",
+    "mines": "https://i.imgur.com/tmp57ua.png",
 };
 
 const gameIconHints: { [key: string]: string } = {
