@@ -117,7 +117,7 @@ export default function StrategySection() {
                 setHorariosStatusText('Estratégia Pronta!');
                 setIsHorariosLoading(false);
             }
-        }, 1400); // ~7 seconds total (5 steps * 1.4s)
+        }, 1500);
 
     } else { // 'Intercalação vencedora'
         runProcessingAnimation();
