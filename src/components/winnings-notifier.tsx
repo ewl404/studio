@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-const names = ["Fernanda B.", "José A.", "Guilherme O.", "Maria C.", "João D.", "Ana E.", "MC Ryan SP", "MC Gebê.", "Juliana G.", "Marcos H.", "Carla I.", "Rafael J.", "Deolane B.", "Lucas L.", "Mariana M.", "Rodrigo N.", "Larissa O.", "André P.", "Laura Q.", "Bruno R.", "Camila S.", "Diego T.", "Carlinhos M.", "Isabela U.", "Felipe V.", "Vanessa W.", "Marcelo X.", "Carolina Y.", "Alex Z.", "Débora AA.", "Ricardo AB.", "Tatiane AC."];
+const names = ["Fernanda B.", "José A.", "Guilherme O.", "Maria C.", "João D.", "Ana E.", "Juliana G.", "Marcos H.", "Carla I.", "Rafael J.", "Deolane B.", "Lucas L.", "Mariana M.", "Rodrigo N.", "Larissa O.", "André P.", "Laura Q.", "Bruno R.", "Camila S.", "Diego T.", "Carlinhos M.", "Isabela U.", "Felipe V.", "Vanessa W.", "Marcelo X.", "Carolina Y.", "Alex Z.", "Débora AA.", "Ricardo AB.", "Tatiane AC."];
 
 interface Notification {
     key: number;
