@@ -53,7 +53,7 @@ export default function Header() {
       </Sheet>
 
       <div className="absolute left-1/2 -translate-x-1/2">
-        <Suspense fallback={<Skeleton className="w-20 h-20 md:w-24 md:h-24 rounded-md bg-accent" />}>
+        <Suspense fallback={<Skeleton className="w-24 h-24 md:w-28 md:h-28 rounded-md bg-accent" />}>
           <Logo />
         </Suspense>
       </div>

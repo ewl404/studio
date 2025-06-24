@@ -24,8 +24,8 @@ const gamesData = [
 export default function TopGamesSection() {
   const games = gamesData.map((game) => ({
     ...game,
-    winRate: Math.floor(Math.random() * 71) + 30,
-    distributionMoment: Math.floor(Math.random() * 71) + 30,
+    winRate: Math.floor(Math.random() * (100 - 30 + 1)) + 30,
+    distributionMoment: Math.floor(Math.random() * (100 - 30 + 1)) + 30,
     status: 'active',
   }));
 
@@ -46,9 +46,9 @@ export default function TopGamesSection() {
                 <Image
                   src={game.logo}
                   alt={`${game.name} logo`}
-                  width={99}
-                  height={32}
-                  className="h-8 w-auto object-contain"
+                  width={200}
+                  height={64}
+                  className="h-12 w-auto object-contain"
                   {...(game.name !== 'LotoGreen' && { 'data-ai-hint': 'logo company' })}
                 />
               </CardTitle>

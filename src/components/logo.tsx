@@ -12,9 +12,9 @@ export default async function Logo() {
         <Image
           src={result.logoDataUri}
           alt="Matrix Strategy AI Logo"
-          width={100}
-          height={100}
-          className="mx-auto w-20 h-20 md:w-24 md:h-24 object-contain"
+          width={112}
+          height={112}
+          className="mx-auto w-24 h-24 md:w-28 md:h-28 object-contain"
           priority
         />
       );
@@ -25,8 +25,8 @@ export default async function Logo() {
 
   // Fallback icon if generation fails
   return (
-      <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center bg-accent rounded-md">
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <div className="w-24 h-24 md:w-28 md:h-28 flex items-center justify-center bg-accent rounded-md">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 8V4H8"/>
             <rect width="16" height="12" x="4" y="8" rx="2"/>
             <path d="M2 14h2"/>
