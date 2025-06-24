@@ -53,13 +53,15 @@ export default function WinningsNotifier() {
                     <span className="pulse-core-small"></span>
                 </div>
             </div>
-            <p className="notification-text">
+            <div className="notification-text">
                 <span className="font-bold text-primary">{notification.name}</span>
-                &nbsp;acabou de sacar&nbsp;
-                <span className="font-bold text-foreground">
-                    {notification.amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                <span>
+                    acabou de sacar&nbsp;
+                    <span className="font-bold text-foreground">
+                        {notification.amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                    </span>
                 </span>
-            </p>
+            </div>
         </div>
     );
 }
