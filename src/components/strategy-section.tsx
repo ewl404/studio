@@ -13,7 +13,7 @@ import WinRateProgressBar from './win-rate-progress-bar';
 import Image from 'next/image';
 
 const StrategyFormSchema = z.object({
-  strategy: z.enum(['Horários de distribuição', 'Intercalação vencedora'], {
+  strategy: z.enum(['Horários de distribuição', 'Intercalação vencedora', 'Agente IA Pro'], {
     required_error: 'Por favor, selecione uma estratégia.',
   }),
 });
@@ -110,6 +110,11 @@ export default function StrategySection() {
 
 
   async function onSubmit(data: StrategyFormValues) {
+    if (data.strategy === 'Agente IA Pro') {
+        window.location.href = '/chat';
+        return;
+    }
+    
     setGeneratedTimes([]);
     setInterleavingResult(null);
 
@@ -117,24 +122,23 @@ export default function StrategySection() {
         setIsLoading(true);
         setIsHorariosLoading(true);
         setShowHorariosResult(true);
+        setHorariosStatusText('Analisando padrões sistêmicos...');
 
         const processingSteps = [
-            'Analisando padrões sistêmicos...',
             'Iniciando criptoanálise de dados...',
             'Calculando brechas de oportunidade...',
             'Oportunidades encontradas!',
             'Gerando horários...',
         ];
         
-        setHorariosStatusText(processingSteps[0]);
-        let stepIndex = 1;
-        const intervalId = setInterval(() => {
-            if(stepIndex < processingSteps.length) {
+        let stepIndex = 0;
+        
+        const processNextStep = () => {
+            if (stepIndex < processingSteps.length) {
                 setHorariosStatusText(processingSteps[stepIndex]);
                 stepIndex++;
+                setTimeout(processNextStep, 2000);
             } else {
-                clearInterval(intervalId);
-
                 const generateTimes = (startTimeOffsetMinutes: number, count: number): string[] => {
                     const times: string[] = [];
                     let currentTime = new Date();
@@ -168,9 +172,10 @@ export default function StrategySection() {
                 setIsLoading(false);
                 setHorariosCountdown(300);
             }
-        }, 2000);
+        };
+        setTimeout(processNextStep, 2000);
 
-    } else { // 'Intercalação vencedora'
+    } else if (data.strategy === 'Intercalação vencedora') {
         runInterleavingAnalysis();
     }
   }
@@ -203,6 +208,10 @@ export default function StrategySection() {
                     <FormLabel className="text-primary">Estratégia de Análise</FormLabel>
                     <Select 
                       onValueChange={(value) => {
+                        if (value === 'Agente IA Pro') {
+                          window.location.href = '/chat';
+                          return;
+                        }
                         field.onChange(value);
                         setShowHorariosResult(false);
                         setShowInterleavingResult(false);
@@ -218,6 +227,7 @@ export default function StrategySection() {
                       <SelectContent>
                         <SelectItem value="Horários de distribuição">Horários de distribuição</SelectItem>
                         <SelectItem value="Intercalação vencedora">Intercalação vencedora</SelectItem>
+                        <SelectItem value="Agente IA Pro">Agente IA Pro</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
