@@ -1,0 +1,64 @@
+import { Suspense } from 'react';
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import { Button } from '@/components/ui/button';
+import { Menu, Home, Gift, Calendar, Send, HelpCircle, Bot } from 'lucide-react';
+import Logo from './logo';
+import { Skeleton } from './ui/skeleton';
+
+const menuItems = [
+  { label: 'Página inicial', icon: Home, href: '#' },
+  { label: 'Jogos pagando agora', icon: Bot, href: '#paying-games' },
+  { label: 'Promoções exclusivas', icon: Gift, href: '#' },
+  { label: 'Eventos importantes', icon: Calendar, href: '#' },
+  { label: 'Grupo no Telegram', icon: Send, href: '#' },
+  { label: 'Suporte', icon: HelpCircle, href: '#' },
+];
+
+export default function Header() {
+  return (
+    <header className="py-4 px-2 sm:px-4 flex justify-between items-center w-full">
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="ghost" size="icon" aria-label="Abrir menu">
+            <Menu className="h-7 w-7 text-primary" />
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="left" className="bg-background w-[300px] sm:w-[400px] border-r-primary/20 p-0">
+          <div className="flex flex-col h-full">
+            <div className="p-6">
+               <h2 className="text-2xl font-bold text-primary">Menu</h2>
+            </div>
+            <nav className="flex-grow px-4">
+              <ul className="flex flex-col gap-2">
+                {menuItems.map((item) => (
+                  <li key={item.label}>
+                    <SheetClose asChild>
+                      <a
+                        href={item.href}
+                        className="flex items-center gap-3 p-3 rounded-md text-foreground hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
+                      >
+                        <item.icon className="h-5 w-5" />
+                        <span>{item.label}</span>
+                      </a>
+                    </SheetClose>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+             <div className="p-6 mt-auto">
+                <p className="text-xs text-muted-foreground">Matrix Strategy v1.0</p>
+            </div>
+          </div>
+        </SheetContent>
+      </Sheet>
+
+      <div className="absolute left-1/2 -translate-x-1/2">
+        <Suspense fallback={<Skeleton className="w-20 h-20 md:w-24 md:h-24 rounded-md bg-accent" />}>
+          <Logo />
+        </Suspense>
+      </div>
+
+      <div className="w-10 h-10" />
+    </header>
+  );
+}
