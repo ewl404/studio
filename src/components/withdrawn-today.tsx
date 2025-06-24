@@ -31,11 +31,11 @@ export default function WithdrawnToday() {
 
     if (amount === null) {
         // Render a placeholder on the server and during initial client render.
-        return <span className="font-bold text-primary">R$ --,--</span>;
+        return <span className="font-bold text-primary text-lg">R$ --,--</span>;
     }
 
     return (
-        <span className={`font-bold text-primary ${isPulsing ? 'animate-green-pulse-once' : ''}`}>
+        <span className={`font-bold text-primary text-lg ${isPulsing ? 'animate-green-pulse-once' : ''}`}>
             {amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
         </span>
     );
