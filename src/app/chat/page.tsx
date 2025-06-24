@@ -1,11 +1,15 @@
+'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/header';
 import MatrixBackground from '@/components/matrix-background';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
-import { BrainCircuit, Cpu, Gem, Dices, BarChart, XCircle, CheckCircle2, ShieldCheck, Star, Bot, Signal, TrendingUp } from 'lucide-react';
+import { BrainCircuit, Cpu, Gem, Dices, BarChart, XCircle, CheckCircle2, ShieldCheck, Star, Bot, Signal, TrendingUp, Loader2 } from 'lucide-react';
 
 const TestimonialCard = ({ name, text, stars }: { name: string; text: string; stars: number }) => (
     <Card className="bg-accent/50 border-primary/20 h-full">
@@ -26,6 +30,50 @@ const TestimonialCard = ({ name, text, stars }: { name: string; text: string; st
 );
 
 export default function ChatPage() {
+  const router = useRouter();
+  const { toast } = useToast();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Obfuscated credentials
+  const encodedEmail = 'aWEuYWdlbnRlcHJvQGdtYWlsLmNvbQ==';
+  const encodedPassword = 'YWdlbnRlUFJPQDE3OTA=';
+  
+  const handleLogin = async () => {
+    setIsLoading(true);
+    try {
+      // Simulate network delay
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      const correctEmail = atob(encodedEmail);
+      const correctPassword = atob(encodedPassword);
+
+      if (email === correctEmail && password === correctPassword) {
+        toast({
+          title: 'Acesso Liberado',
+          description: 'Redirecionando para a plataforma...',
+        });
+        router.push('/jogos-pagando');
+      } else {
+        toast({
+          variant: 'destructive',
+          title: 'Erro de Acesso',
+          description: 'Credenciais inválidas. Verifique seu e-mail e senha.',
+        });
+      }
+    } catch (error) {
+       toast({
+          variant: 'destructive',
+          title: 'Erro Inesperado',
+          description: 'Ocorreu um erro. Tente novamente.',
+        });
+    } finally {
+        setIsLoading(false);
+    }
+  };
+
+
   return (
     <>
       <MatrixBackground />
@@ -45,15 +93,31 @@ export default function ChatPage() {
                   <CardContent className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="email">Email</Label>
-                      <Input id="email" type="email" placeholder="seuemail@exemplo.com" />
+                      <Input 
+                        id="email" 
+                        type="email" 
+                        placeholder="seuemail@exemplo.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        disabled={isLoading}
+                      />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="password">Senha</Label>
-                      <Input id="password" type="password" placeholder="********" />
+                      <Input 
+                        id="password" 
+                        type="password" 
+                        placeholder="********" 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        disabled={isLoading}
+                      />
                     </div>
                   </CardContent>
                   <CardFooter className="flex-col items-start">
-                    <Button className="w-full font-bold">ENTRAR</Button>
+                    <Button className="w-full font-bold" onClick={handleLogin} disabled={isLoading}>
+                      {isLoading ? <Loader2 className="animate-spin" /> : 'ENTRAR'}
+                    </Button>
                     <p className="text-xs text-muted-foreground mt-4">
                       Se você já comprou, verifique seu e-mail para as credenciais.
                     </p>
@@ -194,9 +258,7 @@ export default function ChatPage() {
                     <CardHeader className="text-center pb-4">
                         <Gem className="w-12 h-12 text-primary mx-auto mb-4"/>
                         <h2 className="text-3xl md:text-4xl font-bold text-primary">
-                            SEU ACESSO AO
-                            <br />
-                            LUCRO INTELIGENTE
+                            SEU ACESSO AO<br />LUCRO INTELIGENTE
                         </h2>
                         <p className="text-lg text-foreground mt-2">O que você recebe com o seu acesso vitalício:</p>
                     </CardHeader>
@@ -238,3 +300,5 @@ export default function ChatPage() {
     </>
   );
 }
+
+    
