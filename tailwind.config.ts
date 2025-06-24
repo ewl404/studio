@@ -103,6 +103,10 @@ export default {
             'box-shadow': '0 0 12px hsl(var(--primary))',
           },
         },
+        'green-pulse-once': {
+          '0%, 100%': { filter: 'drop-shadow(0 0 0 hsl(var(--primary) / 0))' },
+          '50%': { filter: 'drop-shadow(0 0 8px hsl(var(--primary)))' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -111,6 +115,7 @@ export default {
         'fade-in-up': 'fade-in-up 0.8s ease-out 0.4s forwards',
         'slide-in-right': 'slide-in-right 4s ease-in-out',
         'green-shadow-pulse': 'green-shadow-pulse 2s infinite ease-in-out',
+        'green-pulse-once': 'green-pulse-once 1s ease-out',
       },
     },
   },

@@ -1,61 +1,34 @@
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Users, BarChart, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import WinRateProgressBar from './win-rate-progress-bar';
 import OnlineUsers from './online-users';
+import WithdrawnToday from './withdrawn-today';
 
-const topGames = [
-  {
-    name: 'LotoGreen',
-    logo: 'https://lotogreen.com.br/wp-content/uploads/2024/10/logo-lotogreen-2048x664.png',
-    winRate: 84,
-    distributionMoment: 92,
-    withdrawnToday: 34700,
-    status: 'active',
-  },
-  {
-    name: 'Neon Roulette',
-    logo: BarChart,
-    winRate: 78,
-    distributionMoment: 85,
-    withdrawnToday: 21500,
-    status: 'active',
-  },
-  {
-    name: 'DataJack',
-    logo: Users,
-    winRate: 65,
-    distributionMoment: 70,
-    withdrawnToday: 9800,
-    status: 'unstable',
-  },
-];
+const game = {
+  name: 'LotoGreen',
+  logo: 'https://lotogreen.com.br/wp-content/uploads/2024/10/logo-lotogreen-2048x664.png',
+  winRate: 84,
+  distributionMoment: 92,
+  status: 'active',
+};
 
 export default function TopGamesSection() {
+  const Logo = game.logo;
   return (
     <section id="paying-games" className="w-full max-w-6xl mx-auto">
       <div className="text-center mb-8">
         <h2 className="text-3xl md:text-4xl font-bold text-primary font-headline">Casas que mais estão pagando agora</h2>
         <p className="text-muted-foreground mt-2">Análise em tempo real dos sistemas de jogos.</p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {topGames.map((game, index) => {
-          const Logo = game.logo;
-          return (
+      <div className="flex justify-center">
           <Card
-            key={game.name}
-            className="bg-background/50 border-primary/20 shadow-lg shadow-primary/5 flex flex-col transition-all duration-300 hover:border-primary/50 hover:shadow-primary/20"
-            style={{ animation: `fade-in-up 0.5s ease-out ${index * 0.15}s forwards`, opacity: 0 }}
+            className="bg-background/50 border-primary/20 shadow-lg shadow-primary/5 flex flex-col transition-all duration-300 hover:border-primary/50 hover:shadow-primary/20 max-w-md w-full"
             >
             <CardHeader>
-              <CardTitle className={`flex items-center ${game.name === 'LotoGreen' ? 'justify-center' : 'gap-3'}`}>
-                {typeof Logo === 'string' ? (
-                  <Image src={Logo} alt={`${game.name} logo`} width={99} height={32} className="h-8 w-auto object-contain" />
-                ) : (
-                  <Logo className="w-8 h-8 text-primary" />
-                )}
-                {game.name !== 'LotoGreen' && <span className="text-2xl">{game.name}</span>}
+              <CardTitle className="flex items-center justify-center">
+                <Image src={Logo} alt={`${game.name} logo`} width={99} height={32} className="h-8 w-auto object-contain" />
               </CardTitle>
             </CardHeader>
             <CardContent className="flex-grow space-y-4 text-lg">
@@ -68,19 +41,15 @@ export default function TopGamesSection() {
                 <p className="font-bold text-base mb-2">Momento de distribuição:</p>
                 <WinRateProgressBar winRate={game.distributionMoment} />
               </div>
-              <p><strong>Total sacado hoje:</strong> <span className="text-foreground font-bold">{game.withdrawnToday.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></p>
+              <p><strong>Total sacado hoje:</strong> <WithdrawnToday initialAmount={53942.09} /></p>
               <div className="flex items-center gap-2">
                 <strong>Status do sistema:</strong>
-                {game.status === 'active' ? (
-                  <span className="flex items-center gap-2 text-primary font-bold">
+                <span className="flex items-center gap-2 text-primary font-bold">
                     <span className="relative flex h-3 w-3">
                       <span className="relative inline-flex rounded-full h-3 w-3 bg-primary animate-green-shadow-pulse"></span>
                     </span>
                     Ativo para operar
                   </span>
-                ) : (
-                  <span className="text-destructive font-bold">🔴 Instável no momento</span>
-                )}
               </div>
             </CardContent>
             <CardFooter>
@@ -91,8 +60,6 @@ export default function TopGamesSection() {
               </Button>
             </CardFooter>
           </Card>
-          );
-        })}
       </div>
     </section>
   );
