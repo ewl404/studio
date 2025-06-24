@@ -6,31 +6,29 @@ import WinRateProgressBar from './win-rate-progress-bar';
 import OnlineUsers from './online-users';
 import WithdrawnToday from './withdrawn-today';
 
-const games = [
+const gamesData = [
   {
     name: 'LotoGreen',
     logo: 'https://lotogreen.com.br/wp-content/uploads/2024/10/logo-lotogreen-2048x664.png',
-    winRate: 84,
-    distributionMoment: 92,
-    status: 'active',
   },
   {
     name: 'BetTurbo',
     logo: 'https://placehold.co/200x64.png',
-    winRate: 91,
-    distributionMoment: 88,
-    status: 'active',
   },
   {
     name: 'CashGalaxy',
     logo: 'https://placehold.co/200x64.png',
-    winRate: 78,
-    distributionMoment: 95,
-    status: 'active',
   }
 ];
 
 export default function TopGamesSection() {
+  const games = gamesData.map((game) => ({
+    ...game,
+    winRate: Math.floor(Math.random() * 71) + 30,
+    distributionMoment: Math.floor(Math.random() * 71) + 30,
+    status: 'active',
+  }));
+
   return (
     <section id="paying-games" className="w-full max-w-6xl mx-auto">
       <div className="text-center mb-8">
