@@ -2,7 +2,7 @@ import { generateLogo } from '@/ai/flows/generate-logo';
 import Image from 'next/image';
 
 export default async function Logo() {
-  const logoPrompt = "A character or silhouette typing on a computer, minimalist style, neon green on black, with soft lighting and thin outlines.";
+  const logoPrompt = "A character or silhouette typing on a computer.";
   
   try {
     const result = await generateLogo({ prompt: logoPrompt });
