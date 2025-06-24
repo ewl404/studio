@@ -193,7 +193,11 @@ export default function ChatPage() {
                 <Card className="bg-gradient-to-br from-primary/10 via-background to-background border-2 border-primary/50 shadow-2xl shadow-primary/20">
                     <CardHeader className="text-center pb-4">
                         <Gem className="w-12 h-12 text-primary mx-auto mb-4"/>
-                        <h2 className="text-4xl font-bold text-primary">SEU ACESSO AO LUCRO INTELIGENTE</h2>
+                        <h2 className="text-4xl font-bold text-primary">
+                            SEU ACESSO AO
+                            <br />
+                            LUCRO INTELIGENTE
+                        </h2>
                         <p className="text-xl text-foreground mt-2">O que você recebe com o seu acesso vitalício:</p>
                     </CardHeader>
                     <CardContent className="text-center">
