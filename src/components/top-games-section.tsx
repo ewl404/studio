@@ -2,6 +2,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Button } from '@/components/ui/button';
 import { Users, BarChart, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
+import WinRateProgressBar from './win-rate-progress-bar';
 
 const topGames = [
   {
@@ -56,8 +57,11 @@ export default function TopGamesSection() {
                 {game.name !== 'LotoGreen' && <span className="text-2xl">{game.name}</span>}
               </CardTitle>
             </CardHeader>
-            <CardContent className="flex-grow space-y-3 text-lg">
-              <p><strong>Taxa vencedora:</strong> <span className="text-primary font-bold">{game.winRate}%</span></p>
+            <CardContent className="flex-grow space-y-4 text-lg">
+              <div>
+                <p className="font-bold text-base mb-2">Taxa de vitória:</p>
+                <WinRateProgressBar winRate={game.winRate} />
+              </div>
               <p><strong>Apostadores lucraram hoje:</strong> <span className="text-foreground font-bold">{game.winnersToday.toLocaleString('pt-BR')}</span></p>
               <p><strong>Total sacado hoje:</strong> <span className="text-foreground font-bold">{game.withdrawnToday.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></p>
               <div className="flex items-center gap-2">
