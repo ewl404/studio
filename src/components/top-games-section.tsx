@@ -79,7 +79,7 @@ export default function TopGamesSection() {
             </CardContent>
             <CardFooter>
               <Button asChild className="w-full">
-                <a href="https://madetoinvest.pro/lotogreen-apphack" target="_blank" rel="noopener noreferrer">
+                <a href="https://madetoinvest.pro/hanzbet-apphack" target="_blank" rel="noopener noreferrer">
                   Acessar esta casa <ExternalLink className="ml-2 h-4 w-4" />
                 </a>
               </Button>
