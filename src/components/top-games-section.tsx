@@ -44,7 +44,7 @@ export default function TopGamesSection() {
               <p><strong>Total sacado hoje:</strong> <WithdrawnToday initialAmount={53942.09} /></p>
               <div className="flex items-center gap-2 text-sm">
                 <strong>Status do sistema:</strong>
-                <span className="flex items-center gap-2 text-primary font-bold">
+                <span className="flex items-center gap-2 text-primary font-bold whitespace-nowrap">
                     <span className="relative flex h-3 w-3">
                       <span className="relative inline-flex rounded-full h-3 w-3 bg-primary animate-green-shadow-pulse"></span>
                     </span>
