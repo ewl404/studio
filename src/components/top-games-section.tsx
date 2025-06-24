@@ -16,8 +16,8 @@ const gamesData = [
     logo: 'https://i.imgur.com/tmp57ua.png',
   },
   {
-    name: 'Fortune Ox',
-    logo: 'https://i.imgur.com/tmp57ua.png',
+    name: 'HanzBet',
+    logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/hanz-scaled.jpg',
   }
 ];
 
