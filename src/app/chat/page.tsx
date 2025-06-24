@@ -193,25 +193,25 @@ export default function ChatPage() {
                 <Card className="bg-gradient-to-br from-primary/10 via-background to-background border-2 border-primary/50 shadow-2xl shadow-primary/20">
                     <CardHeader className="text-center pb-4">
                         <Gem className="w-12 h-12 text-primary mx-auto mb-4"/>
-                        <h2 className="text-4xl font-bold text-primary">
+                        <h2 className="text-3xl md:text-4xl font-bold text-primary">
                             SEU ACESSO AO
                             <br />
                             LUCRO INTELIGENTE
                         </h2>
-                        <p className="text-xl text-foreground mt-2">O que você recebe com o seu acesso vitalício:</p>
+                        <p className="text-lg text-foreground mt-2">O que você recebe com o seu acesso vitalício:</p>
                     </CardHeader>
-                    <CardContent className="text-center">
-                        <ul className="space-y-3 text-left max-w-md mx-auto mb-8">
-                            <li className="flex items-center gap-3"><CheckCircle2 className="w-6 h-6 text-primary" /><span>Acesso vitalício ao Agente IA Pro.</span></li>
-                            <li className="flex items-center gap-3"><CheckCircle2 className="w-6 h-6 text-primary" /><span>Estratégias para +10 jogos de cassino.</span></li>
-                            <li className="flex items-center gap-3"><CheckCircle2 className="w-6 h-6 text-primary" /><span>Análise 24/7 em tempo real.</span></li>
-                            <li className="flex items-center gap-3"><CheckCircle2 className="w-6 h-6 text-primary" /><span>Atualizações de novas estratégias sem custo.</span></li>
+                    <CardContent className="text-center px-4 pb-6">
+                        <ul className="space-y-2 text-left max-w-md mx-auto mb-6">
+                            <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-primary" /><span>Acesso vitalício ao Agente IA Pro.</span></li>
+                            <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-primary" /><span>Estratégias para +10 jogos de cassino.</span></li>
+                            <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-primary" /><span>Análise 24/7 em tempo real.</span></li>
+                            <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-primary" /><span>Atualizações de novas estratégias sem custo.</span></li>
                         </ul>
                         <p className="text-muted-foreground line-through">De R$ 197</p>
-                        <p className="text-6xl font-bold text-foreground">Por apenas R$ 97</p>
-                        <p className="text-muted-foreground">(Pagamento único)</p>
+                        <p className="text-5xl font-bold text-foreground">Por apenas R$ 97</p>
+                        <p className="text-sm text-muted-foreground">(Pagamento único)</p>
                         
-                        <Button size="lg" className="mt-8 w-full md:w-auto font-bold text-xl h-16 animate-pulse">
+                        <Button size="lg" className="mt-6 w-full md:w-auto font-bold text-lg h-14 animate-pulse">
                             ADQUIRIR AGORA!
                         </Button>
                     </CardContent>
