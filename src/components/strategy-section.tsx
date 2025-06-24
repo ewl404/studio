@@ -177,39 +177,57 @@ export default function StrategySection() {
       </Card>
       
       {showHorariosResult && (
-        <Card className="mt-6 bg-background/80 border-primary/30 font-code backdrop-blur-sm">
-            <CardHeader>
-                <CardTitle className="text-primary flex items-center gap-2">
-                    <Cpu className={isHorariosLoading ? "animate-spin" : ""} /> {horariosStatusText}
-                </CardTitle>
-            </CardHeader>
-            { (isHorariosLoading || generatedTimes.length > 0) &&
-            <CardContent>
-                { generatedTimes.length > 0 && !isHorariosLoading ? (
-                    <div className="space-y-4 animate-fade-in-up">
-                        <p className="text-muted-foreground font-body">Estes são os horários com maior probabilidade de prêmios altos nas próximas rodadas. Jogue entre 5 e 10 rodadas em cada um.</p>
-                        <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
-                            {generatedTimes.map(time => (
-                                <div key={time} className="bg-accent/50 border border-primary/30 text-primary font-bold rounded-md p-2 text-center text-lg">
-                                    {time}
-                                </div>
-                            ))}
-                        </div>
+        <>
+          <Card className="mt-6 bg-background/80 border-primary/30 font-code backdrop-blur-sm">
+              <CardHeader>
+                  <CardTitle className="text-primary flex items-center gap-2">
+                      <Cpu className={isHorariosLoading ? "animate-spin" : ""} /> {horariosStatusText}
+                  </CardTitle>
+              </CardHeader>
+              { (isHorariosLoading || generatedTimes.length > 0) &&
+              <CardContent>
+                  { generatedTimes.length > 0 && !isHorariosLoading ? (
+                      <div className="space-y-4 animate-fade-in-up">
+                          <p className="text-muted-foreground font-body">Estes são os horários com maior probabilidade de prêmios altos nas próximas rodadas. Jogue entre 5 e 10 rodadas em cada um.</p>
+                          <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
+                              {generatedTimes.map(time => (
+                                  <div key={time} className="bg-accent/50 border border-primary/30 text-primary font-bold rounded-md p-2 text-center text-lg">
+                                      {time}
+                                  </div>
+                              ))}
+                          </div>
 
-                        <div className="pt-4">
-                            <p className="font-bold text-base mb-2 text-foreground font-body">Taxa de Assertividade da Estratégia:</p>
-                            <WinRateProgressBar winRate={progress} />
-                        </div>
-                    </div>
-                ) : (
-                    <div className="flex items-center justify-center py-4">
-                        <div className="w-3 h-3 bg-primary animate-ping rounded-full"></div>
-                        <p className="ml-4 text-muted-foreground font-body">Aguarde, nossa IA está trabalhando...</p>
-                    </div>
-                )}
-            </CardContent>
-            }
-        </Card>
+                          <div className="pt-4">
+                              <p className="font-bold text-base mb-2 text-foreground font-body">Taxa de Assertividade da Estratégia:</p>
+                              <WinRateProgressBar winRate={progress} />
+                          </div>
+                      </div>
+                  ) : (
+                      <div className="flex items-center justify-center py-4">
+                          <div className="w-3 h-3 bg-primary animate-ping rounded-full"></div>
+                          <p className="ml-4 text-muted-foreground font-body">Aguarde, nossa IA está trabalhando...</p>
+                      </div>
+                  )}
+              </CardContent>
+              }
+          </Card>
+          
+          {generatedTimes.length > 0 && !isHorariosLoading && (
+            <div className="mt-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              <div className="w-full mx-auto overflow-hidden rounded-lg border-2 border-primary/30">
+                <iframe
+                  src="https://bora1.bet/register?code=GIPYCLEZEG"
+                  className="w-full border-0"
+                  style={{ height: '75vh' }}
+                  title="Plataforma Recomendada"
+                ></iframe>
+              </div>
+              <p className="mt-4 text-center text-sm text-muted-foreground">
+                Atenção: A estratégia gerada é validada para a plataforma acima. Cadastre-se para garantir a assertividade.
+              </p>
+            </div>
+          )}
+        </>
       )}
 
       {(isLoading || result) && !showHorariosResult &&(
