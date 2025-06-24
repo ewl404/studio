@@ -71,11 +71,11 @@ export default function StrategySection() {
         setShowHorariosResult(true);
 
         const processingSteps = [
-            'Analisando padrões...',
-            'Criptoanálise em andamento...',
+            'Analisando padrões sistêmicos...',
+            'Iniciando criptoanálise de dados...',
             'Decodificando hashes de pagamento...',
-            'Descobrindo brechas de oportunidade...',
-            'Oportunidades encontradas! Calculando assertividade...',
+            'Calculando brechas de oportunidade...',
+            'Oportunidades encontradas! Gerando horários...',
         ];
         
         let stepIndex = 0;
@@ -117,7 +117,7 @@ export default function StrategySection() {
                 setHorariosStatusText('Estratégia Pronta!');
                 setIsHorariosLoading(false);
             }
-        }, 1500);
+        }, 2000);
 
     } else { // 'Intercalação vencedora'
         runProcessingAnimation();
