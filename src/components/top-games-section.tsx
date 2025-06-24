@@ -47,13 +47,13 @@ export default function TopGamesSection() {
             style={{ animation: `fade-in-up 0.5s ease-out ${index * 0.15}s forwards`, opacity: 0 }}
             >
             <CardHeader>
-              <CardTitle className="flex items-center gap-3">
+              <CardTitle className={`flex items-center ${game.name === 'LotoGreen' ? 'justify-center' : 'gap-3'}`}>
                 {typeof Logo === 'string' ? (
                   <Image src={Logo} alt={`${game.name} logo`} width={99} height={32} className="h-8 w-auto object-contain" />
                 ) : (
                   <Logo className="w-8 h-8 text-primary" />
                 )}
-                <span className="text-2xl">{game.name}</span>
+                {game.name !== 'LotoGreen' && <span className="text-2xl">{game.name}</span>}
               </CardTitle>
             </CardHeader>
             <CardContent className="flex-grow space-y-3 text-lg">
