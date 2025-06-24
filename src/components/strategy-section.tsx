@@ -68,8 +68,35 @@ export default function StrategySection() {
     const newNormal = Math.floor(Math.random() * 10) + 3;
     const newTurbo = Math.floor(Math.random() * 8) + 3;
     const newAccuracy = (Math.random() * (99.5 - 92.0) + 92.0).toFixed(2);
-    const newValidity = Math.floor(Math.random() * 11) + 5;
+    const newValidity = Math.floor(Math.random() * 4) + 1; // Between 1 and 4 minutes
     setInterleavingResult({ normal: newNormal, turbo: newTurbo, accuracy: newAccuracy, validity: newValidity });
+  };
+
+  const runInterleavingAnalysis = () => {
+      setIsLoading(true);
+      setShowInterleavingResult(true);
+      setInterleavingResult(null);
+      
+      const processingSteps = [
+          'Analisando Sinais de Intercalação...',
+          'Validando Frequências de Prêmios...',
+          'Cruzando dados do servidor...',
+          'Sinal Gerado com Sucesso!',
+      ];
+
+      let i = 0;
+      setProcessingText(processingSteps[0]);
+      
+      const interval = setInterval(() => {
+          i++;
+          if (i < processingSteps.length) {
+              setProcessingText(processingSteps[i]);
+          } else {
+              clearInterval(interval);
+              setIsLoading(false);
+              generateNewSignal();
+          }
+      }, 2500); // 10 seconds total (4 steps * 2.5s)
   };
 
 
@@ -78,21 +105,20 @@ export default function StrategySection() {
     setShowInterleavingResult(false);
     setGeneratedTimes([]);
     setInterleavingResult(null);
-    setIsLoading(true);
 
     if (data.strategy === 'Horários de distribuição') {
+        setIsLoading(true);
         setIsHorariosLoading(true);
         setShowHorariosResult(true);
 
         const processingSteps = [
             'Analisando padrões sistêmicos...',
             'Iniciando criptoanálise de dados...',
-            'Decodificando hashes de pagamento...',
             'Calculando brechas de oportunidade...',
             'Oportunidades encontradas! Gerando horários...',
         ];
         
-        setProcessingText('');
+        setHorariosStatusText('');
         let stepIndex = 0;
         const intervalId = setInterval(() => {
             if(stepIndex < processingSteps.length) {
@@ -136,25 +162,7 @@ export default function StrategySection() {
         }, 2000);
 
     } else { // 'Intercalação vencedora'
-        setShowInterleavingResult(true);
-        const processingSteps = [
-            'Analisando Sinais de Intercalação...',
-            'Validando Frequências de Prêmios...',
-            'Cruzando dados do servidor...',
-            'Sinal Gerado com Sucesso!',
-        ];
-
-        let i = 0;
-        const interval = setInterval(() => {
-            if (i < processingSteps.length) {
-                setProcessingText(processingSteps[i]);
-                i++;
-            } else {
-                clearInterval(interval);
-                setIsLoading(false);
-                generateNewSignal();
-            }
-        }, 1000);
+        runInterleavingAnalysis();
     }
   }
 
@@ -291,8 +299,8 @@ export default function StrategySection() {
                                 </p>
                             </div>
                             <Button
-                                onClick={generateNewSignal}
-                                disabled={countdown > 0}
+                                onClick={runInterleavingAnalysis}
+                                disabled={countdown > 0 || isLoading}
                                 className="w-full h-11 text-base font-bold"
                             >
                                 {countdown > 0 ? `AGUARDE (${countdown}s...)` : 'GERAR NOVO SINAL'}
