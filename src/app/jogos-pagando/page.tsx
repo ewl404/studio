@@ -24,7 +24,7 @@ export default function JogosPagandoPage() {
             </p>
           </div>
           <div className="max-w-sm mx-auto mb-8">
-              <OnlineUsers />
+              <OnlineUsers min={900} max={8000} />
           </div>
           <PayingGamesGrid />
         </main>

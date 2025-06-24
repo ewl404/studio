@@ -2,17 +2,22 @@
 
 import { useState, useEffect } from 'react';
 
-export default function OnlineUsers() {
+interface OnlineUsersProps {
+    min?: number;
+    max?: number;
+}
+
+export default function OnlineUsers({ min = 9000, max = 17000 }: OnlineUsersProps) {
     const [userCount, setUserCount] = useState<number | null>(null);
 
     useEffect(() => {
-        // Generate a random starting count between 9,000 and 17,000 on the client-side
-        const initialCount = Math.floor(Math.random() * (17000 - 9000 + 1)) + 9000;
+        // Generate a random starting count between min and max on the client-side
+        const initialCount = Math.floor(Math.random() * (max - min + 1)) + min;
         setUserCount(initialCount);
 
         const userInterval = setInterval(() => {
             setUserCount(prevCount => {
-                const currentCount = prevCount || initialCount; // Fallback to initial if prev is somehow null
+                const currentCount = prevCount ?? initialCount; // Fallback to initial if prev is somehow null
                 const change = Math.floor(Math.random() * 51) - 25; // Random change between -25 and 25
                 return currentCount + change;
             });
@@ -21,7 +26,7 @@ export default function OnlineUsers() {
         return () => {
             clearInterval(userInterval);
         };
-    }, []); // Empty dependency array ensures this runs once on mount
+    }, [min, max]);
 
     return (
         <div className="online-users-container">
