@@ -20,7 +20,7 @@ export default function Header() {
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="ghost" size="icon" aria-label="Abrir menu">
-            <Menu className="h-7 w-7 text-primary" />
+            <Menu className="h-8 w-8 text-primary" />
           </Button>
         </SheetTrigger>
         <SheetContent side="left" className="bg-background w-[300px] sm:w-[400px] border-r-primary/20 p-0">
