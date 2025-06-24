@@ -1,5 +1,3 @@
-import WinningsSlideshow from './winnings-slideshow';
-
 export default function HeroSection() {
   return (
     <section className="text-center my-16 md:my-24">
@@ -15,12 +13,6 @@ export default function HeroSection() {
       >
         A IA que decifra os jogos e entrega estratégias matemáticas para lucrar.
       </p>
-      <div
-        className="opacity-0 animate-fade-in-up"
-        style={{ animationDelay: '0.6s' }}
-      >
-        <WinningsSlideshow />
-      </div>
     </section>
   );
 }
