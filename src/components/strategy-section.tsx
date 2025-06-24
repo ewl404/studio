@@ -50,6 +50,7 @@ export default function StrategySection() {
   const [interleavingResult, setInterleavingResult] = useState<InterleavingSignal | null>(null);
   const [showInterleavingResult, setShowInterleavingResult] = useState(false);
   const [countdown, setCountdown] = useState(0);
+  const [hasInterleavingBeenGenerated, setHasInterleavingBeenGenerated] = useState(false);
 
   useEffect(() => {
     if (countdown <= 0) return;
@@ -68,7 +69,7 @@ export default function StrategySection() {
     const newNormal = Math.floor(Math.random() * 10) + 3;
     const newTurbo = Math.floor(Math.random() * 8) + 3;
     const newAccuracy = (Math.random() * (99.5 - 92.0) + 92.0).toFixed(2);
-    const newValidity = Math.floor(Math.random() * 4) + 1; // Between 1 and 4 minutes
+    const newValidity = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
     setInterleavingResult({ normal: newNormal, turbo: newTurbo, accuracy: newAccuracy, validity: newValidity });
   };
 
@@ -95,14 +96,15 @@ export default function StrategySection() {
               clearInterval(interval);
               setIsLoading(false);
               generateNewSignal();
+              if (!hasInterleavingBeenGenerated) {
+                setHasInterleavingBeenGenerated(true);
+              }
           }
-      }, 2500); // 10 seconds total (4 steps * 2.5s)
+      }, 2500);
   };
 
 
   async function onSubmit(data: StrategyFormValues) {
-    setShowHorariosResult(false);
-    setShowInterleavingResult(false);
     setGeneratedTimes([]);
     setInterleavingResult(null);
 
@@ -115,7 +117,8 @@ export default function StrategySection() {
             'Analisando padrões sistêmicos...',
             'Iniciando criptoanálise de dados...',
             'Calculando brechas de oportunidade...',
-            'Oportunidades encontradas! Gerando horários...',
+            'Oportunidades encontradas!',
+            'Gerando horários...',
         ];
         
         setHorariosStatusText('');
@@ -183,7 +186,15 @@ export default function StrategySection() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-primary">Estratégia de Análise</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select 
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                        setShowHorariosResult(false);
+                        setShowInterleavingResult(false);
+                        setHasInterleavingBeenGenerated(false);
+                      }} 
+                      defaultValue={field.value}
+                    >
                       <FormControl>
                         <SelectTrigger className="text-lg h-12">
                           <SelectValue placeholder="Selecione o tipo de análise..." />
@@ -262,54 +273,72 @@ export default function StrategySection() {
       )}
       
       {showInterleavingResult && (
-        <div className="mt-6 animate-fade-in-up">
-            {isLoading ? (
-                <Card className="bg-black border-primary/30 font-code">
-                    <CardHeader>
-                        <CardTitle className="text-primary flex items-center gap-2">
-                            <Cpu /> Terminal de Análise
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                         <div className="space-y-2">
-                            <p className="text-green-400">$ {processingText}</p>
-                            {processingText.includes('Sucesso') && <div className="w-4 h-4 bg-primary animate-ping ml-2 inline-block"></div>}
-                        </div>
-                    </CardContent>
-                </Card>
-            ) : (
-                interleavingResult && (
-                    <Card className="bg-black/80 border-2 border-primary/50 font-code backdrop-blur-sm shadow-lg shadow-primary/20 max-w-sm mx-auto">
-                        <CardHeader className="p-4 bg-primary/[0.07] items-center text-center">
-                            <Image src="https://i.imgur.com/tmp57ua.png" alt="Fortune Tiger" width={80} height={80} className="mb-2" data-ai-hint="tiger mascot" />
-                            <CardTitle className="text-xl font-bold text-primary tracking-wider">
-                                SOFTWARE DO TIGER
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent className="p-4 space-y-3">
-                            <InfoRow icon={Turtle} label="Rodadas Normais:" value={`${interleavingResult.normal}x`} />
-                            <InfoRow icon={Zap} label="Rodadas Turbo:" value={`${interleavingResult.turbo}x`} />
-                            <InfoRow icon={Target} label="Assertividade:" value={`${interleavingResult.accuracy}%`} />
-                            <InfoRow icon={Timer} label="Válido por:" value={`${interleavingResult.validity} MIN`} />
-                        </CardContent>
-                        <CardFooter className="flex-col px-4 pb-4">
-                            <div className="w-full h-6 overflow-hidden relative mb-3">
-                                <p className="absolute whitespace-nowrap text-xs text-primary/80 animate-marquee">
-                                    *** SÓ FUNCIONA EM CONTAS NOVAS *** NOVA BRECHA DETECTADA *** FAÇA SUA ENTRADA IMEDIATAMENTE ***
-                                </p>
-                            </div>
-                            <Button
-                                onClick={runInterleavingAnalysis}
-                                disabled={countdown > 0 || isLoading}
-                                className="w-full h-11 text-base font-bold"
-                            >
-                                {countdown > 0 ? `AGUARDE (${countdown}s...)` : 'GERAR NOVO SINAL'}
-                            </Button>
-                        </CardFooter>
-                    </Card>
-                )
-            )}
-        </div>
+        <>
+          <div className="mt-6 animate-fade-in-up">
+              {isLoading ? (
+                  <Card className="bg-black border-primary/30 font-code">
+                      <CardHeader>
+                          <CardTitle className="text-primary flex items-center gap-2">
+                              <Cpu /> Terminal de Análise
+                          </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                          <div className="space-y-2">
+                              <p className="text-green-400">$ {processingText}</p>
+                              {processingText.includes('Sucesso') && <div className="w-4 h-4 bg-primary animate-ping ml-2 inline-block"></div>}
+                          </div>
+                      </CardContent>
+                  </Card>
+              ) : (
+                  interleavingResult && (
+                      <Card className="bg-black/80 border-2 border-primary/50 font-code backdrop-blur-sm shadow-lg shadow-primary/20 max-w-sm mx-auto">
+                          <CardHeader className="p-4 bg-primary/[0.07] items-center text-center">
+                              <Image src="https://i.imgur.com/tmp57ua.png" alt="Fortune Tiger" width={80} height={80} className="mb-2" data-ai-hint="tiger mascot" />
+                              <CardTitle className="text-xl font-bold text-primary tracking-wider">
+                                  SOFTWARE DO TIGER
+                              </CardTitle>
+                          </CardHeader>
+                          <CardContent className="p-4 space-y-3">
+                              <InfoRow icon={Turtle} label="Rodadas Normais:" value={`${interleavingResult.normal}x`} />
+                              <InfoRow icon={Zap} label="Rodadas Turbo:" value={`${interleavingResult.turbo}x`} />
+                              <InfoRow icon={Target} label="Assertividade:" value={`${interleavingResult.accuracy}%`} />
+                              <InfoRow icon={Timer} label="Válido por:" value={`${interleavingResult.validity} MIN`} />
+                          </CardContent>
+                          <CardFooter className="flex-col px-4 pb-4">
+                              <div className="w-full h-6 overflow-hidden relative mb-3">
+                                  <p className="absolute whitespace-nowrap text-xs text-primary/80 animate-marquee">
+                                      *** SÓ FUNCIONA EM CONTAS NOVAS *** NOVA BRECHA DETECTADA *** FAÇA SUA ENTRADA IMEDIATAMENTE ***
+                                  </p>
+                              </div>
+                              <Button
+                                  onClick={runInterleavingAnalysis}
+                                  disabled={countdown > 0 || isLoading}
+                                  className="w-full h-11 text-base font-bold"
+                              >
+                                  {countdown > 0 ? `AGUARDE (${countdown}s...)` : 'GERAR NOVO SINAL'}
+                              </Button>
+                          </CardFooter>
+                      </Card>
+                  )
+              )}
+          </div>
+          
+          {hasInterleavingBeenGenerated && (
+            <div className="mt-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              <div className="w-full mx-auto overflow-hidden rounded-lg border-2 border-primary/30">
+                <iframe
+                  src="https://bora1.bet/register?code=GIPYCLEZEG"
+                  className="w-full border-0"
+                  style={{ height: '75vh' }}
+                  title="Plataforma Recomendada"
+                ></iframe>
+              </div>
+              <p className="mt-4 text-center text-sm text-muted-foreground">
+                Atenção: A estratégia gerada é validada para a plataforma acima. Cadastre-se para garantir a assertividade.
+              </p>
+            </div>
+          )}
+        </>
     )}
 
     </section>
