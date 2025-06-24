@@ -78,7 +78,7 @@
 }
 
 .casino-bets-container .bet-list-container {
-    height: 500px;
+    height: 600px;
     overflow-y: scroll;
     scroll-behavior: smooth;
     -ms-overflow-style: none;
