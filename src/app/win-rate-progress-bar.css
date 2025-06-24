@@ -57,6 +57,9 @@
     color: hsl(var(--primary-foreground));
     font-weight: bold;
     z-index: 1;
+    display: flex;
+    align-items: baseline;
+    white-space: nowrap;
 }
 
 @keyframes glow {
