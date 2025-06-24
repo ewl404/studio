@@ -6,8 +6,8 @@ import Logo from './logo';
 import { Skeleton } from './ui/skeleton';
 
 const menuItems = [
-  { label: 'Página inicial', icon: Home, href: '#' },
-  { label: 'Jogos pagando agora', icon: Bot, href: '#paying-games' },
+  { label: 'Página inicial', icon: Home, href: '/' },
+  { label: 'Jogos pagando agora', icon: Bot, href: '/jogos-pagando' },
   { label: 'Promoções exclusivas', icon: Gift, href: '#' },
   { label: 'Eventos importantes', icon: Calendar, href: '#' },
   { label: 'Grupo no Telegram', icon: Send, href: '#' },
