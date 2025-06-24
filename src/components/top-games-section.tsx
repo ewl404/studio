@@ -13,7 +13,7 @@ const gamesData = [
   },
   {
     name: 'BetTurbo',
-    logo: 'https://placehold.co/200x64.png',
+    logo: 'https://static3.smr.vc/ce515fe3484c83350ff15f-image_2025_02_03T16_57_55_618Z.png',
   },
   {
     name: 'CashGalaxy',
@@ -47,9 +47,9 @@ export default function TopGamesSection() {
                   src={game.logo}
                   alt={`${game.name} logo`}
                   width={200}
-                  height={64}
-                  className="h-16 w-auto object-contain"
-                  {...(game.name !== 'LotoGreen' && { 'data-ai-hint': 'logo company' })}
+                  height={80}
+                  className="h-20 w-auto object-contain"
+                  {...(game.name === 'CashGalaxy' && { 'data-ai-hint': 'logo company' })}
                 />
               </CardTitle>
             </CardHeader>

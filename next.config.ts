@@ -22,6 +22,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'static3.smr.vc',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };
