@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
 import { Bot, Clock, Cpu } from 'lucide-react';
+import WinRateProgressBar from './win-rate-progress-bar';
 
 const StrategyFormSchema = z.object({
   strategy: z.enum(['Horários de distribuição', 'Intercalação vencedora'], {
@@ -34,7 +35,7 @@ export default function StrategySection() {
   const [processingText, setProcessingText] = useState('');
   
   const [isHorariosLoading, setIsHorariosLoading] = useState(false);
-  const [horariosStatusText, setHorariosStatusText] = useState('Buscar Horários');
+  const [horariosStatusText, setHorariosStatusText] = useState('Aguardando Análise...');
   const [generatedTimes, setGeneratedTimes] = useState<string[]>([]);
   const [progress, setProgress] = useState(0);
   const [showHorariosResult, setShowHorariosResult] = useState(false);
@@ -68,15 +69,22 @@ export default function StrategySection() {
     if (data.strategy === 'Horários de distribuição') {
         setIsHorariosLoading(true);
         setShowHorariosResult(true);
-        setHorariosStatusText('Acessando Histórico de Jogadas');
+
+        setHorariosStatusText('Analisando padrões... Criptoanálise em andamento...');
 
         setTimeout(() => {
-            setHorariosStatusText('Analisando Histórico...');
-        }, 2000);
+            setHorariosStatusText('Decodificando hashes de pagamento...');
+        }, 1500);
 
         setTimeout(() => {
-            setHorariosStatusText('Horários Encontrados!');
-            
+            setHorariosStatusText('Descobrindo brechas de oportunidade...');
+        }, 3000);
+        
+        setTimeout(() => {
+            setHorariosStatusText('Oportunidades encontradas! Calculando assertividade...');
+        }, 4500);
+
+        setTimeout(() => {
             const generateTimes = (startTimeOffsetMinutes: number, count: number): string[] => {
                 const times: string[] = [];
                 let currentTime = new Date();
@@ -99,14 +107,15 @@ export default function StrategySection() {
                 return times;
             };
 
-            const times = generateTimes(10, 56);
+            const times = generateTimes(10, 28);
             setGeneratedTimes(times);
             
             const randomProgress = Math.random() * (100 - 93) + 93;
             setProgress(randomProgress);
             
+            setHorariosStatusText('Estratégia Pronta!');
             setIsHorariosLoading(false);
-        }, 5000);
+        }, 6000);
 
     } else { // 'Intercalação vencedora'
         runProcessingAnimation();
@@ -168,40 +177,39 @@ export default function StrategySection() {
       </Card>
       
       {showHorariosResult && (
-        <div className="mt-6 space-y-4" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            <div className="text-center text-xl font-bold p-3 rounded-sm" style={{
-                color: '#fff',
-                backgroundColor: '#c41f22',
-                border: '4px solid #f6b90f',
-                boxShadow: '2px 5px 10px rgba(0.5, 0.5, 0.5, 0.5)',
-            }}>
-                {horariosStatusText}
-            </div>
+        <Card className="mt-6 bg-background/80 border-primary/30 font-code backdrop-blur-sm">
+            <CardHeader>
+                <CardTitle className="text-primary flex items-center gap-2">
+                    <Cpu className={isHorariosLoading ? "animate-spin" : ""} /> {horariosStatusText}
+                </CardTitle>
+            </CardHeader>
+            { (isHorariosLoading || generatedTimes.length > 0) &&
+            <CardContent>
+                { generatedTimes.length > 0 && !isHorariosLoading ? (
+                    <div className="space-y-4 animate-fade-in-up">
+                        <p className="text-muted-foreground font-body">Estes são os horários com maior probabilidade de prêmios altos nas próximas rodadas. Jogue entre 5 e 10 rodadas em cada um.</p>
+                        <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
+                            {generatedTimes.map(time => (
+                                <div key={time} className="bg-accent/50 border border-primary/30 text-primary font-bold rounded-md p-2 text-center text-lg">
+                                    {time}
+                                </div>
+                            ))}
+                        </div>
 
-            {generatedTimes.length > 0 && (
-                <>
-                    <div className="grid grid-cols-4 sm:grid-cols-7 gap-px border-[3px] border-[#FDBA3C] shadow-md" style={{ backgroundColor: '#8c131d'}}>
-                        {generatedTimes.map(time => (
-                            <div key={time} className="flex flex-col justify-center items-center p-2 text-white font-bold text-[15px]" style={{
-                                background: 'radial-gradient(circle, #ba2a30, #8c131d)',
-                                border: '3px solid #FAC30D',
-                            }}>
-                                {time}
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="w-full bg-[#fbd01d] rounded-lg p-1">
-                         <div className="relative w-full h-[30px] bg-[#fbd01d] rounded-lg">
-                            <div className="h-full bg-[#00b24a] rounded-md transition-all duration-500" style={{ width: `${progress}%` }}></div>
-                            <div className="absolute inset-0 flex items-center justify-center font-bold text-black">
-                                Pagando <span>{progress.toFixed(2)}%</span>
-                            </div>
+                        <div className="pt-4">
+                            <p className="font-bold text-base mb-2 text-foreground font-body">Taxa de Assertividade da Estratégia:</p>
+                            <WinRateProgressBar winRate={progress} />
                         </div>
                     </div>
-                </>
-            )}
-        </div>
+                ) : (
+                    <div className="flex items-center justify-center py-4">
+                        <div className="w-3 h-3 bg-primary animate-ping rounded-full"></div>
+                        <p className="ml-4 text-muted-foreground font-body">Aguarde, nossa IA está trabalhando...</p>
+                    </div>
+                )}
+            </CardContent>
+            }
+        </Card>
       )}
 
       {(isLoading || result) && !showHorariosResult &&(
