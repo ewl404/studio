@@ -41,7 +41,10 @@ export default function TopGamesSection() {
                 <p className="font-bold text-base mb-2">Momento de distribuição:</p>
                 <WinRateProgressBar winRate={game.distributionMoment} />
               </div>
-              <p><strong>Total sacado hoje:</strong> <WithdrawnToday /></p>
+              <div className="text-sm flex justify-between items-center">
+                <span className="text-muted-foreground">Total sacado nas ultimas 12hs:</span>
+                <WithdrawnToday />
+              </div>
               <div className="flex items-center gap-2 text-sm">
                 <strong className="text-muted-foreground font-normal">Status do sistema:</strong>
                 <span className="flex items-center gap-2 text-primary font-bold whitespace-nowrap">
