@@ -1,11 +1,12 @@
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Bot, Users, BarChart, ExternalLink } from 'lucide-react';
+import { Users, BarChart, ExternalLink } from 'lucide-react';
+import Image from 'next/image';
 
 const topGames = [
   {
-    name: 'CyberSlots 777',
-    logo: Bot,
+    name: 'LotoGreen',
+    logo: 'https://lotogreen.com.br/wp-content/uploads/2024/10/logo-lotogreen-2048x664.png',
     winRate: 84,
     winnersToday: 1247,
     withdrawnToday: 34700,
@@ -37,7 +38,9 @@ export default function TopGamesSection() {
         <p className="text-muted-foreground mt-2">Análise em tempo real dos sistemas de jogos.</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {topGames.map((game, index) => (
+        {topGames.map((game, index) => {
+          const Logo = game.logo;
+          return (
           <Card
             key={game.name}
             className="bg-background/50 border-primary/20 shadow-lg shadow-primary/5 flex flex-col transition-all duration-300 hover:border-primary/50 hover:shadow-primary/20"
@@ -45,7 +48,11 @@ export default function TopGamesSection() {
             >
             <CardHeader>
               <CardTitle className="flex items-center gap-3">
-                <game.logo className="w-8 h-8 text-primary" />
+                {typeof Logo === 'string' ? (
+                  <Image src={Logo} alt={`${game.name} logo`} width={99} height={32} className="h-8 w-auto object-contain" />
+                ) : (
+                  <Logo className="w-8 h-8 text-primary" />
+                )}
                 <span className="text-2xl">{game.name}</span>
               </CardTitle>
             </CardHeader>
@@ -76,7 +83,8 @@ export default function TopGamesSection() {
               </Button>
             </CardFooter>
           </Card>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
