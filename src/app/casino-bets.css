@@ -220,6 +220,6 @@
         height: 12px;
     }
     .casino-bets-container .bet-list-container {
-        height: calc(100vh - 100px);
+        height: 300px;
     }
 }
