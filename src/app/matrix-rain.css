@@ -1,0 +1,32 @@
+.matrix-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+  background-color: hsl(var(--background));
+}
+
+.matrix-stream {
+  position: absolute;
+  top: -100%;
+  color: hsl(var(--primary));
+  font-family: 'Roboto Mono', monospace;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  white-space: nowrap;
+  user-select: none;
+  animation: fall linear infinite;
+  text-shadow: 0 0 5px hsla(var(--primary), 0.7);
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(0vh);
+  }
+  to {
+    transform: translateY(200vh);
+  }
+}

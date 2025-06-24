@@ -3,6 +3,7 @@ import './globals.css';
 import './casino-bets.css';
 import './win-rate-progress-bar.css';
 import './online-users.css';
+import './matrix-rain.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
