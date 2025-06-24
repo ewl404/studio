@@ -19,8 +19,8 @@ export default function Header() {
     <header className="py-4 px-2 sm:px-4 flex justify-between items-center w-full">
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="ghost" size="icon" aria-label="Abrir menu">
-            <Menu className="h-8 w-8 text-primary" />
+          <Button variant="ghost" size="icon" className="w-14 h-14" aria-label="Abrir menu">
+            <Menu className="h-12 w-12 text-primary" />
           </Button>
         </SheetTrigger>
         <SheetContent side="left" className="bg-background w-[300px] sm:w-[400px] border-r-primary/20 p-0">
@@ -58,7 +58,7 @@ export default function Header() {
         </Suspense>
       </div>
 
-      <div className="w-10 h-10" />
+      <div className="w-14 h-14" />
     </header>
   );
 }
