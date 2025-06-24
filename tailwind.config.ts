@@ -98,6 +98,11 @@ export default {
             '20%, 80%': { transform: 'translateX(0)', opacity: '1' },
             '100%': { transform: 'translateX(-100%)', opacity: '0' },
         },
+        'green-shadow-pulse': {
+          '50%': {
+            'box-shadow': '0 0 12px hsl(var(--primary))',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -105,6 +110,7 @@ export default {
         'fade-in-down': 'fade-in-down 0.8s ease-out forwards',
         'fade-in-up': 'fade-in-up 0.8s ease-out 0.4s forwards',
         'slide-in-right': 'slide-in-right 4s ease-in-out',
+        'green-shadow-pulse': 'green-shadow-pulse 2s infinite ease-in-out',
       },
     },
   },
