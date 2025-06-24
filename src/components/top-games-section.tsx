@@ -6,29 +6,53 @@ import WinRateProgressBar from './win-rate-progress-bar';
 import OnlineUsers from './online-users';
 import WithdrawnToday from './withdrawn-today';
 
-const game = {
-  name: 'LotoGreen',
-  logo: 'https://lotogreen.com.br/wp-content/uploads/2024/10/logo-lotogreen-2048x664.png',
-  winRate: 84,
-  distributionMoment: 92,
-  status: 'active',
-};
+const games = [
+  {
+    name: 'LotoGreen',
+    logo: 'https://lotogreen.com.br/wp-content/uploads/2024/10/logo-lotogreen-2048x664.png',
+    winRate: 84,
+    distributionMoment: 92,
+    status: 'active',
+  },
+  {
+    name: 'BetTurbo',
+    logo: 'https://placehold.co/200x64.png',
+    winRate: 91,
+    distributionMoment: 88,
+    status: 'active',
+  },
+  {
+    name: 'CashGalaxy',
+    logo: 'https://placehold.co/200x64.png',
+    winRate: 78,
+    distributionMoment: 95,
+    status: 'active',
+  }
+];
 
 export default function TopGamesSection() {
-  const Logo = game.logo;
   return (
     <section id="paying-games" className="w-full max-w-6xl mx-auto">
       <div className="text-center mb-8">
         <h2 className="text-3xl md:text-4xl font-bold text-primary font-headline">Casas que mais estão pagando agora</h2>
         <p className="text-muted-foreground mt-2">Análise em tempo real dos sistemas de jogos.</p>
       </div>
-      <div className="flex justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {games.map((game) => (
           <Card
-            className="bg-background/50 border-primary/20 shadow-lg shadow-primary/5 flex flex-col transition-all duration-300 hover:border-primary/50 hover:shadow-primary/20 max-w-md w-full"
+            key={game.name}
+            className="bg-background/50 border-primary/20 shadow-lg shadow-primary/5 flex flex-col transition-all duration-300 hover:border-primary/50 hover:shadow-primary/20 max-w-md w-full mx-auto"
             >
             <CardHeader>
               <CardTitle className="flex items-center justify-center">
-                <Image src={Logo} alt={`${game.name} logo`} width={99} height={32} className="h-8 w-auto object-contain" />
+                <Image
+                  src={game.logo}
+                  alt={`${game.name} logo`}
+                  width={99}
+                  height={32}
+                  className="h-8 w-auto object-contain"
+                  {...(game.name !== 'LotoGreen' && { 'data-ai-hint': 'logo company' })}
+                />
               </CardTitle>
             </CardHeader>
             <CardContent className="flex-grow space-y-4 text-lg">
@@ -63,6 +87,7 @@ export default function TopGamesSection() {
               </Button>
             </CardFooter>
           </Card>
+        ))}
       </div>
     </section>
   );
