@@ -46,6 +46,7 @@ export default function StrategySection() {
   const [generatedTimes, setGeneratedTimes] = useState<string[]>([]);
   const [progress, setProgress] = useState(0);
   const [showHorariosResult, setShowHorariosResult] = useState(false);
+  const [horariosCountdown, setHorariosCountdown] = useState(0);
 
   const [interleavingResult, setInterleavingResult] = useState<InterleavingSignal | null>(null);
   const [showInterleavingResult, setShowInterleavingResult] = useState(false);
@@ -59,20 +60,19 @@ export default function StrategySection() {
     }, 1000);
     return () => clearTimeout(timer);
   }, [countdown]);
+  
+  useEffect(() => {
+    if (horariosCountdown <= 0) return;
+    const timer = setTimeout(() => {
+      setHorariosCountdown(horariosCountdown - 1);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [horariosCountdown]);
 
   const form = useForm<StrategyFormValues>({
     resolver: zodResolver(StrategyFormSchema),
   });
   
-  const generateNewSignal = () => {
-    setCountdown(60);
-    const newNormal = Math.floor(Math.random() * 10) + 3;
-    const newTurbo = Math.floor(Math.random() * 8) + 3;
-    const newAccuracy = (Math.random() * (99.5 - 92.0) + 92.0).toFixed(2);
-    const newValidity = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
-    setInterleavingResult({ normal: newNormal, turbo: newTurbo, accuracy: newAccuracy, validity: newValidity });
-  };
-
   const runInterleavingAnalysis = () => {
       setIsLoading(true);
       setShowInterleavingResult(true);
@@ -95,7 +95,12 @@ export default function StrategySection() {
           } else {
               clearInterval(interval);
               setIsLoading(false);
-              generateNewSignal();
+              const newNormal = Math.floor(Math.random() * 10) + 3;
+              const newTurbo = Math.floor(Math.random() * 8) + 3;
+              const newAccuracy = (Math.random() * (99.5 - 92.0) + 92.0).toFixed(2);
+              const newValidity = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
+              setInterleavingResult({ normal: newNormal, turbo: newTurbo, accuracy: newAccuracy, validity: newValidity });
+              setCountdown(60);
               if (!hasInterleavingBeenGenerated) {
                 setHasInterleavingBeenGenerated(true);
               }
@@ -121,8 +126,8 @@ export default function StrategySection() {
             'Gerando horários...',
         ];
         
-        setHorariosStatusText('');
-        let stepIndex = 0;
+        setHorariosStatusText(processingSteps[0]);
+        let stepIndex = 1;
         const intervalId = setInterval(() => {
             if(stepIndex < processingSteps.length) {
                 setHorariosStatusText(processingSteps[stepIndex]);
@@ -161,6 +166,7 @@ export default function StrategySection() {
                 setHorariosStatusText('Estratégia Pronta!');
                 setIsHorariosLoading(false);
                 setIsLoading(false);
+                setHorariosCountdown(300);
             }
         }, 2000);
 
@@ -168,6 +174,15 @@ export default function StrategySection() {
         runInterleavingAnalysis();
     }
   }
+  
+  const selectedStrategy = form.watch('strategy');
+  const isHorariosOnCooldown = selectedStrategy === 'Horários de distribuição' && horariosCountdown > 0;
+
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+  };
 
   return (
     <section className="w-full max-w-4xl mx-auto">
@@ -209,9 +224,14 @@ export default function StrategySection() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" disabled={isLoading || isHorariosLoading} className="w-full h-12 text-lg font-bold">
-                {(isLoading || isHorariosLoading) ? <Cpu className="mr-2 h-5 w-5 animate-spin" /> : <Bot className="mr-2 h-5 w-5" />}
-                Aplicar Estratégia
+              <Button type="submit" disabled={isLoading || isHorariosLoading || isHorariosOnCooldown} className="w-full h-12 text-lg font-bold">
+                {isHorariosOnCooldown ? (
+                  `Aguarde ${formatTime(horariosCountdown)}`
+                ) : (isLoading || isHorariosLoading) ? (
+                  <><Cpu className="mr-2 h-5 w-5 animate-spin" /> Gerando...</>
+                ) : (
+                  <><Bot className="mr-2 h-5 w-5" /> Aplicar Estratégia</>
+                )}
               </Button>
             </form>
           </Form>
@@ -275,7 +295,7 @@ export default function StrategySection() {
       {showInterleavingResult && (
         <>
           <div className="mt-6 animate-fade-in-up">
-              {isLoading ? (
+              {isLoading && !interleavingResult ? (
                   <Card className="bg-black border-primary/30 font-code">
                       <CardHeader>
                           <CardTitle className="text-primary flex items-center gap-2">
