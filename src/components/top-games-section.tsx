@@ -12,8 +12,8 @@ const gamesData = [
     logo: 'https://lotogreen.com.br/wp-content/uploads/2024/10/logo-lotogreen-2048x664.png',
   },
   {
-    name: 'BetTurbo',
-    logo: 'https://static3.smr.vc/ce515fe3484c83350ff15f-image_2025_02_03T16_57_55_618Z.png',
+    name: 'Cash Galaxy',
+    logo: 'https://i.imgur.com/Qk9v6xR.png',
   },
   {
     name: 'Fortune Tiger',

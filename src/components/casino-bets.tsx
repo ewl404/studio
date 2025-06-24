@@ -14,9 +14,16 @@ interface Bet {
 
 const gameIcons: { [key: string]: string } = {
     "fortune_tiger": "https://i.imgur.com/tmp57ua.png",
-    "sweet_bonanza": "https://i.imgur.com/tmp57ua.png",
-    "buffalo_king": "https://i.imgur.com/tmp57ua.png",
-    "mines": "https://i.imgur.com/tmp57ua.png",
+    "sweet_bonanza": "https://placehold.co/40x40.png",
+    "buffalo_king": "https://placehold.co/40x40.png",
+    "mines": "https://placehold.co/40x40.png",
+};
+
+const gameIconHints: { [key: string]: string } = {
+    "fortune_tiger": "tiger mascot",
+    "sweet_bonanza": "candy sweet",
+    "buffalo_king": "buffalo animal",
+    "mines": "gem diamond",
 };
 
 const sampleBets = [
@@ -54,13 +61,14 @@ const sampleBets = [
 ];
 
 const BetItemComponent = ({ bet }: { bet: Bet }) => {
-    const gameIconSrc = gameIcons[bet.game] || "https://via.placeholder.com/40";
+    const gameIconSrc = gameIcons[bet.game] || "https://placehold.co/40x40.png";
+    const gameHint = gameIconHints[bet.game] || "";
     const formattedBet = parseFloat(bet.bet).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     const formattedResult = parseFloat(bet.result).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
     return (
         <div className={`bet-item ${bet.isNew ? 'new-bet' : ''}`}>
-            <img className="game-icon" src={gameIconSrc} alt={`${bet.game.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Icon`} width="40" height="40" />
+            <img className="game-icon" src={gameIconSrc} alt={`${bet.game.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Icon`} width="40" height="40" data-ai-hint={gameHint} />
             <div className="bet-details">
                 <div className="bet-info">
                     <span className="player-name">{bet.player}</span>
