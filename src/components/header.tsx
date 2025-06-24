@@ -37,7 +37,7 @@ export default function Header() {
                         href={item.href}
                         className="flex items-center gap-3 p-3 rounded-md text-foreground hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
                       >
-                        <item.icon className="h-5 w-5" />
+                        <item.icon className="h-5 w-5 text-primary" />
                         <span>{item.label}</span>
                       </a>
                     </SheetClose>
