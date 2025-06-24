@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import './casino-bets.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Poppins:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
       </head>
