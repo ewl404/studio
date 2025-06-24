@@ -2,6 +2,7 @@ import Header from '@/components/header';
 import OnlineUsers from '@/components/online-users';
 import MatrixBackground from '@/components/matrix-background';
 import PayingGamesGrid from '@/components/paying-games-grid';
+import WinningsNotifier from '@/components/winnings-notifier';
 
 export default function JogosPagandoPage() {
   return (
@@ -9,6 +10,7 @@ export default function JogosPagandoPage() {
       <MatrixBackground />
       <div className="flex flex-col min-h-screen relative z-10 bg-background/80">
         <Header />
+        <WinningsNotifier />
         <main className="flex-grow container mx-auto px-4 py-8">
           <div className="text-center mb-8 max-w-3xl mx-auto">
             <h1
