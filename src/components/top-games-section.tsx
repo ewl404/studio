@@ -16,8 +16,8 @@ const gamesData = [
     logo: 'https://static3.smr.vc/ce515fe3484c83350ff15f-image_2025_02_03T16_57_55_618Z.png',
   },
   {
-    name: 'CashGalaxy',
-    logo: 'https://placehold.co/200x64.png',
+    name: 'Fortune Tiger',
+    logo: 'https://i.imgur.com/tmp57ua.png',
   }
 ];
 
@@ -49,7 +49,6 @@ export default function TopGamesSection() {
                   width={200}
                   height={80}
                   className="h-20 w-auto object-contain"
-                  {...(game.name === 'CashGalaxy' && { 'data-ai-hint': 'logo company' })}
                 />
               </CardTitle>
             </CardHeader>
