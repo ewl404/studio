@@ -32,8 +32,8 @@ export default function WinningsNotifier() {
             }, 5000);
         };
 
-        const initialTimeout = setTimeout(triggerNotification, 4000);
-        const interval = setInterval(triggerNotification, 15000);
+        const initialTimeout = setTimeout(triggerNotification, 3000);
+        const interval = setInterval(triggerNotification, 10000);
 
         return () => {
             clearTimeout(initialTimeout);
