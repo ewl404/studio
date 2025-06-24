@@ -107,6 +107,10 @@ export default {
           '0%, 100%': { filter: 'drop-shadow(0 0 0 hsl(var(--primary) / 0))' },
           '50%': { filter: 'drop-shadow(0 0 8px hsl(var(--primary)))' },
         },
+        'marquee': {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(-150%)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -116,6 +120,7 @@ export default {
         'slide-in-right': 'slide-in-right 4s ease-in-out',
         'green-shadow-pulse': 'green-shadow-pulse 2s infinite ease-in-out',
         'green-pulse-once': 'green-pulse-once 1s ease-out',
+        'marquee': 'marquee 20s linear infinite',
       },
     },
   },

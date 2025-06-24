@@ -1,17 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { suggestWinningStrategy, SuggestWinningStrategyOutput } from '@/ai/flows/suggest-winning-strategy';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { useToast } from '@/hooks/use-toast';
-import { Bot, Clock, Cpu } from 'lucide-react';
+import { Bot, Cpu, Target, Timer, Turtle, Zap } from 'lucide-react';
 import WinRateProgressBar from './win-rate-progress-bar';
+import Image from 'next/image';
 
 const StrategyFormSchema = z.object({
   strategy: z.enum(['Horários de distribuição', 'Intercalação vencedora'], {
@@ -21,17 +20,25 @@ const StrategyFormSchema = z.object({
 
 type StrategyFormValues = z.infer<typeof StrategyFormSchema>;
 
-const ProcessingSteps = [
-    'INICIANDO ANÁLISE...',
-    'ACESSANDO DATACENTER QUÂNTICO...',
-    'CALCULANDO PADRÕES OCULTOS...',
-    'PROCESSANDO PROBABILIDADES...',
-    'ESTRATÉGIA GERADA COM SUCESSO!',
-];
+type InterleavingSignal = {
+  normal: number;
+  turbo: number;
+  accuracy: string;
+  validity: number;
+};
+
+const InfoRow = ({ icon: Icon, label, value }: { icon: React.ElementType, label: string, value: string }) => (
+    <div className="flex items-center justify-between p-3 bg-accent/30 border border-primary/20 rounded-lg text-sm">
+        <div className="flex items-center gap-3">
+            <Icon className="w-5 h-5 text-primary" />
+            <span className="text-foreground font-semibold">{label}</span>
+        </div>
+        <span className="text-primary font-bold text-base">{value}</span>
+    </div>
+);
 
 export default function StrategySection() {
   const [isLoading, setIsLoading] = useState(false);
-  const [result, setResult] = useState<SuggestWinningStrategyOutput | null>(null);
   const [processingText, setProcessingText] = useState('');
   
   const [isHorariosLoading, setIsHorariosLoading] = useState(false);
@@ -40,31 +47,38 @@ export default function StrategySection() {
   const [progress, setProgress] = useState(0);
   const [showHorariosResult, setShowHorariosResult] = useState(false);
 
-  const { toast } = useToast();
+  const [interleavingResult, setInterleavingResult] = useState<InterleavingSignal | null>(null);
+  const [showInterleavingResult, setShowInterleavingResult] = useState(false);
+  const [countdown, setCountdown] = useState(0);
+
+  useEffect(() => {
+    if (countdown <= 0) return;
+    const timer = setTimeout(() => {
+      setCountdown(countdown - 1);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [countdown]);
 
   const form = useForm<StrategyFormValues>({
     resolver: zodResolver(StrategyFormSchema),
   });
-
-  const runProcessingAnimation = () => {
-    setIsLoading(true);
-    setResult(null);
-    let i = 0;
-    const interval = setInterval(() => {
-        if (i < ProcessingSteps.length) {
-            setProcessingText(ProcessingSteps[i]);
-            i++;
-        } else {
-            clearInterval(interval);
-        }
-    }, 700);
+  
+  const generateNewSignal = () => {
+    setCountdown(60);
+    const newNormal = Math.floor(Math.random() * 10) + 3;
+    const newTurbo = Math.floor(Math.random() * 8) + 3;
+    const newAccuracy = (Math.random() * (99.5 - 92.0) + 92.0).toFixed(2);
+    const newValidity = Math.floor(Math.random() * 11) + 5;
+    setInterleavingResult({ normal: newNormal, turbo: newTurbo, accuracy: newAccuracy, validity: newValidity });
   };
 
+
   async function onSubmit(data: StrategyFormValues) {
-    setResult(null);
     setShowHorariosResult(false);
+    setShowInterleavingResult(false);
     setGeneratedTimes([]);
-    setProgress(0);
+    setInterleavingResult(null);
+    setIsLoading(true);
 
     if (data.strategy === 'Horários de distribuição') {
         setIsHorariosLoading(true);
@@ -78,6 +92,7 @@ export default function StrategySection() {
             'Oportunidades encontradas! Gerando horários...',
         ];
         
+        setProcessingText('');
         let stepIndex = 0;
         const intervalId = setInterval(() => {
             if(stepIndex < processingSteps.length) {
@@ -116,24 +131,30 @@ export default function StrategySection() {
                 
                 setHorariosStatusText('Estratégia Pronta!');
                 setIsHorariosLoading(false);
+                setIsLoading(false);
             }
         }, 2000);
 
     } else { // 'Intercalação vencedora'
-        runProcessingAnimation();
-        try {
-          const response = await suggestWinningStrategy(data);
-          setResult(response);
-        } catch (error) {
-          console.error(error);
-          toast({
-            variant: 'destructive',
-            title: 'Erro na Análise',
-            description: 'Não foi possível gerar a estratégia. Tente novamente.',
-          });
-        } finally {
-            setTimeout(() => setIsLoading(false), 500);
-        }
+        setShowInterleavingResult(true);
+        const processingSteps = [
+            'Analisando Sinais de Intercalação...',
+            'Validando Frequências de Prêmios...',
+            'Cruzando dados do servidor...',
+            'Sinal Gerado com Sucesso!',
+        ];
+
+        let i = 0;
+        const interval = setInterval(() => {
+            if (i < processingSteps.length) {
+                setProcessingText(processingSteps[i]);
+                i++;
+            } else {
+                clearInterval(interval);
+                setIsLoading(false);
+                generateNewSignal();
+            }
+        }, 1000);
     }
   }
 
@@ -231,36 +252,58 @@ export default function StrategySection() {
           )}
         </>
       )}
+      
+      {showInterleavingResult && (
+        <div className="mt-6 animate-fade-in-up">
+            {isLoading ? (
+                <Card className="bg-black border-primary/30 font-code">
+                    <CardHeader>
+                        <CardTitle className="text-primary flex items-center gap-2">
+                            <Cpu /> Terminal de Análise
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                         <div className="space-y-2">
+                            <p className="text-green-400">$ {processingText}</p>
+                            {processingText.includes('Sucesso') && <div className="w-4 h-4 bg-primary animate-ping ml-2 inline-block"></div>}
+                        </div>
+                    </CardContent>
+                </Card>
+            ) : (
+                interleavingResult && (
+                    <Card className="bg-black/80 border-2 border-primary/50 font-code backdrop-blur-sm shadow-lg shadow-primary/20 max-w-sm mx-auto">
+                        <CardHeader className="p-4 bg-primary/[0.07] items-center text-center">
+                            <Image src="https://i.imgur.com/tmp57ua.png" alt="Fortune Tiger" width={80} height={80} className="mb-2" data-ai-hint="tiger mascot" />
+                            <CardTitle className="text-xl font-bold text-primary tracking-wider">
+                                SOFTWARE DO TIGER
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-4 space-y-3">
+                            <InfoRow icon={Turtle} label="Rodadas Normais:" value={`${interleavingResult.normal}x`} />
+                            <InfoRow icon={Zap} label="Rodadas Turbo:" value={`${interleavingResult.turbo}x`} />
+                            <InfoRow icon={Target} label="Assertividade:" value={`${interleavingResult.accuracy}%`} />
+                            <InfoRow icon={Timer} label="Válido por:" value={`${interleavingResult.validity} MIN`} />
+                        </CardContent>
+                        <CardFooter className="flex-col px-4 pb-4">
+                            <div className="w-full h-6 overflow-hidden relative mb-3">
+                                <p className="absolute whitespace-nowrap text-xs text-primary/80 animate-marquee">
+                                    *** SÓ FUNCIONA EM CONTAS NOVAS *** NOVA BRECHA DETECTADA *** FAÇA SUA ENTRADA IMEDIATAMENTE ***
+                                </p>
+                            </div>
+                            <Button
+                                onClick={generateNewSignal}
+                                disabled={countdown > 0}
+                                className="w-full h-11 text-base font-bold"
+                            >
+                                {countdown > 0 ? `AGUARDE (${countdown}s...)` : 'GERAR NOVO SINAL'}
+                            </Button>
+                        </CardFooter>
+                    </Card>
+                )
+            )}
+        </div>
+    )}
 
-      {(isLoading || result) && !showHorariosResult &&(
-        <Card className="mt-6 bg-black border-primary/30 font-code">
-            <CardHeader>
-                <CardTitle className="text-primary flex items-center gap-2">
-                    <Cpu /> Terminal de Análise
-                </CardTitle>
-            </CardHeader>
-            <CardContent>
-                {isLoading && (
-                    <div className="space-y-2">
-                        <p className="text-green-400">$ {processingText}</p>
-                        {processingText === 'ESTRATÉGIA GERADA COM SUCESSO!' && <div className="w-4 h-4 bg-primary animate-ping ml-2 inline-block"></div>}
-                    </div>
-                )}
-                {result && !isLoading && (
-                    <div className="space-y-4 animate-fade-in-up">
-                        <div>
-                            <h3 className="text-lg font-bold text-primary mb-2 flex items-center gap-2"><Clock/> Horários Sugeridos:</h3>
-                            <p className="text-foreground whitespace-pre-wrap">{result.suggestion}</p>
-                        </div>
-                         <div>
-                            <h3 className="text-lg font-bold text-primary mb-2">Explicação da IA:</h3>
-                            <p className="text-muted-foreground">{result.explanation}</p>
-                        </div>
-                    </div>
-                )}
-            </CardContent>
-        </Card>
-      )}
     </section>
   );
 }
