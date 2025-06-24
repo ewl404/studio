@@ -70,52 +70,54 @@ export default function StrategySection() {
         setIsHorariosLoading(true);
         setShowHorariosResult(true);
 
-        setHorariosStatusText('Analisando padrões... Criptoanálise em andamento...');
-
-        setTimeout(() => {
-            setHorariosStatusText('Decodificando hashes de pagamento...');
-        }, 1500);
-
-        setTimeout(() => {
-            setHorariosStatusText('Descobrindo brechas de oportunidade...');
-        }, 3000);
+        const processingSteps = [
+            'Analisando padrões...',
+            'Criptoanálise em andamento...',
+            'Decodificando hashes de pagamento...',
+            'Descobrindo brechas de oportunidade...',
+            'Oportunidades encontradas! Calculando assertividade...',
+        ];
         
-        setTimeout(() => {
-            setHorariosStatusText('Oportunidades encontradas! Calculando assertividade...');
-        }, 4500);
+        let stepIndex = 0;
+        const intervalId = setInterval(() => {
+            if(stepIndex < processingSteps.length) {
+                setHorariosStatusText(processingSteps[stepIndex]);
+                stepIndex++;
+            } else {
+                clearInterval(intervalId);
 
-        setTimeout(() => {
-            const generateTimes = (startTimeOffsetMinutes: number, count: number): string[] => {
-                const times: string[] = [];
-                let currentTime = new Date();
-                currentTime.setMinutes(currentTime.getMinutes() + startTimeOffsetMinutes);
+                const generateTimes = (startTimeOffsetMinutes: number, count: number): string[] => {
+                    const times: string[] = [];
+                    let currentTime = new Date();
+                    currentTime.setMinutes(currentTime.getMinutes() + startTimeOffsetMinutes);
 
-                for (let i = 0; i < count; i++) {
-                    const randomInterval = Math.floor(Math.random() * (9 - 3 + 1)) + 3;
-                    currentTime.setMinutes(currentTime.getMinutes() + randomInterval);
+                    for (let i = 0; i < count; i++) {
+                        const randomInterval = Math.floor(Math.random() * (9 - 3 + 1)) + 3;
+                        currentTime.setMinutes(currentTime.getMinutes() + randomInterval);
 
-                    const hours = currentTime.getHours().toString().padStart(2, '0');
-                    const minutes = currentTime.getMinutes().toString().padStart(2, '0');
-                    const formattedTime = `${hours}:${minutes}`;
+                        const hours = currentTime.getHours().toString().padStart(2, '0');
+                        const minutes = currentTime.getMinutes().toString().padStart(2, '0');
+                        const formattedTime = `${hours}:${minutes}`;
 
-                    if (!times.includes(formattedTime)) {
-                        times.push(formattedTime);
-                    } else {
-                        i--;
+                        if (!times.includes(formattedTime)) {
+                            times.push(formattedTime);
+                        } else {
+                            i--;
+                        }
                     }
-                }
-                return times;
-            };
+                    return times;
+                };
 
-            const times = generateTimes(10, 28);
-            setGeneratedTimes(times);
-            
-            const randomProgress = Math.random() * (100 - 93) + 93;
-            setProgress(randomProgress);
-            
-            setHorariosStatusText('Estratégia Pronta!');
-            setIsHorariosLoading(false);
-        }, 6000);
+                const times = generateTimes(10, 28);
+                setGeneratedTimes(times);
+                
+                const randomProgress = Math.random() * (100 - 93) + 93;
+                setProgress(randomProgress);
+                
+                setHorariosStatusText('Estratégia Pronta!');
+                setIsHorariosLoading(false);
+            }
+        }, 1400); // ~7 seconds total (5 steps * 1.4s)
 
     } else { // 'Intercalação vencedora'
         runProcessingAnimation();
