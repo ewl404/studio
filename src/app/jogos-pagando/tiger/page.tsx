@@ -1,7 +1,6 @@
 import Header from '@/components/header';
 import MatrixBackground from '@/components/matrix-background';
 import WinningsNotifier from '@/components/winnings-notifier';
-import OnlineUsers from '@/components/online-users';
 import StrategySection from '@/components/strategy-section';
 import Image from 'next/image';
 
@@ -35,9 +34,6 @@ export default function TigerPage() {
             >
               Utilize nossa IA para identificar os melhores horários e estratégias para o Fortune Tiger.
             </p>
-          </div>
-          <div className="max-w-sm mx-auto mb-8">
-              <OnlineUsers min={500} max={2500} />
           </div>
           <StrategySection />
         </main>
