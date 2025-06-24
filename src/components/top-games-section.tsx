@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Users, BarChart, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import WinRateProgressBar from './win-rate-progress-bar';
+import OnlineUsers from './online-users';
 
 const topGames = [
   {
@@ -58,6 +59,7 @@ export default function TopGamesSection() {
               </CardTitle>
             </CardHeader>
             <CardContent className="flex-grow space-y-4 text-lg">
+              <OnlineUsers />
               <div>
                 <p className="font-bold text-base mb-2">Taxa de vitória:</p>
                 <WinRateProgressBar winRate={game.winRate} />
