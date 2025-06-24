@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow container mx-auto px-4 py-8 flex flex-col gap-16 md:gap-24">
+      <main className="flex-grow container mx-auto px-4 py-8 flex flex-col gap-8 md:gap-16">
         <HeroSection />
         <CasinoBets />
         <Separator className="bg-primary/20" />
