@@ -10,7 +10,7 @@ const topGames = [
     name: 'LotoGreen',
     logo: 'https://lotogreen.com.br/wp-content/uploads/2024/10/logo-lotogreen-2048x664.png',
     winRate: 84,
-    winnersToday: 1247,
+    distributionMoment: 92,
     withdrawnToday: 34700,
     status: 'active',
   },
@@ -18,7 +18,7 @@ const topGames = [
     name: 'Neon Roulette',
     logo: BarChart,
     winRate: 78,
-    winnersToday: 982,
+    distributionMoment: 85,
     withdrawnToday: 21500,
     status: 'active',
   },
@@ -26,7 +26,7 @@ const topGames = [
     name: 'DataJack',
     logo: Users,
     winRate: 65,
-    winnersToday: 451,
+    distributionMoment: 70,
     withdrawnToday: 9800,
     status: 'unstable',
   },
@@ -64,7 +64,10 @@ export default function TopGamesSection() {
                 <p className="font-bold text-base mb-2">Taxa de vitória:</p>
                 <WinRateProgressBar winRate={game.winRate} />
               </div>
-              <p><strong>Apostadores lucraram hoje:</strong> <span className="text-foreground font-bold">{game.winnersToday.toLocaleString('pt-BR')}</span></p>
+              <div>
+                <p className="font-bold text-base mb-2">Momento de distribuição:</p>
+                <WinRateProgressBar winRate={game.distributionMoment} />
+              </div>
               <p><strong>Total sacado hoje:</strong> <span className="text-foreground font-bold">{game.withdrawnToday.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></p>
               <div className="flex items-center gap-2">
                 <strong>Status do sistema:</strong>
