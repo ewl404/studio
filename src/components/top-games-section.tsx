@@ -12,11 +12,11 @@ const gamesData = [
     logo: 'https://lotogreen.com.br/wp-content/uploads/2024/10/logo-lotogreen-2048x664.png',
   },
   {
-    name: 'Cash Galaxy',
-    logo: 'https://i.imgur.com/Qk9v6xR.png',
+    name: 'Fortune Tiger',
+    logo: 'https://i.imgur.com/tmp57ua.png',
   },
   {
-    name: 'Fortune Tiger',
+    name: 'Fortune Ox',
     logo: 'https://i.imgur.com/tmp57ua.png',
   }
 ];
