@@ -48,7 +48,7 @@ export default function TopGamesSection() {
                   alt={`${game.name} logo`}
                   width={200}
                   height={64}
-                  className="h-12 w-auto object-contain"
+                  className="h-16 w-auto object-contain"
                   {...(game.name !== 'LotoGreen' && { 'data-ai-hint': 'logo company' })}
                 />
               </CardTitle>
@@ -79,7 +79,7 @@ export default function TopGamesSection() {
             </CardContent>
             <CardFooter>
               <Button asChild className="w-full">
-                <a href="#">
+                <a href="https://madetoinvest.pro/lotogreen-apphack" target="_blank" rel="noopener noreferrer">
                   Acessar esta casa <ExternalLink className="ml-2 h-4 w-4" />
                 </a>
               </Button>
