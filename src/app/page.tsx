@@ -1,4 +1,3 @@
-import CasinoBets from '@/components/casino-bets';
 import Header from '@/components/header';
 import HeroSection from '@/components/hero-section';
 import StrategySection from '@/components/strategy-section';
@@ -11,7 +10,6 @@ export default function Home() {
       <Header />
       <main className="flex-grow container mx-auto px-4 pt-[10px] pb-8 flex flex-col gap-8 md:gap-16">
         <HeroSection />
-        <CasinoBets />
         <Separator className="bg-primary/20" />
         <StrategySection />
         <Separator className="bg-primary/20" />
