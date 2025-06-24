@@ -17,7 +17,7 @@ const gamesData = [
   },
   {
     name: 'HanzBet',
-    logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/hanz-scaled.jpg',
+    logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/hanz-removebg-preview.png',
   }
 ];
 
