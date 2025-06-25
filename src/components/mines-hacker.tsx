@@ -19,6 +19,7 @@ const MinesHacker = () => {
     const [buttonCountdown, setButtonCountdown] = useState(0);
     const [validityCountdown, setValidityCountdown] = useState(0);
     const [accuracy, setAccuracy] = useState(0);
+    const [hasHackedOnce, setHasHackedOnce] = useState(false);
 
     useEffect(() => {
         if (buttonCountdown > 0) {
@@ -73,6 +74,7 @@ const MinesHacker = () => {
                 setIsHacked(true);
                 setButtonCountdown(15);
                 setValidityCountdown(120);
+                setHasHackedOnce(true);
             }
         }, 1500);
     };
@@ -150,6 +152,21 @@ const MinesHacker = () => {
                     </Button>
                 </div>
             </Card>
+            {hasHackedOnce && (
+              <div className="mt-6 w-full max-w-2xl mx-auto animate-fade-in-up">
+                <div className="w-full mx-auto overflow-hidden rounded-lg border-2 border-primary/30">
+                  <iframe
+                    src="https://bora1.bet/register?code=GIPYCLEZEG"
+                    className="w-full border-0"
+                    style={{ height: '75vh' }}
+                    title="Plataforma Recomendada"
+                  ></iframe>
+                </div>
+                <p className="mt-4 text-center text-sm text-muted-foreground">
+                  Atenção: A estratégia gerada é validada para a plataforma acima. Cadastre-se para garantir a assertividade.
+                </p>
+              </div>
+            )}
         </>
     );
 };
