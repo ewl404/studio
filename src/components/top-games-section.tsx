@@ -10,14 +10,17 @@ const gamesData = [
   {
     name: 'LotoGreen',
     logo: 'https://lotogreen.com.br/wp-content/uploads/2024/10/logo-lotogreen-2048x664.png',
+    href: 'https://madetoinvest.pro/lotogreen-apphack',
   },
   {
     name: 'Bora1.bet',
     logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/FQmwiS6piHpIwYaE7SfCATrT9NwOqNilozzBZTZQ.png',
+    href: 'https://madetoinvest.pro/bora1bet-apphack',
   },
   {
     name: 'HanzBet',
     logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/hanz-removebg-preview.png',
+    href: 'https://madetoinvest.pro/hanzbet-apphack',
   }
 ];
 
@@ -78,7 +81,7 @@ export default function TopGamesSection() {
             </CardContent>
             <CardFooter>
               <Button asChild className="w-full">
-                <a href="https://madetoinvest.pro/hanzbet-apphack" target="_blank" rel="noopener noreferrer">
+                <a href={game.href} target="_blank" rel="noopener noreferrer">
                   Acessar esta casa <ExternalLink className="ml-2 h-4 w-4" />
                 </a>
               </Button>
