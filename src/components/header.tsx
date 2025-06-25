@@ -10,7 +10,7 @@ const menuItems = [
   { label: 'Jogos pagando agora', icon: Bot, href: '/jogos-pagando' },
   { label: 'Promoções exclusivas', icon: Gift, href: '/promocoes' },
   { label: 'Lucrando na Prática com IA', icon: DollarSign, href: '#' },
-  { label: 'Grupo no Telegram', icon: Send, href: '#' },
+  { label: 'Grupo no Telegram', icon: Send, href: 'https://t.me/+lbsueHDfifowYTFh' },
   { label: 'Suporte', icon: HelpCircle, href: '#' },
 ];
 
@@ -35,6 +35,8 @@ export default function Header() {
                     <SheetClose asChild>
                       <a
                         href={item.href}
+                        target={item.href.startsWith('http') ? '_blank' : '_self'}
+                        rel="noopener noreferrer"
                         className="flex items-center gap-3 p-3 rounded-md text-foreground hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
                       >
                         <item.icon className="h-5 w-5 text-primary" />
