@@ -13,11 +13,11 @@ const gamesData = [
   },
   {
     name: 'Bora1.bet',
-    logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/FQmwiS6piHpIwYaE7SfCATrT9NwOqNilozzBZTZQ.png',
+    logo: 'https://static3.smr.vc/assets/logo/bora1bet/logo-2.svg',
   },
   {
     name: 'HanzBet',
-    logo: 'https://static3.smr.vc/assets/logo/bora1bet/logo-2.svg',
+    logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/hanz-removebg-preview.png',
   }
 ];
 
