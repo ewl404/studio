@@ -90,7 +90,6 @@ const AviatorAnalyzer = () => {
       <Card className="w-full max-w-lg bg-background/70 border-primary/20 shadow-lg shadow-primary/5">
         <CardHeader className="p-4 pb-2">
           <CardTitle className="text-primary text-xl font-bold">1. Selecione a Plataforma</CardTitle>
-          <CardDescription>O iframe será carregado abaixo automaticamente.</CardDescription>
         </CardHeader>
         <CardContent className="p-4 pt-2">
           <Select onValueChange={setSelectedCasinoUrl} defaultValue={selectedCasinoUrl}>
