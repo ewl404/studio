@@ -110,10 +110,8 @@ export default function StrategySection() {
 
 
   async function onSubmit(data: StrategyFormValues) {
-    setGeneratedTimes([]);
-    setInterleavingResult(null);
-
     if (data.strategy === 'Horários de distribuição') {
+        setGeneratedTimes([]);
         setIsLoading(true);
         setIsHorariosLoading(true);
         setShowHorariosResult(true);
@@ -171,6 +169,7 @@ export default function StrategySection() {
         setTimeout(processNextStep, 2000);
 
     } else if (data.strategy === 'Intercalação vencedora') {
+        setInterleavingResult(null);
         runInterleavingAnalysis();
     }
   }
@@ -183,6 +182,8 @@ export default function StrategySection() {
     const remainingSeconds = seconds % 60;
     return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
+
+  const showIframe = (selectedStrategy === 'Horários de distribuição' && generatedTimes.length > 0 && !isHorariosLoading) || (selectedStrategy === 'Intercalação vencedora' && hasInterleavingBeenGenerated);
 
   return (
     <section className="w-full max-w-4xl mx-auto">
@@ -206,7 +207,6 @@ export default function StrategySection() {
                         field.onChange(value);
                         setShowHorariosResult(false);
                         setShowInterleavingResult(false);
-                        setHasInterleavingBeenGenerated(false);
                       }} 
                       defaultValue={field.value}
                     >
@@ -239,128 +239,107 @@ export default function StrategySection() {
       </Card>
       
       {showHorariosResult && (
-        <>
-          <Card className="mt-6 bg-background/80 border-primary/30 font-code backdrop-blur-sm">
-              <CardHeader>
-                  <CardTitle className="text-primary flex items-center gap-2">
-                      <Cpu className={isHorariosLoading ? "animate-spin" : ""} /> {horariosStatusText}
-                  </CardTitle>
-              </CardHeader>
-              { (isHorariosLoading || generatedTimes.length > 0) &&
-              <CardContent>
-                  { generatedTimes.length > 0 && !isHorariosLoading ? (
-                      <div className="space-y-4 animate-fade-in-up">
-                          <p className="text-muted-foreground font-body">Estes são os horários com maior probabilidade de prêmios altos nas próximas rodadas. Jogue entre 5 e 10 rodadas em cada um.</p>
-                          <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
-                              {generatedTimes.map(time => (
-                                  <div key={time} className="bg-accent/50 border border-primary/30 text-primary font-bold rounded-md p-2 text-center text-lg">
-                                      {time}
-                                  </div>
-                              ))}
-                          </div>
+        <Card className="mt-6 bg-background/80 border-primary/30 font-code backdrop-blur-sm">
+            <CardHeader>
+                <CardTitle className="text-primary flex items-center gap-2">
+                    <Cpu className={isHorariosLoading ? "animate-spin" : ""} /> {horariosStatusText}
+                </CardTitle>
+            </CardHeader>
+            { (isHorariosLoading || generatedTimes.length > 0) &&
+            <CardContent>
+                { generatedTimes.length > 0 && !isHorariosLoading ? (
+                    <div className="space-y-4 animate-fade-in-up">
+                        <p className="text-muted-foreground font-body">Estes são os horários com maior probabilidade de prêmios altos nas próximas rodadas. Jogue entre 5 e 10 rodadas em cada um.</p>
+                        <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
+                            {generatedTimes.map(time => (
+                                <div key={time} className="bg-accent/50 border border-primary/30 text-primary font-bold rounded-md p-2 text-center text-lg">
+                                    {time}
+                                </div>
+                            ))}
+                        </div>
 
-                          <div className="pt-4">
-                              <p className="font-bold text-base mb-2 text-foreground font-body">Taxa de Assertividade da Estratégia:</p>
-                              <WinRateProgressBar winRate={progress} />
-                          </div>
-                      </div>
-                  ) : (
-                      <div className="flex items-center justify-center py-4">
-                          <div className="w-3 h-3 bg-primary animate-ping rounded-full"></div>
-                          <p className="ml-4 text-muted-foreground font-body">Aguarde, nossa IA está trabalhando...</p>
-                      </div>
-                  )}
-              </CardContent>
-              }
-          </Card>
-          
-          {generatedTimes.length > 0 && !isHorariosLoading && (
-            <div className="mt-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <div className="w-full mx-auto overflow-hidden rounded-lg border-2 border-primary/30">
-                <iframe
-                  src="https://bora1.bet/register?code=GIPYCLEZEG"
-                  className="w-full border-0"
-                  style={{ height: '75vh' }}
-                  title="Plataforma Recomendada"
-                ></iframe>
-              </div>
-              <p className="mt-4 text-center text-sm text-muted-foreground">
-                Atenção: A estratégia gerada é validada para a plataforma acima. Cadastre-se para garantir a assertividade.
-              </p>
-            </div>
-          )}
-        </>
+                        <div className="pt-4">
+                            <p className="font-bold text-base mb-2 text-foreground font-body">Taxa de Assertividade da Estratégia:</p>
+                            <WinRateProgressBar winRate={progress} />
+                        </div>
+                    </div>
+                ) : (
+                    <div className="flex items-center justify-center py-4">
+                        <div className="w-3 h-3 bg-primary animate-ping rounded-full"></div>
+                        <p className="ml-4 text-muted-foreground font-body">Aguarde, nossa IA está trabalhando...</p>
+                    </div>
+                )}
+            </CardContent>
+            }
+        </Card>
       )}
       
       {showInterleavingResult && (
-        <>
-          <div className="mt-6 animate-fade-in-up">
-              {isLoading && !interleavingResult ? (
-                  <Card className="bg-black border-primary/30 font-code">
-                      <CardHeader>
-                          <CardTitle className="text-primary flex items-center gap-2">
-                              <Cpu /> Terminal de Análise
-                          </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                          <div className="space-y-2">
-                              <p className="text-green-400">$ {processingText}</p>
-                              {processingText.includes('Sucesso') && <div className="w-4 h-4 bg-primary animate-ping ml-2 inline-block"></div>}
-                          </div>
-                      </CardContent>
-                  </Card>
-              ) : (
-                  interleavingResult && (
-                      <Card className="bg-black/80 border-2 border-primary/50 font-code backdrop-blur-sm shadow-lg shadow-primary/20 max-w-sm mx-auto">
-                          <CardHeader className="p-4 bg-primary/[0.07] items-center text-center">
+        <div className="mt-6 animate-fade-in-up">
+            {isLoading && !interleavingResult ? (
+                <Card className="bg-black border-primary/30 font-code">
+                    <CardHeader>
+                        <CardTitle className="text-primary flex items-center gap-2">
+                            <Cpu /> Terminal de Análise
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="space-y-2">
+                            <p className="text-green-400">$ {processingText}</p>
+                            {processingText.includes('Sucesso') && <div className="w-4 h-4 bg-primary animate-ping ml-2 inline-block"></div>}
+                        </div>
+                    </CardContent>
+                </Card>
+            ) : (
+                interleavingResult && (
+                    <Card className="bg-black/80 border-2 border-primary/50 font-code backdrop-blur-sm shadow-lg shadow-primary/20 max-w-sm mx-auto">
+                        <CardHeader className="p-4 bg-primary/[0.07] items-center text-center">
                               <Image src="https://i.imgur.com/tmp57ua.png" alt="Fortune Tiger" width={80} height={80} className="mb-2" data-ai-hint="tiger mascot" />
                               <CardTitle className="text-xl font-bold text-primary tracking-wider">
                                   SOFTWARE DO TIGER
                               </CardTitle>
-                          </CardHeader>
-                          <CardContent className="p-4 space-y-3">
-                              <InfoRow icon={Turtle} label="Rodadas Normais:" value={`${interleavingResult.normal}x`} />
-                              <InfoRow icon={Zap} label="Rodadas Turbo:" value={`${interleavingResult.turbo}x`} />
-                              <InfoRow icon={Target} label="Assertividade:" value={`${interleavingResult.accuracy}%`} />
-                              <InfoRow icon={Timer} label="Válido por:" value={`${interleavingResult.validity} MIN`} />
-                          </CardContent>
-                          <CardFooter className="flex-col px-4 pb-4">
-                              <div className="w-full h-6 overflow-hidden relative mb-3">
-                                  <p className="absolute whitespace-nowrap text-xs text-primary/80 animate-marquee">
-                                      *** SÓ FUNCIONA EM CONTAS NOVAS *** NOVA BRECHA DETECTADA *** FAÇA SUA ENTRADA IMEDIATAMENTE ***
-                                  </p>
-                              </div>
-                              <Button
-                                  onClick={runInterleavingAnalysis}
-                                  disabled={countdown > 0 || isLoading}
-                                  className="w-full h-11 text-base font-bold"
-                              >
-                                  {countdown > 0 ? `AGUARDE (${countdown}s...)` : 'GERAR NOVO SINAL'}
-                              </Button>
-                          </CardFooter>
-                      </Card>
-                  )
-              )}
-          </div>
-          
-          {hasInterleavingBeenGenerated && (
-            <div className="mt-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <div className="w-full mx-auto overflow-hidden rounded-lg border-2 border-primary/30">
-                <iframe
-                  src="https://bora1.bet/register?code=GIPYCLEZEG"
-                  className="w-full border-0"
-                  style={{ height: '75vh' }}
-                  title="Plataforma Recomendada"
-                ></iframe>
-              </div>
-              <p className="mt-4 text-center text-sm text-muted-foreground">
-                Atenção: A estratégia gerada é validada para a plataforma acima. Cadastre-se para garantir a assertividade.
-              </p>
-            </div>
-          )}
-        </>
-    )}
+                        </CardHeader>
+                        <CardContent className="p-4 space-y-3">
+                            <InfoRow icon={Turtle} label="Rodadas Normais:" value={`${interleavingResult.normal}x`} />
+                            <InfoRow icon={Zap} label="Rodadas Turbo:" value={`${interleavingResult.turbo}x`} />
+                            <InfoRow icon={Target} label="Assertividade:" value={`${interleavingResult.accuracy}%`} />
+                            <InfoRow icon={Timer} label="Válido por:" value={`${interleavingResult.validity} MIN`} />
+                        </CardContent>
+                        <CardFooter className="flex-col px-4 pb-4">
+                            <div className="w-full h-6 overflow-hidden relative mb-3">
+                                <p className="absolute whitespace-nowrap text-xs text-primary/80 animate-marquee">
+                                    *** SÓ FUNCIONA EM CONTAS NOVAS *** NOVA BRECHA DETECTADA *** FAÇA SUA ENTRADA IMEDIATAMENTE ***
+                                </p>
+                            </div>
+                            <Button
+                                onClick={runInterleavingAnalysis}
+                                disabled={countdown > 0 || isLoading}
+                                className="w-full h-11 text-base font-bold"
+                            >
+                                {countdown > 0 ? `AGUARDE (${countdown}s...)` : 'GERAR NOVO SINAL'}
+                            </Button>
+                        </CardFooter>
+                    </Card>
+                )
+            )}
+        </div>
+      )}
 
+      {showIframe && (
+        <div className="mt-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          <div className="w-full mx-auto overflow-hidden rounded-lg border-2 border-primary/30">
+            <iframe
+              src="https://bora1.bet/register?code=GIPYCLEZEG"
+              className="w-full border-0"
+              style={{ height: '75vh' }}
+              title="Plataforma Recomendada"
+            ></iframe>
+          </div>
+          <p className="mt-4 text-center text-sm text-muted-foreground">
+            Atenção: A estratégia gerada é validada para a plataforma acima. Cadastre-se para garantir a assertividade.
+          </p>
+        </div>
+      )}
     </section>
   );
 }
