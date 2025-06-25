@@ -89,7 +89,7 @@ const MinesHacker = () => {
             <Card className="w-full max-w-xs sm:max-w-sm bg-background/70 border-2 border-primary/20 shadow-2xl shadow-primary/10 backdrop-blur-sm font-code">
                 <CardHeader className="items-center text-center p-4 space-y-1">
                     <Image src="https://i.imgur.com/G3w2YfV.png" alt="Mines Logo" width={64} height={64} data-ai-hint="gem diamond"/>
-                    <CardTitle className="text-xl text-primary font-bold tracking-widest">MINES PRO</CardTitle>
+                    <CardTitle className="text-2xl text-primary font-bold tracking-widest">MINES PRO</CardTitle>
                     {isHacked ? (
                         <p className="text-foreground animate-fade-in-up h-5 text-sm">
                             Probabilidade de acerto: <span className="font-bold text-primary">{accuracy}%</span>
@@ -98,7 +98,7 @@ const MinesHacker = () => {
                         <p className="h-5">&nbsp;</p> 
                     )}
                 </CardHeader>
-                <CardContent className="p-3">
+                <CardContent className="px-3 pt-3 pb-2">
                     <div className="relative aspect-[5/6]">
                         {isLoading && (
                             <div className="absolute inset-0 bg-background/80 flex flex-col items-center justify-center z-10 animate-fade-in rounded-md">
