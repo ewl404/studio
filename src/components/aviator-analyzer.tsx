@@ -109,7 +109,7 @@ const AviatorAnalyzer = () => {
       <Card className="w-full max-w-lg bg-background/70 border-primary/20 shadow-lg shadow-primary/5">
         <CardHeader>
           <CardTitle className="text-primary text-xl font-bold">Análise de Velas</CardTitle>
-          <CardDescription>Insira a quantidade de cada vela para receber a análise da IA.</CardDescription>
+          <CardDescription>Para receber a análise, observe as últimas 25 velas do gráfico e insira as informações nos campos abaixo.</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
