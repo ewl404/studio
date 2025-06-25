@@ -5,7 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button';
 import { Cpu, Target, Timer, Star, Bomb } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import Image from 'next/image';
 
 const TOTAL_CELLS = 25;
 const SAFE_CELLS_COUNT = 4;
@@ -88,7 +87,6 @@ const MinesHacker = () => {
         <>
             <Card className="w-full max-w-[285px] bg-background/70 border-2 border-primary/20 shadow-2xl shadow-primary/10 backdrop-blur-sm font-code">
                 <CardHeader className="items-center text-center p-4 space-y-1">
-                    <Image src="https://i.imgur.com/G3w2YfV.png" alt="Mines Logo" width={64} height={64} data-ai-hint="gem diamond"/>
                     <CardTitle className="text-2xl text-primary font-bold tracking-widest">MINES PRO</CardTitle>
                     {isHacked ? (
                         <p className="text-foreground animate-fade-in-up h-5 text-sm">
