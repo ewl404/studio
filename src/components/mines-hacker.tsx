@@ -89,7 +89,7 @@ const MinesHacker = () => {
             <Card className="w-full max-w-xs sm:max-w-sm bg-background/70 border-2 border-primary/20 shadow-2xl shadow-primary/10 backdrop-blur-sm font-code">
                 <CardHeader className="items-center text-center p-4 space-y-1">
                     <Image src="https://i.imgur.com/G3w2YfV.png" alt="Mines Logo" width={64} height={64} data-ai-hint="gem diamond"/>
-                    <CardTitle className="text-3xl text-primary font-bold tracking-widest">MINES PRO</CardTitle>
+                    <CardTitle className="text-2xl text-primary font-bold tracking-widest">MINES PRO</CardTitle>
                     {isHacked ? (
                         <p className="text-foreground animate-fade-in-up h-5 text-sm">
                             Probabilidade de acerto: <span className="font-bold text-primary">{accuracy}%</span>
@@ -153,7 +153,7 @@ const MinesHacker = () => {
                 </div>
             </Card>
 
-            <div className="w-full max-w-sm mx-auto overflow-hidden rounded-lg border-2 border-primary/30 mt-4">
+            <div className="w-full max-w-sm mx-auto overflow-hidden rounded-lg border-2 border-primary/30">
                 <iframe
                     src="https://go.aff.estrelabet.com/avqnxxdi"
                     className="w-full border-0"
@@ -161,7 +161,7 @@ const MinesHacker = () => {
                     title="Plataforma Recomendada"
                 ></iframe>
             </div>
-            <p className="mt-2 text-center text-sm text-muted-foreground max-w-sm">
+            <p className="text-center text-sm text-muted-foreground max-w-sm">
                 Atenção: A estratégia gerada é validada para a plataforma acima. Cadastre-se para garantir a assertividade.
             </p>
         </div>
