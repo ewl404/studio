@@ -38,7 +38,11 @@ const InfoRow = ({ icon: Icon, label, value }: { icon: React.ElementType, label:
     </div>
 );
 
-export default function StrategySection() {
+interface StrategySectionProps {
+  redirectOnSubmit?: boolean;
+}
+
+export default function StrategySection({ redirectOnSubmit = false }: StrategySectionProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [processingText, setProcessingText] = useState('');
@@ -112,6 +116,11 @@ export default function StrategySection() {
 
 
   async function onSubmit(data: StrategyFormValues) {
+    if (redirectOnSubmit && (data.strategy === 'Horários de distribuição' || data.strategy === 'Intercalação vencedora')) {
+        router.push('/jogos-pagando');
+        return;
+    }
+    
     if (data.strategy === 'Agente IA Pro') {
         router.push('/chat');
         return;
