@@ -1,4 +1,3 @@
-'use client';
 
 import Header from '@/components/header';
 import MatrixBackground from '@/components/matrix-background';
