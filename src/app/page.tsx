@@ -11,7 +11,7 @@ export default function Home() {
       <main className="flex-grow container mx-auto px-4 pt-[10px] pb-8 flex flex-col gap-8 md:gap-16">
         <HeroSection />
         <Separator className="bg-primary/20" />
-        <StrategySection redirectOnSubmit={true} />
+        <StrategySection redirectOnSubmit={true} showCasinoSelector={false} />
         <Separator className="bg-primary/20" />
         <TopGamesSection />
       </main>

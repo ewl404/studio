@@ -38,11 +38,18 @@ const InfoRow = ({ icon: Icon, label, value }: { icon: React.ElementType, label:
     </div>
 );
 
+const casinoOptions = [
+  { name: 'Lotogreen', url: 'https://go.aff.lotogreen.com/e67fdkuy?utm_campaign=apphack' },
+  { name: 'Bora1bet', url: 'https://bora1.bet/register?code=GIPYCLEZEG' },
+  { name: 'Hanzbet', url: 'https://go.aff.hanz.bet.br/izyagc1z?utm_campaign=apphack' }
+];
+
 interface StrategySectionProps {
   redirectOnSubmit?: boolean;
+  showCasinoSelector?: boolean;
 }
 
-export default function StrategySection({ redirectOnSubmit = false }: StrategySectionProps) {
+export default function StrategySection({ redirectOnSubmit = false, showCasinoSelector = true }: StrategySectionProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [processingText, setProcessingText] = useState('');
@@ -58,6 +65,9 @@ export default function StrategySection({ redirectOnSubmit = false }: StrategySe
   const [showInterleavingResult, setShowInterleavingResult] = useState(false);
   const [countdown, setCountdown] = useState(0);
   const [hasInterleavingBeenGenerated, setHasInterleavingBeenGenerated] = useState(false);
+  
+  const [selectedCasinoUrl, setSelectedCasinoUrl] = useState(casinoOptions[0].url);
+
 
   useEffect(() => {
     if (countdown <= 0) return;
@@ -202,8 +212,28 @@ export default function StrategySection({ redirectOnSubmit = false }: StrategySe
 
   return (
     <section className="w-full max-w-4xl mx-auto">
+       {showCasinoSelector && (
+        <Card className="mb-6 bg-background/50 border-primary/20 shadow-lg shadow-primary/5">
+          <CardHeader className="p-6 pb-2">
+            <CardTitle className="text-primary text-xl font-bold">1. Selecione a Plataforma</CardTitle>
+          </CardHeader>
+          <CardContent className="p-6 pt-2">
+            <Select onValueChange={setSelectedCasinoUrl} defaultValue={selectedCasinoUrl}>
+              <SelectTrigger className="w-full text-lg h-12">
+                <SelectValue placeholder="Selecione a casa de apostas..." />
+              </SelectTrigger>
+              <SelectContent>
+                {casinoOptions.map(casino => (
+                  <SelectItem key={casino.name} value={casino.url}>{casino.name}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </CardContent>
+        </Card>
+      )}
+
       <div className="text-center mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-primary font-headline">Escolha sua estratégia</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-primary font-headline">{showCasinoSelector ? '2. Escolha sua estratégia' : 'Escolha sua estratégia'}</h2>
         <p className="text-muted-foreground mt-2">Nossa IA analisa o melhor cenário para você.</p>
       </div>
 
@@ -348,14 +378,14 @@ export default function StrategySection({ redirectOnSubmit = false }: StrategySe
         <div className="mt-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
           <div className="w-full mx-auto overflow-hidden rounded-lg border-2 border-primary/30">
             <iframe
-              src="https://bora1.bet/register?code=GIPYCLEZEG"
+              src={selectedCasinoUrl}
               className="w-full border-0"
               style={{ height: '75vh' }}
               title="Plataforma Recomendada"
             ></iframe>
           </div>
           <p className="mt-4 text-center text-sm text-muted-foreground">
-            Atenção: A estratégia gerada é validada para a plataforma acima. Cadastre-se para garantir a assertividade.
+            Atenção: A estratégia gerada é validada para a plataforma que você selecionou acima. Cadastre-se para garantir a assertividade.
           </p>
         </div>
       )}

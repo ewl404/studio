@@ -5,11 +5,18 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button';
 import { Cpu, Target, Timer, Star, Bomb } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const TOTAL_CELLS = 25;
 const SAFE_CELLS_COUNT = 4;
 
 type CellState = 'hidden' | 'safe';
+
+const casinoOptions = [
+  { name: 'Lotogreen', url: 'https://go.aff.lotogreen.com/e67fdkuy?utm_campaign=apphack' },
+  { name: 'Bora1bet', url: 'https://bora1.bet/register?code=GIPYCLEZEG' },
+  { name: 'Hanzbet', url: 'https://go.aff.hanz.bet.br/izyagc1z?utm_campaign=apphack' }
+];
 
 const MinesHacker = () => {
     const [grid, setGrid] = useState<CellState[]>(Array(TOTAL_CELLS).fill('hidden'));
@@ -20,6 +27,7 @@ const MinesHacker = () => {
     const [validityCountdown, setValidityCountdown] = useState(0);
     const [accuracy, setAccuracy] = useState(0);
     const [hasHackedOnce, setHasHackedOnce] = useState(false);
+    const [selectedCasinoUrl, setSelectedCasinoUrl] = useState(casinoOptions[0].url);
 
     useEffect(() => {
         if (buttonCountdown > 0) {
@@ -86,10 +94,28 @@ const MinesHacker = () => {
     };
 
     return (
-        <>
+        <div className="w-full flex flex-col items-center gap-6">
+            <Card className="w-full max-w-sm bg-background/70 border-primary/20 shadow-lg shadow-primary/5">
+                <CardHeader className="p-4 pb-2">
+                    <CardTitle className="text-primary text-xl font-bold">1. Selecione a Plataforma</CardTitle>
+                </CardHeader>
+                <CardContent className="p-4 pt-2">
+                  <Select onValueChange={setSelectedCasinoUrl} defaultValue={selectedCasinoUrl}>
+                    <SelectTrigger className="w-full text-lg h-12">
+                      <SelectValue placeholder="Selecione a casa de apostas..." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {casinoOptions.map(casino => (
+                        <SelectItem key={casino.name} value={casino.url}>{casino.name}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </CardContent>
+            </Card>
+
             <Card className="w-full max-w-[285px] bg-background/70 border-2 border-primary/20 shadow-2xl shadow-primary/10 backdrop-blur-sm font-code">
                 <CardHeader className="items-center text-center p-4 space-y-1">
-                    <CardTitle className="text-2xl text-primary font-bold tracking-widest">MINES PRO</CardTitle>
+                    <CardTitle className="text-2xl text-primary font-bold tracking-widest">2. HACKEAR SINAL</CardTitle>
                     {isHacked ? (
                         <p className="text-foreground animate-fade-in-up h-5 text-sm">
                             Probabilidade de acerto: <span className="font-bold text-primary">{accuracy}%</span>
@@ -153,21 +179,21 @@ const MinesHacker = () => {
                 </div>
             </Card>
             {hasHackedOnce && (
-              <div className="mt-6 w-full max-w-2xl mx-auto animate-fade-in-up">
+              <div className="w-full max-w-2xl mx-auto animate-fade-in-up">
                 <div className="w-full mx-auto overflow-hidden rounded-lg border-2 border-primary/30">
                   <iframe
-                    src="https://bora1.bet/register?code=GIPYCLEZEG"
+                    src={selectedCasinoUrl}
                     className="w-full border-0"
                     style={{ height: '75vh' }}
                     title="Plataforma Recomendada"
                   ></iframe>
                 </div>
                 <p className="mt-4 text-center text-sm text-muted-foreground">
-                  Atenção: A estratégia gerada é validada para a plataforma acima. Cadastre-se para garantir a assertividade.
+                  Atenção: A estratégia gerada é validada para a plataforma que você selecionou acima. Cadastre-se para garantir a assertividade.
                 </p>
               </div>
             )}
-        </>
+        </div>
     );
 };
 
