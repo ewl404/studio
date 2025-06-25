@@ -8,7 +8,7 @@ import { Skeleton } from './ui/skeleton';
 const menuItems = [
   { label: 'Página inicial', icon: Home, href: '/' },
   { label: 'Jogos pagando agora', icon: Bot, href: '/jogos-pagando' },
-  { label: 'Promoções exclusivas', icon: Gift, href: '#' },
+  { label: 'Promoções exclusivas', icon: Gift, href: '/promocoes' },
   { label: 'Eventos importantes', icon: Calendar, href: '#' },
   { label: 'Grupo no Telegram', icon: Send, href: '#' },
   { label: 'Suporte', icon: HelpCircle, href: '#' },
