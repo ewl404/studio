@@ -12,8 +12,8 @@ const gamesData = [
     logo: 'https://lotogreen.com.br/wp-content/uploads/2024/10/logo-lotogreen-2048x664.png',
   },
   {
-    name: 'Fortune Tiger',
-    logo: 'https://i.imgur.com/tmp57ua.png',
+    name: 'Bora1.bet',
+    logo: 'https://static3.smr.vc/assets/logo/bora1bet/logo-2.svg',
   },
   {
     name: 'HanzBet',
