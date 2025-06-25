@@ -13,7 +13,7 @@ import WinRateProgressBar from './win-rate-progress-bar';
 import Image from 'next/image';
 
 const StrategyFormSchema = z.object({
-  strategy: z.enum(['Horários de distribuição', 'Intercalação vencedora', 'Agente IA Pro'], {
+  strategy: z.enum(['Horários de distribuição', 'Intercalação vencedora'], {
     required_error: 'Por favor, selecione uma estratégia.',
   }),
 });
@@ -110,11 +110,6 @@ export default function StrategySection() {
 
 
   async function onSubmit(data: StrategyFormValues) {
-    if (data.strategy === 'Agente IA Pro') {
-        window.location.href = '/chat';
-        return;
-    }
-    
     setGeneratedTimes([]);
     setInterleavingResult(null);
 
@@ -208,10 +203,6 @@ export default function StrategySection() {
                     <FormLabel className="text-primary">Estratégia de Análise</FormLabel>
                     <Select 
                       onValueChange={(value) => {
-                        if (value === 'Agente IA Pro') {
-                          window.location.href = '/chat';
-                          return;
-                        }
                         field.onChange(value);
                         setShowHorariosResult(false);
                         setShowInterleavingResult(false);
@@ -227,7 +218,6 @@ export default function StrategySection() {
                       <SelectContent>
                         <SelectItem value="Horários de distribuição">Horários de distribuição</SelectItem>
                         <SelectItem value="Intercalação vencedora">Intercalação vencedora</SelectItem>
-                        <SelectItem value="Agente IA Pro">Agente IA Pro</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />

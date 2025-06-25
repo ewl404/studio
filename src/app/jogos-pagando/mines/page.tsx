@@ -1,7 +1,7 @@
 import Header from '@/components/header';
 import MatrixBackground from '@/components/matrix-background';
 import WinningsNotifier from '@/components/winnings-notifier';
-import StrategySection from '@/components/strategy-section';
+import MinesHacker from '@/components/mines-hacker';
 
 export default function MinesPage() {
   return (
@@ -11,7 +11,7 @@ export default function MinesPage() {
         <Header />
         <WinningsNotifier />
         <main className="flex-grow container mx-auto px-4 py-8">
-          <StrategySection />
+          <MinesHacker />
         </main>
         <footer className="text-center p-4 text-muted-foreground text-sm">
           <p>&copy; {new Date().getFullYear()} Matrix Strategy AI. Todos os direitos reservados.</p>
