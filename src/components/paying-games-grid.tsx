@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ExternalLink } from 'lucide-react';
@@ -12,7 +13,7 @@ const gamesData = [
     { name: 'Fortune Mouse', logo: 'https://i.imgur.com/lO2qL8G.png', dataAiHint: 'mouse mascot', href: '#' },
     { name: 'Mines', logo: 'https://i.imgur.com/G3w2YfV.png', dataAiHint: 'gem diamond', href: '/jogos-pagando/mines' },
     { name: 'Roleta Brasileira', logo: 'https://i.imgur.com/3mPj8oR.png', dataAiHint: 'roulette wheel', href: '#' },
-    { name: 'Aviator', logo: 'https://i.imgur.com/tOa7ZfJ.png', dataAiHint: 'airplane icon', href: '#' },
+    { name: 'Aviator', logo: 'https://i.imgur.com/tOa7ZfJ.png', dataAiHint: 'airplane icon', href: '/jogos-pagando/aviator' },
     { name: 'Ganesha Gold', logo: 'https://i.imgur.com/4z7H8mY.png', dataAiHint: 'ganesha deity', href: '#' },
     { name: 'Gates of Olympus', logo: 'https://i.imgur.com/8fOaL2o.png', dataAiHint: 'zeus god', href: '#' },
     { name: 'Sweet Bonanza', logo: 'https://i.imgur.com/Yj6fWzH.png', dataAiHint: 'candy sweet', href: '#' },
