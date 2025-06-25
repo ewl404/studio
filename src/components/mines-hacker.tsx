@@ -115,7 +115,7 @@ const MinesHacker = () => {
 
             <Card className="w-full max-w-[285px] bg-background/70 border-2 border-primary/20 shadow-2xl shadow-primary/10 backdrop-blur-sm font-code">
                 <CardHeader className="items-center text-center p-4 space-y-1">
-                    <CardTitle className="text-2xl text-primary font-bold tracking-widest">2. HACKEAR SINAL</CardTitle>
+                    <CardTitle className="text-2xl text-primary font-bold tracking-widest">2. MINES PRO</CardTitle>
                     {isHacked ? (
                         <p className="text-foreground animate-fade-in-up h-5 text-sm">
                             Probabilidade de acerto: <span className="font-bold text-primary">{accuracy}%</span>
