@@ -2,7 +2,7 @@
 import Header from '@/components/header';
 import MatrixBackground from '@/components/matrix-background';
 import WinningsNotifier from '@/components/winnings-notifier';
-import AviatorPredictor from '@/components/aviator-predictor';
+import StrategySection from '@/components/strategy-section';
 
 export default function AviatorPage() {
   return (
@@ -12,7 +12,7 @@ export default function AviatorPage() {
         <Header />
         <WinningsNotifier />
         <main className="flex-grow container mx-auto px-4 py-8 flex flex-col items-center">
-          <AviatorPredictor />
+          <StrategySection />
         </main>
         <footer className="text-center p-4 text-muted-foreground text-sm">
           <p>&copy; {new Date().getFullYear()} Matrix Strategy AI. Todos os direitos reservados.</p>

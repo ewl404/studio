@@ -11,9 +11,10 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Bot, Cpu, Target, Timer, Turtle, Zap } from 'lucide-react';
 import WinRateProgressBar from './win-rate-progress-bar';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const StrategyFormSchema = z.object({
-  strategy: z.enum(['Horários de distribuição', 'Intercalação vencedora'], {
+  strategy: z.enum(['Horários de distribuição', 'Intercalação vencedora', 'Agente IA Pro'], {
     required_error: 'Por favor, selecione uma estratégia.',
   }),
 });
@@ -38,6 +39,7 @@ const InfoRow = ({ icon: Icon, label, value }: { icon: React.ElementType, label:
 );
 
 export default function StrategySection() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [processingText, setProcessingText] = useState('');
   
@@ -110,6 +112,10 @@ export default function StrategySection() {
 
 
   async function onSubmit(data: StrategyFormValues) {
+    if (data.strategy === 'Agente IA Pro') {
+        router.push('/chat');
+        return;
+    }
     if (data.strategy === 'Horários de distribuição') {
         setGeneratedTimes([]);
         setIsLoading(true);
@@ -204,6 +210,10 @@ export default function StrategySection() {
                     <FormLabel className="text-primary">Estratégia de Análise</FormLabel>
                     <Select 
                       onValueChange={(value) => {
+                        if (value === 'Agente IA Pro') {
+                          router.push('/chat');
+                          return;
+                        }
                         field.onChange(value);
                         setShowHorariosResult(false);
                         setShowInterleavingResult(false);
@@ -218,6 +228,7 @@ export default function StrategySection() {
                       <SelectContent>
                         <SelectItem value="Horários de distribuição">Horários de distribuição</SelectItem>
                         <SelectItem value="Intercalação vencedora">Intercalação vencedora</SelectItem>
+                        <SelectItem value="Agente IA Pro">Agente IA Pro</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
