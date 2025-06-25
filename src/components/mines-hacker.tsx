@@ -85,20 +85,20 @@ const MinesHacker = () => {
     };
 
     return (
-        <div className="flex flex-col items-center gap-6">
+        <div className="flex flex-col items-center gap-4">
             <Card className="w-full max-w-xs sm:max-w-sm bg-background/70 border-2 border-primary/20 shadow-2xl shadow-primary/10 backdrop-blur-sm font-code">
-                <CardHeader className="items-center text-center p-4">
-                    <Image src="https://i.imgur.com/G3w2YfV.png" alt="Mines Logo" width={80} height={80} data-ai-hint="gem diamond"/>
-                    <CardTitle className="text-2xl text-primary font-bold tracking-widest">MINES PRO</CardTitle>
+                <CardHeader className="items-center text-center p-4 space-y-1">
+                    <Image src="https://i.imgur.com/G3w2YfV.png" alt="Mines Logo" width={64} height={64} data-ai-hint="gem diamond"/>
+                    <CardTitle className="text-xl text-primary font-bold tracking-widest">MINES PRO</CardTitle>
                     {isHacked ? (
-                        <p className="text-foreground animate-fade-in-up h-5">
+                        <p className="text-foreground animate-fade-in-up h-5 text-sm">
                             Probabilidade de acerto: <span className="font-bold text-primary">{accuracy}%</span>
                         </p>
                     ) : (
                         <p className="h-5">&nbsp;</p> 
                     )}
                 </CardHeader>
-                <CardContent className="p-4">
+                <CardContent className="p-3">
                     <div className="relative aspect-[5/6]">
                         {isLoading && (
                             <div className="absolute inset-0 bg-background/80 flex flex-col items-center justify-center z-10 animate-fade-in rounded-md">
@@ -106,7 +106,7 @@ const MinesHacker = () => {
                                 <p className="mt-4 text-primary">{statusText}</p>
                             </div>
                         )}
-                        <div className={cn("grid grid-cols-5 gap-1.5 sm:gap-2 transition-opacity duration-500", (isLoading) ? 'opacity-0' : 'opacity-100')}>
+                        <div className={cn("grid grid-cols-5 gap-1.5 transition-opacity duration-500", (isLoading) ? 'opacity-0' : 'opacity-100')}>
                             {grid.map((cell, index) => (
                                 <div
                                     key={index}
@@ -118,30 +118,30 @@ const MinesHacker = () => {
                                     )}
                                 >
                                     {isHacked && cell === 'safe' && (
-                                        <Star className="w-6 h-6 sm:w-8 sm:h-8 text-primary fill-primary" />
+                                        <Star className="w-6 h-6 text-primary fill-primary" />
                                     )}
                                 </div>
                             ))}
                         </div>
                     </div>
                 </CardContent>
-                <div className="flex-col gap-4 p-4">
-                     <div className="w-full space-y-2 text-foreground p-4 rounded-lg bg-accent/20 border border-accent/50">
-                        <div className="flex items-center justify-between text-sm">
+                <div className="flex flex-col gap-2 p-3 pt-0">
+                     <div className="w-full space-y-1.5 text-foreground p-3 rounded-lg bg-accent/20 border border-accent/50">
+                        <div className="flex items-center justify-between text-xs">
                             <span className="flex items-center gap-2 text-muted-foreground"><Bomb className="w-4 h-4 text-primary" /> Quantidade de minas:</span>
                             <span className="font-bold">3</span>
                         </div>
-                        <div className="flex items-center justify-between text-sm">
+                        <div className="flex items-center justify-between text-xs">
                             <span className="flex items-center gap-2 text-muted-foreground"><Target className="w-4 h-4 text-primary" /> Número de tentativas:</span>
                             <span className="font-bold">1</span>
                         </div>
-                        <div className="flex items-center justify-between text-sm">
+                        <div className="flex items-center justify-between text-xs">
                             <span className="flex items-center gap-2 text-muted-foreground"><Timer className="w-4 h-4 text-primary" /> Análise válida por:</span>
                             <span className="font-bold">{isHacked ? formatTime(validityCountdown) : '00:00'}</span>
                         </div>
                     </div>
 
-                    <Button onClick={handleHack} disabled={buttonCountdown > 0 || isLoading} className="w-full h-12 text-lg font-bold mt-4">
+                    <Button onClick={handleHack} disabled={buttonCountdown > 0 || isLoading} className="w-full h-11 text-base font-bold">
                         {isLoading ? (
                             statusText
                         ) : buttonCountdown > 0 ? (
