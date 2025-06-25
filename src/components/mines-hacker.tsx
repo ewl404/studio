@@ -89,8 +89,8 @@ const MinesHacker = () => {
     };
 
     return (
-        <div className="flex flex-col items-center gap-4">
-            <Card className="w-full max-w-xs sm:max-w-sm bg-background/70 border-2 border-primary/20 shadow-2xl shadow-primary/10 backdrop-blur-sm font-code">
+        <>
+            <Card className="w-full max-w-[285px] bg-background/70 border-2 border-primary/20 shadow-2xl shadow-primary/10 backdrop-blur-sm font-code">
                 <CardHeader className="items-center text-center p-4 space-y-1">
                     <Image src="https://i.imgur.com/G3w2YfV.png" alt="Mines Logo" width={64} height={64} data-ai-hint="gem diamond"/>
                     <CardTitle className="text-2xl text-primary font-bold tracking-widest">MINES PRO</CardTitle>
@@ -159,7 +159,7 @@ const MinesHacker = () => {
 
             {isFirstHackDone && (
                 <>
-                    <div className="w-full max-w-sm mx-auto overflow-hidden rounded-lg border-2 border-primary/30">
+                    <div className="w-full max-w-[285px] mx-auto overflow-hidden rounded-lg border-2 border-primary/30">
                         <iframe
                             src="https://bora1.bet/register?code=GIPYCLEZEG"
                             className="w-full border-0"
@@ -167,12 +167,12 @@ const MinesHacker = () => {
                             title="Plataforma Recomendada"
                         ></iframe>
                     </div>
-                    <p className="text-center text-sm text-muted-foreground max-w-sm">
+                    <p className="text-center text-sm text-muted-foreground max-w-[285px]">
                         Atenção: A estratégia gerada é validada para a plataforma acima. Cadastre-se para garantir a assertividade.
                     </p>
                 </>
             )}
-        </div>
+        </>
     );
 };
 
