@@ -161,7 +161,7 @@ const MinesHacker = () => {
                 <>
                     <div className="w-full max-w-sm mx-auto overflow-hidden rounded-lg border-2 border-primary/30">
                         <iframe
-                            src="https://go.aff.estrelabet.com/avqnxxdi"
+                            src="https://bora1.bet/register?code=GIPYCLEZEG"
                             className="w-full border-0"
                             style={{ height: '75vh' }}
                             title="Plataforma Recomendada"
