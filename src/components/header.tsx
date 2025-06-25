@@ -11,7 +11,7 @@ const menuItems = [
   { label: 'Promoções exclusivas', icon: Gift, href: '/promocoes' },
   { label: 'Lucrando na Prática com IA', icon: DollarSign, href: '#' },
   { label: 'Grupo no Telegram', icon: Send, href: 'https://t.me/+lbsueHDfifowYTFh' },
-  { label: 'Suporte', icon: HelpCircle, href: '#' },
+  { label: 'Suporte', icon: HelpCircle, href: 'https://t.me/wallacesuporte' },
 ];
 
 export default function Header() {
