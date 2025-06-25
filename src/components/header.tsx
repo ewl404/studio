@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { Menu, Home, Gift, Calendar, Send, HelpCircle, Bot } from 'lucide-react';
+import { Menu, Home, Gift, Send, HelpCircle, Bot, DollarSign } from 'lucide-react';
 import Logo from './logo';
 import { Skeleton } from './ui/skeleton';
 
@@ -9,7 +9,7 @@ const menuItems = [
   { label: 'Página inicial', icon: Home, href: '/' },
   { label: 'Jogos pagando agora', icon: Bot, href: '/jogos-pagando' },
   { label: 'Promoções exclusivas', icon: Gift, href: '/promocoes' },
-  { label: 'Lucrando na Prática com IA', icon: Calendar, href: '#' },
+  { label: 'Lucrando na Prática com IA', icon: DollarSign, href: '#' },
   { label: 'Grupo no Telegram', icon: Send, href: '#' },
   { label: 'Suporte', icon: HelpCircle, href: '#' },
 ];
