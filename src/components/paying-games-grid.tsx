@@ -10,7 +10,7 @@ const gamesData = [
     { name: 'Fortune Dragon', logo: 'https://i.imgur.com/bQ9xT8x.png', dataAiHint: 'dragon mascot', href: '#' },
     { name: 'Fortune Rabbit', logo: 'https://i.imgur.com/sY94LlJ.png', dataAiHint: 'rabbit mascot', href: '#' },
     { name: 'Fortune Mouse', logo: 'https://i.imgur.com/lO2qL8G.png', dataAiHint: 'mouse mascot', href: '#' },
-    { name: 'Mines', logo: 'https://i.imgur.com/G3w2YfV.png', dataAiHint: 'gem diamond', href: '#' },
+    { name: 'Mines', logo: 'https://i.imgur.com/G3w2YfV.png', dataAiHint: 'gem diamond', href: '/jogos-pagando/mines' },
     { name: 'Roleta Brasileira', logo: 'https://i.imgur.com/3mPj8oR.png', dataAiHint: 'roulette wheel', href: '#' },
     { name: 'Aviator', logo: 'https://i.imgur.com/tOa7ZfJ.png', dataAiHint: 'airplane icon', href: '#' },
     { name: 'Ganesha Gold', logo: 'https://i.imgur.com/4z7H8mY.png', dataAiHint: 'ganesha deity', href: '#' },
