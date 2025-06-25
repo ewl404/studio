@@ -314,7 +314,6 @@ export default function StrategySection({ redirectOnSubmit = false }: StrategySe
                 interleavingResult && (
                     <Card className="bg-black/80 border-2 border-primary/50 font-code backdrop-blur-sm shadow-lg shadow-primary/20 max-w-sm mx-auto">
                         <CardHeader className="p-4 bg-primary/[0.07] items-center text-center">
-                              <Image src="https://i.imgur.com/tmp57ua.png" alt="Fortune Tiger" width={80} height={80} className="mb-2" data-ai-hint="tiger mascot" />
                               <CardTitle className="text-xl font-bold text-primary tracking-wider">
                                   SOFTWARE DO TIGER
                               </CardTitle>
