@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -10,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Bot, Cpu, Lightbulb, PieChart } from 'lucide-react';
+import { Bot, Cpu, Lightbulb, PieChart, ExternalLink } from 'lucide-react';
 
 const casinoOptions = [
   { name: 'Lotogreen', url: 'https://go.aff.lotogreen.com/e67fdkuy?utm_campaign=apphack' },
@@ -30,7 +29,7 @@ const aviatorAnalyzerSchema = z.object({
 type AviatorAnalyzerFormValues = z.infer<typeof aviatorAnalyzerSchema>;
 
 const AviatorAnalyzer = () => {
-  const [selectedCasinoUrl, setSelectedCasinoUrl] = useState(casinoOptions[0].url);
+  const [selectedCasinoUrl, setSelectedCasinoUrl] = useState(casinoOptions[1].url);
   const [isLoading, setIsLoading] = useState(false);
   const [analysisResult, setAnalysisResult] = useState<string[] | null>(null);
 
@@ -194,6 +193,25 @@ const AviatorAnalyzer = () => {
                 </ul>
             </div>
           </CardContent>
+        </Card>
+      )}
+
+      {selectedCasinoUrl === casinoOptions[0].url && (
+        <Card className="w-full max-w-4xl mx-auto my-4 text-center border-primary/50 bg-accent/30 animate-fade-in-up">
+            <CardHeader>
+                <CardTitle className="text-primary">Aviso Importante</CardTitle>
+            </CardHeader>
+            <CardContent className="p-6 pt-0">
+                <p className="mb-4 text-foreground/80">
+                    A Lotogreen não aceita conexão direta. Para lucrar com a estratégia, você terá que abrir a plataforma em uma nova aba.
+                </p>
+                <Button asChild size="lg" className="animate-pulse">
+                    <a href={casinoOptions[0].url} target="_blank" rel="noopener noreferrer">
+                        Abrir Lotogreen em Nova Aba
+                        <ExternalLink className="ml-2 h-4 w-4" />
+                    </a>
+                </Button>
+            </CardContent>
         </Card>
       )}
 
