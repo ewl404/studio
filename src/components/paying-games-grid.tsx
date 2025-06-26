@@ -15,7 +15,7 @@ const gamesData = [
     { name: 'Gates of Olympus', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/gatesofolimpus-e1750899113649.webp', dataAiHint: 'zeus god', href: '#' },
     { name: 'Aviator', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/aviator-e1750899428642.webp', dataAiHint: 'airplane icon', href: '/jogos-pagando/aviator' },
     { name: 'Fortune Tree', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/fortunetree-e1750899054238.webp', dataAiHint: 'fortune tree', href: '#' },
-    { name: 'Roleta Brasileira', logo: 'https://i.imgur.com/3mPj8oR.png', dataAiHint: 'roulette wheel', href: '#' },
+    { name: 'Roleta Brasileira', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/38cdf7e275e87c2530ee926bb2f5c811d9cb6ffccdad7717bed7ca43aa88eb38.jpg', dataAiHint: 'roulette wheel', href: '#' },
     { name: 'Sweet Bonanza', logo: 'https://i.imgur.com/Yj6fWzH.png', dataAiHint: 'candy sweet', href: '#' },
     { name: 'Big Bass Bonanza', logo: 'https://i.imgur.com/zK9g2B2.png', dataAiHint: 'fish bass', href: '#' },
 ];
