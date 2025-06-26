@@ -152,7 +152,7 @@ const AviatorAnalyzer = () => {
                 />
               </div>
               <FormMessage>{form.formState.errors.blue?.message}</FormMessage>
-              <Button type="submit" disabled={isLoading} className="w-full h-12 text-lg font-bold">
+              <Button type="submit" disabled={isLoading} className="w-full h-12 text-lg">
                 {isLoading ? <><Cpu className="mr-2 h-5 w-5 animate-spin" /> Analisando Padrão...</> : <><PieChart className="mr-2 h-5 w-5" /> Gerar Análise</>}
               </Button>
             </form>

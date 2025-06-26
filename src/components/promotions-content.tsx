@@ -57,7 +57,7 @@ const PromotionsContent = () => {
                         <p className="text-foreground/80">{promo.description}</p>
                     </CardContent>
                     <CardFooter className="p-0">
-                        <Button asChild className="font-bold">
+                        <Button asChild>
                             <Link href={promo.href}>
                                 {promo.cta}
                                 {promo.href.startsWith('http') && <ExternalLink className="ml-2 h-4 w-4" />}

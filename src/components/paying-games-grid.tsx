@@ -48,7 +48,7 @@ export default function PayingGamesGrid() {
               <WinRateProgressBar winRate={game.winRate} />
             </CardContent>
             <CardFooter className="p-2 md:p-4 pt-0">
-              <Button asChild className="w-full h-10 text-base font-bold">
+              <Button asChild className="w-full h-10 text-base">
                 <a href={game.href} target={game.href.startsWith('/') ? '_self' : '_blank'} rel="noopener noreferrer">
                   JOGAR <ExternalLink className="ml-2 h-4 w-4" />
                 </a>

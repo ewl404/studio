@@ -125,7 +125,7 @@ const AviatorPredictor = () => {
                             <span className="font-bold">{isComplete ? formatTime(validityCountdown) : '00:00'}</span>
                         </div>
                     </div>
-                    <Button onClick={handlePredict} disabled={buttonCountdown > 0 || isLoading} className="w-full h-12 text-lg font-bold">
+                    <Button onClick={handlePredict} disabled={buttonCountdown > 0 || isLoading} className="w-full h-12 text-lg">
                         {isLoading ? (
                             statusText
                         ) : buttonCountdown > 0 ? (

@@ -20,6 +20,7 @@ export default {
         body: ['"Roboto Mono"', 'monospace'],
         headline: ['"Roboto Mono"', 'monospace'],
         code: ['"Roboto Mono"', 'monospace'],
+        sans: ['"Poppins"', 'sans-serif'],
       },
       colors: {
         background: 'hsl(var(--background))',

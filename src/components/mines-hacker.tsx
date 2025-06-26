@@ -167,7 +167,7 @@ const MinesHacker = () => {
                         </div>
                     </div>
 
-                    <Button onClick={handleHack} disabled={buttonCountdown > 0 || isLoading} className="w-full h-11 text-base font-bold">
+                    <Button onClick={handleHack} disabled={buttonCountdown > 0 || isLoading} className="w-full h-11 text-base">
                         {isLoading ? (
                             statusText
                         ) : buttonCountdown > 0 ? (

@@ -108,7 +108,7 @@ export default function ChatClientPage() {
               </div>
             </CardContent>
             <CardFooter className="flex-col items-start">
-              <Button className="w-full font-bold" onClick={handleLogin} disabled={isLoading}>
+              <Button className="w-full" onClick={handleLogin} disabled={isLoading}>
                 {isLoading ? <Loader2 className="animate-spin" /> : 'ENTRAR'}
               </Button>
               <p className="text-xs text-muted-foreground mt-4">
@@ -266,7 +266,7 @@ export default function ChatClientPage() {
                   <p className="text-5xl font-bold text-foreground">Por apenas R$ 97</p>
                   <p className="text-sm text-muted-foreground">(Pagamento único)</p>
                   
-                  <Button size="lg" className="mt-6 w-full md:w-auto font-bold text-lg h-14 animate-pulse">
+                  <Button size="lg" className="mt-6 w-full md:w-auto text-lg h-14 animate-pulse">
                       ADQUIRIR AGORA!
                   </Button>
               </CardContent>

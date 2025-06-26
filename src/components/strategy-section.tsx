@@ -274,7 +274,7 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
                   </FormItem>
                 )}
               />
-              <Button type="submit" disabled={isLoading || isHorariosLoading || isHorariosOnCooldown} className="w-full h-12 text-lg font-bold">
+              <Button type="submit" disabled={isLoading || isHorariosLoading || isHorariosOnCooldown} className="w-full h-12 text-lg">
                 {isHorariosOnCooldown ? (
                   `Aguarde ${formatTime(horariosCountdown)}`
                 ) : (isLoading || isHorariosLoading) ? (
@@ -363,7 +363,7 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
                             <Button
                                 onClick={runInterleavingAnalysis}
                                 disabled={countdown > 0 || isLoading}
-                                className="w-full h-11 text-base font-bold"
+                                className="w-full h-11 text-base"
                             >
                                 {countdown > 0 ? `AGUARDE (${countdown}s...)` : 'GERAR NOVO SINAL'}
                             </Button>
