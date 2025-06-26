@@ -7,7 +7,7 @@ import WinRateProgressBar from './win-rate-progress-bar';
 
 const gamesData = [
     { name: 'Fortune Tiger', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-1.avif', dataAiHint: 'tiger mascot', href: '/jogos-pagando/tiger' },
-    { name: 'Fortune Ox', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad.jpg', dataAiHint: 'ox mascot', href: '#' },
+    { name: 'Fortune Ox', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad.jpg', dataAiHint: 'ox mascot', href: '/jogos-pagando/ox' },
     { name: 'Fortune Dragon', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-2.avif', dataAiHint: 'dragon mascot', href: '#' },
     { name: 'Fortune Rabbit', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-3.avif', dataAiHint: 'rabbit mascot', href: '#' },
     { name: 'Fortune Mouse', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-6-1.avif', dataAiHint: 'mouse mascot', href: '#' },
@@ -48,7 +48,7 @@ export default function PayingGamesGrid() {
               <WinRateProgressBar winRate={game.winRate} />
             </CardContent>
             <CardFooter className="p-2 md:p-4 pt-0">
-              <Button asChild className="w-full h-10 text-base">
+              <Button asChild className="w-full h-10 text-base font-bold">
                 <a href={game.href} target={game.href.startsWith('/') ? '_self' : '_blank'} rel="noopener noreferrer">
                   JOGAR <ExternalLink className="ml-2 h-4 w-4" />
                 </a>
