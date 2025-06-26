@@ -8,7 +8,6 @@ import { cn } from '@/lib/utils';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const TOTAL_CELLS = 25;
-const SAFE_CELLS_COUNT = 4;
 
 type CellState = 'hidden' | 'safe';
 
@@ -18,7 +17,11 @@ const casinoOptions = [
   { name: 'Hanzbet', url: 'https://go.aff.hanz.bet.br/izyagc1z?utm_campaign=apphack' }
 ];
 
-const MinesHacker = () => {
+interface MinesHackerProps {
+    safeCellsCount?: number;
+}
+
+const MinesHacker = ({ safeCellsCount = 4 }: MinesHackerProps) => {
     const [grid, setGrid] = useState<CellState[]>(Array(TOTAL_CELLS).fill('hidden'));
     const [isLoading, setIsLoading] = useState(false);
     const [isHacked, setIsHacked] = useState(false);
@@ -69,7 +72,7 @@ const MinesHacker = () => {
                 
                 const newGrid = Array(TOTAL_CELLS).fill('hidden') as CellState[];
                 const safeIndexes = new Set<number>();
-                while (safeIndexes.size < SAFE_CELLS_COUNT) {
+                while (safeIndexes.size < safeCellsCount) {
                     safeIndexes.add(Math.floor(Math.random() * TOTAL_CELLS));
                 }
                 safeIndexes.forEach(index => {

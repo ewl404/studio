@@ -12,7 +12,7 @@ export default function MinesProPage() {
         <Header />
         <WinningsNotifier />
         <main className="flex-grow container mx-auto px-4 py-8 flex flex-col items-center">
-          <MinesHacker />
+          <MinesHacker safeCellsCount={12} />
         </main>
         <footer className="text-center p-4 text-muted-foreground text-sm">
           <p>&copy; {new Date().getFullYear()} Matrix Strategy AI. Todos os direitos reservados.</p>
