@@ -6,10 +6,10 @@ import Image from 'next/image';
 import WinRateProgressBar from './win-rate-progress-bar';
 
 const gamesData = [
-    { name: 'Fortune Tiger', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/tiger.webp', dataAiHint: 'tiger mascot', href: '/jogos-pagando/tiger' },
-    { name: 'Fortune Ox', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/fortuneox.webp', dataAiHint: 'ox mascot', href: '#' },
-    { name: 'Fortune Dragon', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/fortunedragon.webp', dataAiHint: 'dragon mascot', href: '#' },
-    { name: 'Fortune Rabbit', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/fortunerabbit.webp', dataAiHint: 'rabbit mascot', href: '#' },
+    { name: 'Fortune Tiger', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/tiger-e1750898820305.webp', dataAiHint: 'tiger mascot', href: '/jogos-pagando/tiger' },
+    { name: 'Fortune Ox', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/fortuneox-e1750898897545.webp', dataAiHint: 'ox mascot', href: '#' },
+    { name: 'Fortune Dragon', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/fortunedragon-e1750898926553.webp', dataAiHint: 'dragon mascot', href: '#' },
+    { name: 'Fortune Rabbit', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/fortunerabbit-e1750898967874.webp', dataAiHint: 'rabbit mascot', href: '#' },
     { name: 'Fortune Mouse', logo: 'https://i.imgur.com/lO2qL8G.png', dataAiHint: 'mouse mascot', href: '#' },
     { name: 'Mines', logo: 'https://i.imgur.com/G3w2YfV.png', dataAiHint: 'gem diamond', href: '/jogos-pagando/mines' },
     { name: 'Roleta Brasileira', logo: 'https://i.imgur.com/3mPj8oR.png', dataAiHint: 'roulette wheel', href: '#' },
