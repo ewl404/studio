@@ -66,7 +66,7 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
   const [countdown, setCountdown] = useState(0);
   const [hasInterleavingBeenGenerated, setHasInterleavingBeenGenerated] = useState(false);
   
-  const [selectedCasinoUrl, setSelectedCasinoUrl] = useState(casinoOptions[0].url);
+  const [selectedCasinoUrl, setSelectedCasinoUrl] = useState(casinoOptions[1].url);
 
 
   useEffect(() => {

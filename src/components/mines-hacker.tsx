@@ -27,7 +27,7 @@ const MinesHacker = () => {
     const [validityCountdown, setValidityCountdown] = useState(0);
     const [accuracy, setAccuracy] = useState(0);
     const [hasHackedOnce, setHasHackedOnce] = useState(false);
-    const [selectedCasinoUrl, setSelectedCasinoUrl] = useState(casinoOptions[0].url);
+    const [selectedCasinoUrl, setSelectedCasinoUrl] = useState(casinoOptions[1].url);
 
     useEffect(() => {
         if (buttonCountdown > 0) {
