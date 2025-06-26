@@ -7,7 +7,7 @@ import WinRateProgressBar from './win-rate-progress-bar';
 
 const gamesData = [
     { name: 'Fortune Tiger', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/tiger-e1750898820305.webp', dataAiHint: 'tiger mascot', href: '/jogos-pagando/tiger' },
-    { name: 'Fortune Ox', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/fortuneox-e1750898897545.webp', dataAiHint: 'ox mascot', href: '#' },
+    { name: 'Fortune Ox', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad.jpg', dataAiHint: 'ox mascot', href: '#' },
     { name: 'Fortune Dragon', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/fortunedragon-e1750898926553.webp', dataAiHint: 'dragon mascot', href: '#' },
     { name: 'Fortune Rabbit', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/fortunerabbit-e1750898967874.webp', dataAiHint: 'rabbit mascot', href: '#' },
     { name: 'Fortune Mouse', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/fortunemouse-e1750898944277.webp', dataAiHint: 'mouse mascot', href: '#' },
