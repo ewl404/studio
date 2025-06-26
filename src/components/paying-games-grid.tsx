@@ -12,7 +12,7 @@ const gamesData = [
     { name: 'Fortune Rabbit', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-3.avif', dataAiHint: 'rabbit mascot', href: '/jogos-pagando/coelho' },
     { name: 'Fortune Mouse', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-6-1.avif', dataAiHint: 'mouse mascot', href: '/jogos-pagando/mouse' },
     { name: 'Mines', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-5.avif', dataAiHint: 'gem diamond', href: '/jogos-pagando/mines' },
-    { name: 'Gates of Olympus', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-4.avif', dataAiHint: 'zeus god', href: '#' },
+    { name: 'Gates of Olympus', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-4.avif', dataAiHint: 'zeus god', href: '/jogos-pagando/zeus' },
     { name: 'Aviator', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-6.avif', dataAiHint: 'airplane icon', href: '/jogos-pagando/aviator' },
     { name: 'Fortune Tree', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-10.jpg', dataAiHint: 'fortune tree', href: '#' },
     { name: 'Roleta Brasileira', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-9.avif', dataAiHint: 'roulette wheel', href: '#' },
