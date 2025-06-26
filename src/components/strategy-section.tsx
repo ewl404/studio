@@ -47,9 +47,10 @@ const casinoOptions = [
 interface StrategySectionProps {
   redirectOnSubmit?: boolean;
   showCasinoSelector?: boolean;
+  gameName?: string;
 }
 
-export default function StrategySection({ redirectOnSubmit = false, showCasinoSelector = true }: StrategySectionProps) {
+export default function StrategySection({ redirectOnSubmit = false, showCasinoSelector = true, gameName = 'TIGER' }: StrategySectionProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [processingText, setProcessingText] = useState('');
@@ -345,7 +346,7 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
                     <Card className="bg-black/80 border-2 border-primary/50 font-code backdrop-blur-sm shadow-lg shadow-primary/20 max-w-sm mx-auto">
                         <CardHeader className="p-4 bg-primary/[0.07] items-center text-center">
                               <CardTitle className="text-xl font-bold text-primary tracking-wider">
-                                  SOFTWARE DO TIGER
+                                  SOFTWARE DO {gameName}
                               </CardTitle>
                         </CardHeader>
                         <CardContent className="p-4 space-y-3">
