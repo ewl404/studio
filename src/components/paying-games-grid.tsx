@@ -16,7 +16,7 @@ const gamesData = [
     { name: 'Aviator', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-6.avif', dataAiHint: 'airplane icon', href: '/jogos-pagando/cashmania' },
     { name: 'Fortune Tree', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-10.jpg', dataAiHint: 'fortune tree', href: '/jogos-pagando/snake' },
     { name: 'Roleta Brasileira', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-9.avif', dataAiHint: 'roulette wheel', href: '/jogos-pagando/zeus' },
-    { name: 'Sweet Bonanza', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-8.avif', dataAiHint: 'candy sweet', href: '#' },
+    { name: 'Sweet Bonanza', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-8.avif', dataAiHint: 'candy sweet', href: '/jogos-pagando/hatch' },
     { name: 'Big Bass Bonanza', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-7.avif', dataAiHint: 'fish bass', href: '#' },
 ];
 
