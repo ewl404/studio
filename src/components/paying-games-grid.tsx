@@ -14,10 +14,10 @@ const gamesData = [
     { name: 'Mines', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-5.avif', dataAiHint: 'gem diamond', href: '/jogos-pagando/mines' },
     { name: 'Gates of Olympus', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-4.avif', dataAiHint: 'zeus god', href: '#' },
     { name: 'Aviator', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-6.avif', dataAiHint: 'airplane icon', href: '/jogos-pagando/aviator' },
-    { name: 'Fortune Tree', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/fortunetree-e1750899054238.webp', dataAiHint: 'fortune tree', href: '#' },
-    { name: 'Roleta Brasileira', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/desktop.jpg', dataAiHint: 'roulette wheel', href: '#' },
-    { name: 'Sweet Bonanza', logo: 'https://i.imgur.com/Yj6fWzH.png', dataAiHint: 'candy sweet', href: '#' },
-    { name: 'Big Bass Bonanza', logo: 'https://i.imgur.com/zK9g2B2.png', dataAiHint: 'fish bass', href: '#' },
+    { name: 'Fortune Tree', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-10.jpg', dataAiHint: 'fortune tree', href: '#' },
+    { name: 'Roleta Brasileira', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-9.avif', dataAiHint: 'roulette wheel', href: '#' },
+    { name: 'Sweet Bonanza', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-8.avif', dataAiHint: 'candy sweet', href: '#' },
+    { name: 'Big Bass Bonanza', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-7.avif', dataAiHint: 'fish bass', href: '#' },
 ];
 
 export default function PayingGamesGrid() {
