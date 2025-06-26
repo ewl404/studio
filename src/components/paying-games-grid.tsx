@@ -12,10 +12,10 @@ const gamesData = [
     { name: 'Fortune Rabbit', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/fortunerabbit-e1750898967874.webp', dataAiHint: 'rabbit mascot', href: '#' },
     { name: 'Fortune Mouse', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/fortunemouse-e1750898944277.webp', dataAiHint: 'mouse mascot', href: '#' },
     { name: 'Mines', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/minespro-e1750899138242.webp', dataAiHint: 'gem diamond', href: '/jogos-pagando/mines' },
-    { name: 'Roleta Brasileira', logo: 'https://i.imgur.com/3mPj8oR.png', dataAiHint: 'roulette wheel', href: '#' },
+    { name: 'Gates of Olympus', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/gatesofolimpus-e1750899113649.webp', dataAiHint: 'zeus god', href: '#' },
     { name: 'Aviator', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/aviator-e1750899428642.webp', dataAiHint: 'airplane icon', href: '/jogos-pagando/aviator' },
     { name: 'Fortune Tree', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/fortunetree-e1750899054238.webp', dataAiHint: 'fortune tree', href: '#' },
-    { name: 'Gates of Olympus', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/gatesofolimpus-e1750899113649.webp', dataAiHint: 'zeus god', href: '#' },
+    { name: 'Roleta Brasileira', logo: 'https://i.imgur.com/3mPj8oR.png', dataAiHint: 'roulette wheel', href: '#' },
     { name: 'Sweet Bonanza', logo: 'https://i.imgur.com/Yj6fWzH.png', dataAiHint: 'candy sweet', href: '#' },
     { name: 'Big Bass Bonanza', logo: 'https://i.imgur.com/zK9g2B2.png', dataAiHint: 'fish bass', href: '#' },
 ];
