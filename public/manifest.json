@@ -1,6 +1,11 @@
 {
-  "short_name": "Matrix AI",
   "name": "Matrix Strategy AI",
+  "short_name": "Matrix AI",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#121212",
+  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "https://madetoinvest.pro/wp-content/uploads/2025/06/Design-sem-nome-6.png",
@@ -12,10 +17,5 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "start_url": "/",
-  "display": "standalone",
-  "theme_color": "#121212",
-  "background_color": "#121212",
-  "gcm_sender_id": "482941778795"
+  ]
 }
