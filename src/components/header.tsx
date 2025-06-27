@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { Menu, Home, Gift, Send, HelpCircle, Bot, Video } from 'lucide-react';
+import { Menu, Home, Gift, Send, HelpCircle, Bot, Video, Download } from 'lucide-react';
 import Logo from './logo';
 import { Skeleton } from './ui/skeleton';
 import TelegramCTA from './telegram-cta';
@@ -11,6 +11,7 @@ const menuItems = [
   { label: 'Jogos pagando agora', icon: Bot, href: '/jogos-pagando' },
   { label: 'Promoções exclusivas', icon: Gift, href: '/promocoes' },
   { label: 'Lucrando na Prática com IA', icon: Video, href: '/aulas' },
+  { label: 'Baixe o App', icon: Download, href: '/' },
   { label: 'Grupo no Telegram', icon: Send, href: 'https://t.me/+lbsueHDfifowYTFh' },
   { label: 'Suporte', icon: HelpCircle, href: 'https://t.me/wallacesuporte' },
 ];
