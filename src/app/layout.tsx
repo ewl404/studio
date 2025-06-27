@@ -5,6 +5,7 @@ import './win-rate-progress-bar.css';
 import './online-users.css';
 import './matrix-rain.css';
 import './winnings-notifier.css';
+import './pwa-prompt.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
@@ -20,6 +21,8 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="dark">
       <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#121212" />
         {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{
@@ -77,6 +80,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         {/* End Google Tag Manager (noscript) */}
         {children}
         <Toaster />
+        {/* PWA Service Worker Registration */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                  navigator.serviceWorker.register('/OneSignalSDKWorker.js').then(registration => {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                  }).catch(err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                  });
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   );

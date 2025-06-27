@@ -1,0 +1,68 @@
+.pwa-prompt-container {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 100;
+    max-width: 380px;
+    width: 90%;
+    animation: fade-in-up 0.5s ease-out forwards;
+}
+
+.pwa-prompt-content {
+    background-color: #FFFFFF;
+    color: #121212;
+    border-radius: 0.75rem; /* 12px */
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.pwa-prompt-icon {
+    border-radius: 0.5rem; /* 8px */
+    flex-shrink: 0;
+}
+
+.pwa-prompt-text {
+    flex-grow: 1;
+}
+
+.pwa-prompt-title {
+    font-weight: 700;
+    color: hsl(var(--primary));
+    font-size: 1.125rem; /* text-lg */
+    line-height: 1.2;
+}
+
+.pwa-prompt-subtitle {
+    font-size: 0.875rem; /* text-sm */
+    color: #4A5568; /* gray-700 */
+    margin-top: 0.25rem;
+}
+
+.pwa-prompt-button {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    font-weight: bold;
+    flex-shrink: 0;
+}
+.pwa-prompt-button:hover {
+    background-color: hsl(var(--primary) / 0.9);
+}
+
+/* Mobile styles */
+@media (max-width: 640px) {
+    .pwa-prompt-container {
+        right: 50%;
+        transform: translateX(50%);
+        bottom: 1rem;
+    }
+    .pwa-prompt-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .pwa-prompt-button {
+        width: 100%;
+    }
+}

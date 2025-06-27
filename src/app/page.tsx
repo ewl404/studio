@@ -3,6 +3,7 @@ import HeroSection from '@/components/hero-section';
 import StrategySection from '@/components/strategy-section';
 import TopGamesSection from '@/components/top-games-section';
 import { Separator } from '@/components/ui/separator';
+import PwaInstallPrompt from '@/components/pwa-install-prompt';
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <footer className="text-center p-4 text-muted-foreground text-sm">
         <p>&copy; {new Date().getFullYear()} Matrix Strategy AI. Todos os direitos reservados.</p>
       </footer>
+      <PwaInstallPrompt />
     </div>
   );
 }

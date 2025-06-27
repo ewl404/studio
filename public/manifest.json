@@ -1,0 +1,23 @@
+{
+  "name": "Matrix Strategy AI",
+  "short_name": "Matrix IA",
+  "description": "Pare de depender da sorte. Comece a ganhar com lógica.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#121212",
+  "icons": [
+    {
+      "src": "https://madetoinvest.pro/wp-content/uploads/2025/06/Design-sem-nome-3.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://madetoinvest.pro/wp-content/uploads/2025/06/Design-sem-nome-3.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
