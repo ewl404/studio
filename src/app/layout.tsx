@@ -50,6 +50,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Poppins:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
+        <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "37f77120-5dc6-4774-827b-e7992eaf1ec1",
+    });
+  });
+`,
+          }}
+        />
       </head>
       <body className="font-body antialiased">
         {/* Google Tag Manager (noscript) */}
