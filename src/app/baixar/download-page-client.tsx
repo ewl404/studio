@@ -106,15 +106,15 @@ const DownloadPageClient = () => {
           <CardContent className="space-y-4">
              <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center font-bold">1</div>
-                <p className="text-foreground/90 pt-1">Toque no botão <span className="font-bold text-primary">"Instalar Agora"</span> acima.</p>
+                <p className="text-foreground/90 pt-1">Se o botão <span className="font-bold text-primary">"Instalar Agora"</span> estiver visível acima, clique nele.</p>
              </div>
              <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center font-bold">2</div>
-                <p className="text-foreground/90 pt-1">Confirme a instalação na janela que aparecer.</p>
+                <p className="text-foreground/90 pt-1">Uma janela de confirmação aparecerá. Toque em <span className="font-bold text-primary">"Instalar"</span>.</p>
              </div>
              <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center font-bold">3</div>
-                <p className="text-foreground/90 pt-1">Pronto! O ícone do Matrix IA estará na sua tela inicial.</p>
+                <p className="text-foreground/90 pt-1">Pronto! O aplicativo será adicionado à sua tela inicial.</p>
              </div>
           </CardContent>
         </Card>
