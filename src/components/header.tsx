@@ -1,3 +1,4 @@
+
 import { Suspense } from 'react';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
@@ -11,7 +12,7 @@ const menuItems = [
   { label: 'Jogos pagando agora', icon: Bot, href: '/jogos-pagando' },
   { label: 'Promoções exclusivas', icon: Gift, href: '/promocoes' },
   { label: 'Lucrando na Prática com IA', icon: Video, href: '/aulas' },
-  { label: 'Baixe o App', icon: Download, href: '/' },
+  { label: 'Baixe o App', icon: Download, href: '/baixar' },
   { label: 'Grupo no Telegram', icon: Send, href: 'https://t.me/+lbsueHDfifowYTFh' },
   { label: 'Suporte', icon: HelpCircle, href: 'https://t.me/wallacesuporte' },
 ];

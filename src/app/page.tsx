@@ -19,7 +19,6 @@ export default function Home() {
       <footer className="text-center p-4 text-muted-foreground text-sm">
         <p>&copy; {new Date().getFullYear()} Matrix Strategy AI. Todos os direitos reservados.</p>
       </footer>
-      <PwaInstallPrompt />
     </div>
   );
 }
