@@ -5,7 +5,6 @@ import './win-rate-progress-bar.css';
 import './online-users.css';
 import './matrix-rain.css';
 import './winnings-notifier.css';
-import './pwa-prompt.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {

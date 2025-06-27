@@ -3,7 +3,6 @@ import HeroSection from '@/components/hero-section';
 import StrategySection from '@/components/strategy-section';
 import TopGamesSection from '@/components/top-games-section';
 import { Separator } from '@/components/ui/separator';
-import PwaInstallPrompt from '@/components/pwa-install-prompt';
 
 export default function Home() {
   return (
