@@ -11,6 +11,7 @@ import { Toaster } from '@/components/ui/toaster';
 export const metadata: Metadata = {
   title: 'Matrix Strategy AI',
   description: 'Pare de depender da sorte. Comece a ganhar com lógica.',
+  manifest: '/manifest.json',
 };
 
 export default function RootLayout({
@@ -21,8 +22,6 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="dark">
       <head>
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/icons/icon-192x192.png"></link>
         <meta name="theme-color" content="#121212" />
         {/* Google Tag Manager */}
         <script
