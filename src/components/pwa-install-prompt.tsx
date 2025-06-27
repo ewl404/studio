@@ -50,8 +50,8 @@ const PwaInstallPrompt = () => {
         <div className="pwa-prompt-content">
              <Image 
                 src="https://madetoinvest.pro/wp-content/uploads/2025/06/Design-sem-nome-3.png"
-                width={64}
-                height={64}
+                width={48}
+                height={48}
                 alt="Matrix IA Icon"
                 className="pwa-prompt-icon"
             />

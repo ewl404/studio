@@ -22,6 +22,7 @@ export default function RootLayout({
     <html lang="pt-BR" className="dark">
       <head>
         <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icons/icon-192x192.png"></link>
         <meta name="theme-color" content="#121212" />
         {/* Google Tag Manager */}
         <script
