@@ -3,8 +3,8 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Download, Share, PlusSquare, Smartphone, CheckCircle, Apple, Monitor } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Download, Share, PlusSquare, Smartphone, CheckCircle, Apple, Monitor, Gift, BellRing } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 const DownloadPageClient = () => {
@@ -45,6 +45,16 @@ const DownloadPageClient = () => {
       setCanInstall(false);
       setIsStandalone(true);
     }
+  };
+
+  const handlePushPermission = async () => {
+    // The OneSignal SDK is loaded asynchronously via the layout.
+    // We push our action to the OneSignalDeferred array to ensure it runs
+    // after the SDK is initialized.
+    (window as any).OneSignalDeferred = (window as any).OneSignalDeferred || [];
+    (window as any).OneSignalDeferred.push(function(OneSignal: any) {
+      OneSignal.Notifications.requestPermission();
+    });
   };
   
   if (isStandalone) {
@@ -137,6 +147,27 @@ const DownloadPageClient = () => {
           </CardContent>
         </Card>
       </div>
+      <Separator className="bg-primary/10" />
+      <section className="animate-fade-in-up mt-12" style={{ animationDelay: '0.4s' }}>
+          <Card className="bg-background/70 border-primary/20 shadow-lg shadow-primary/10 text-center">
+            <CardHeader>
+              <Gift className="w-12 h-12 text-primary mx-auto mb-4" />
+              <CardTitle className="text-2xl text-primary">Concorra a PIX de R$1.000!</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-foreground/80">
+                Ative as notificações para participar dos nossos sorteios exclusivos e ser avisado sobre os resultados em primeira mão.
+              </p>
+            </CardContent>
+            <CardFooter className="justify-center flex-col gap-2">
+              <Button size="lg" onClick={handlePushPermission}>
+                <BellRing className="mr-2" />
+                Sim, quero participar!
+              </Button>
+              <p className="text-xs text-muted-foreground">Você poderá desativar a qualquer momento.</p>
+            </CardFooter>
+          </Card>
+      </section>
     </div>
   );
 };
