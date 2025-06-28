@@ -21,6 +21,11 @@ const gamesData = [
     name: 'HanzBet',
     logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/hanz-removebg-preview.png',
     href: 'https://madetoinvest.pro/hanzbet-apphack',
+  },
+  {
+    name: '777Rico',
+    logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/O61sds0xJgf1mOvFJ49KGxefQAQkKXGPeqC8pOBD.png',
+    href: 'https://madetoinvest.pro/777rico-apphack',
   }
 ];
 
@@ -38,7 +43,7 @@ export default function TopGamesSection() {
         <h2 className="text-3xl md:text-4xl font-bold text-primary font-headline">Casas que mais estão pagando agora</h2>
         <p className="text-muted-foreground mt-2">Análise em tempo real dos sistemas de jogos.</p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {games.map((game) => (
           <Card
             key={game.name}
