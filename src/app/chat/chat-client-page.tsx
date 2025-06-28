@@ -263,11 +263,13 @@ export default function ChatClientPage() {
                       <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-primary" /><span>Atualizações de novas estratégias sem custo.</span></li>
                   </ul>
                   <p className="text-muted-foreground line-through">De R$ 197</p>
-                  <p className="text-5xl font-bold text-foreground">Por apenas R$ 97</p>
+                  <p className="text-5xl font-bold text-foreground">Por apenas R$ 47,90</p>
                   <p className="text-sm text-muted-foreground">(Pagamento único)</p>
                   
-                  <Button size="lg" className="mt-6 w-full md:w-auto text-lg h-14 animate-pulse">
-                      ADQUIRIR AGORA!
+                  <Button asChild size="lg" className="mt-6 w-full md:w-auto text-lg h-14 animate-pulse">
+                      <a href="https://lastlink.com/p/C6799E168/checkout-payment/">
+                        ADQUIRIR AGORA!
+                      </a>
                   </Button>
               </CardContent>
           </Card>
