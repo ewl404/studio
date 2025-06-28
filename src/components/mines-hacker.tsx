@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 
 const TOTAL_CELLS = 25;
 
-type CellState = 'hidden' | 'safe';
+type CellState = 'hidden' | 'safe' | 'bomb';
 
 const casinoOptions = [
   { name: 'Lotogreen', url: 'https://go.aff.lotogreen.com/e67fdkuy?utm_campaign=apphack' },
@@ -19,9 +19,11 @@ const casinoOptions = [
 
 interface MinesHackerProps {
     safeCellsCount?: number;
+    showBombs?: boolean;
 }
 
-const MinesHacker = ({ safeCellsCount = 4 }: MinesHackerProps) => {
+const MinesHacker = ({ safeCellsCount = 4, showBombs = false }: MinesHackerProps) => {
+    const BOMB_COUNT = 3;
     const [grid, setGrid] = useState<CellState[]>(Array(TOTAL_CELLS).fill('hidden'));
     const [isLoading, setIsLoading] = useState(false);
     const [isHacked, setIsHacked] = useState(false);
@@ -71,12 +73,13 @@ const MinesHacker = ({ safeCellsCount = 4 }: MinesHackerProps) => {
                 clearInterval(interval);
                 
                 const newGrid = Array(TOTAL_CELLS).fill('hidden') as CellState[];
-                const safeIndexes = new Set<number>();
-                while (safeIndexes.size < safeCellsCount) {
-                    safeIndexes.add(Math.floor(Math.random() * TOTAL_CELLS));
+                const specialIndexes = new Set<number>();
+                const count = showBombs ? BOMB_COUNT : safeCellsCount;
+                while (specialIndexes.size < count) {
+                    specialIndexes.add(Math.floor(Math.random() * TOTAL_CELLS));
                 }
-                safeIndexes.forEach(index => {
-                    newGrid[index] = 'safe';
+                specialIndexes.forEach(index => {
+                    newGrid[index] = showBombs ? 'bomb' : 'safe';
                 });
 
                 setGrid(newGrid);
@@ -119,12 +122,13 @@ const MinesHacker = ({ safeCellsCount = 4 }: MinesHackerProps) => {
             <Card className="w-full max-w-[285px] bg-background/70 border-2 border-primary/20 shadow-2xl shadow-primary/10 backdrop-blur-sm font-code">
                 <CardHeader className="items-center text-center p-4 space-y-1">
                     <CardTitle className="text-2xl text-primary font-bold tracking-widest">2. MINES PRO</CardTitle>
-                    {isHacked ? (
+                     {isHacked ? (
                         <p className="text-foreground animate-fade-in-up h-5 text-sm">
-                            Probabilidade de acerto: <span className="font-bold text-primary">{accuracy}%</span>
+                            {showBombs ? 'POSSÍVEIS BOMBAS:' : 'Probabilidade de acerto:'}{' '}
+                            {!showBombs && <span className="font-bold text-primary">{accuracy}%</span>}
                         </p>
                     ) : (
-                        <p className="h-5">&nbsp;</p> 
+                        <p className="h-5">&nbsp;</p>
                     )}
                 </CardHeader>
                 <CardContent className="px-3 pt-3 pb-[5px]">
@@ -143,11 +147,17 @@ const MinesHacker = ({ safeCellsCount = 4 }: MinesHackerProps) => {
                                         "aspect-square rounded-md flex items-center justify-center border",
                                         isHacked && cell === 'safe' 
                                             ? 'bg-primary/20 border-primary shadow-lg shadow-primary/30 animate-pulse' 
-                                            : 'bg-accent/30 border-accent/50'
+                                            : 'bg-accent/30 border-accent/50',
+                                        isHacked && cell === 'bomb'
+                                            ? 'bg-destructive/10 border-destructive shadow-lg shadow-destructive/20 animate-pulse'
+                                            : ''
                                     )}
                                 >
                                     {isHacked && cell === 'safe' && (
                                         <Star className="w-6 h-6 text-primary fill-primary" />
+                                    )}
+                                    {isHacked && cell === 'bomb' && (
+                                        <Bomb className="w-6 h-6 text-destructive" />
                                     )}
                                 </div>
                             ))}
