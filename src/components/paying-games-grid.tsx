@@ -7,7 +7,7 @@ import { ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import WinRateProgressBar from './win-rate-progress-bar';
 
-const initialGamesData = [
+const gamesDataDefinition = [
     { name: 'Fortune Tiger', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-1.avif', dataAiHint: 'tiger mascot', href: '/jogos-pagando/tiger' },
     { name: 'Fortune Ox', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad.jpg', dataAiHint: 'ox mascot', href: '/jogos-pagando/ox' },
     { name: 'Fortune Dragon', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-2.avif', dataAiHint: 'dragon mascot', href: '/jogos-pagando/dragon' },
@@ -20,15 +20,18 @@ const initialGamesData = [
     { name: 'Roleta Brasileira', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-9.avif', dataAiHint: 'roulette wheel', href: '/jogos-pagando/zeus' },
     { name: 'Sweet Bonanza', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-8.avif', dataAiHint: 'candy sweet', href: '/jogos-pagando/hatch' },
     { name: 'Big Bass Bonanza', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-7.avif', dataAiHint: 'fish bass', href: '/jogos-pagando/tigerluck' },
-].map(game => ({
-  ...game,
-  winRate: Math.floor(Math.random() * (98 - 45 + 1)) + 45,
-}));
+];
 
 export default function PayingGamesGrid() {
-  const [games, setGames] = useState(initialGamesData);
+  const [games, setGames] = useState<any[]>([]);
 
   useEffect(() => {
+    const initialGames = gamesDataDefinition.map(game => ({
+      ...game,
+      winRate: Math.floor(Math.random() * (98 - 45 + 1)) + 45,
+    }));
+    setGames(initialGames);
+
     const interval = setInterval(() => {
       setGames(prevGames =>
         prevGames.map(game => {

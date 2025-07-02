@@ -9,7 +9,7 @@ import WinRateProgressBar from './win-rate-progress-bar';
 import OnlineUsers from './online-users';
 import WithdrawnToday from './withdrawn-today';
 
-const initialGamesData = [
+const gamesDataDefinition = [
   {
     name: 'LotoGreen',
     logo: 'https://lotogreen.com.br/wp-content/uploads/2024/10/logo-lotogreen-2048x664.png',
@@ -30,17 +30,20 @@ const initialGamesData = [
     logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/O61sds0xJgf1mOvFJ49KGxefQAQkKXGPeqC8pOBD.png',
     href: 'https://madetoinvest.pro/777rico-apphack',
   }
-].map((game) => ({
-    ...game,
-    winRate: Math.floor(Math.random() * (98 - 45 + 1)) + 45,
-    distributionMoment: Math.floor(Math.random() * (98 - 45 + 1)) + 45,
-    status: 'active',
-}));
+];
 
 export default function TopGamesSection() {
-  const [games, setGames] = useState(initialGamesData);
+  const [games, setGames] = useState<any[]>([]);
 
   useEffect(() => {
+    const initialGames = gamesDataDefinition.map((game) => ({
+        ...game,
+        winRate: Math.floor(Math.random() * (98 - 45 + 1)) + 45,
+        distributionMoment: Math.floor(Math.random() * (98 - 45 + 1)) + 45,
+        status: 'active',
+    }));
+    setGames(initialGames);
+
     const interval = setInterval(() => {
       setGames(prevGames =>
         prevGames.map(game => {
