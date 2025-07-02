@@ -1,3 +1,6 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ExternalLink } from 'lucide-react';
@@ -6,7 +9,7 @@ import WinRateProgressBar from './win-rate-progress-bar';
 import OnlineUsers from './online-users';
 import WithdrawnToday from './withdrawn-today';
 
-const gamesData = [
+const initialGamesData = [
   {
     name: 'LotoGreen',
     logo: 'https://lotogreen.com.br/wp-content/uploads/2024/10/logo-lotogreen-2048x664.png',
@@ -27,15 +30,39 @@ const gamesData = [
     logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/O61sds0xJgf1mOvFJ49KGxefQAQkKXGPeqC8pOBD.png',
     href: 'https://madetoinvest.pro/777rico-apphack',
   }
-];
+].map((game) => ({
+    ...game,
+    winRate: Math.floor(Math.random() * (98 - 45 + 1)) + 45,
+    distributionMoment: Math.floor(Math.random() * (98 - 45 + 1)) + 45,
+    status: 'active',
+}));
 
 export default function TopGamesSection() {
-  const games = gamesData.map((game) => ({
-    ...game,
-    winRate: Math.floor(Math.random() * (100 - 30 + 1)) + 30,
-    distributionMoment: Math.floor(Math.random() * (100 - 30 + 1)) + 30,
-    status: 'active',
-  }));
+  const [games, setGames] = useState(initialGamesData);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setGames(prevGames =>
+        prevGames.map(game => {
+          const change = (currentValue: number) => {
+            const variation = Math.floor(Math.random() * 11) - 5; // -5 to +5
+            let newValue = currentValue + variation;
+            if (newValue > 98) newValue = 98;
+            if (newValue < 45) newValue = 45;
+            return newValue;
+          };
+          
+          return {
+            ...game,
+            winRate: change(game.winRate),
+            distributionMoment: change(game.distributionMoment),
+          };
+        })
+      );
+    }, 180000); // 3 minutes
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section id="paying-games" className="w-full max-w-6xl mx-auto">

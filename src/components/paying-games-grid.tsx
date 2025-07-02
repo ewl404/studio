@@ -1,11 +1,13 @@
+'use client';
 
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import WinRateProgressBar from './win-rate-progress-bar';
 
-const gamesData = [
+const initialGamesData = [
     { name: 'Fortune Tiger', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-1.avif', dataAiHint: 'tiger mascot', href: '/jogos-pagando/tiger' },
     { name: 'Fortune Ox', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad.jpg', dataAiHint: 'ox mascot', href: '/jogos-pagando/ox' },
     { name: 'Fortune Dragon', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-2.avif', dataAiHint: 'dragon mascot', href: '/jogos-pagando/dragon' },
@@ -18,13 +20,29 @@ const gamesData = [
     { name: 'Roleta Brasileira', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-9.avif', dataAiHint: 'roulette wheel', href: '/jogos-pagando/zeus' },
     { name: 'Sweet Bonanza', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-8.avif', dataAiHint: 'candy sweet', href: '/jogos-pagando/hatch' },
     { name: 'Big Bass Bonanza', logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/ipad-7.avif', dataAiHint: 'fish bass', href: '/jogos-pagando/tigerluck' },
-];
+].map(game => ({
+  ...game,
+  winRate: Math.floor(Math.random() * (98 - 45 + 1)) + 45,
+}));
 
 export default function PayingGamesGrid() {
-  const games = gamesData.map((game) => ({
-    ...game,
-    winRate: Math.floor(Math.random() * (100 - 30 + 1)) + 30,
-  }));
+  const [games, setGames] = useState(initialGamesData);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setGames(prevGames =>
+        prevGames.map(game => {
+          const change = Math.floor(Math.random() * 11) - 5; // -5 to +5
+          let newWinRate = game.winRate + change;
+          if (newWinRate > 98) newWinRate = 98;
+          if (newWinRate < 45) newWinRate = 45;
+          return { ...game, winRate: newWinRate };
+        })
+      );
+    }, 180000); // 3 minutes
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section id="paying-games" className="w-full max-w-6xl mx-auto">
