@@ -30,11 +30,6 @@ const gamesDataDefinition = [
     logo: 'https://madetoinvest.pro/wp-content/uploads/2025/06/O61sds0xJgf1mOvFJ49KGxefQAQkKXGPeqC8pOBD.png',
     href: 'https://madetoinvest.pro/777rico-apphack',
   },
-  {
-    name: 'Mcgames',
-    logo: 'https://madetoinvest.pro/wp-content/uploads/2025/07/w1200-4.avif',
-    href: 'https://madetoinvest.pro/mcgames-app',
-  }
 ];
 
 export default function TopGamesSection() {
