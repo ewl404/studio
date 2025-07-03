@@ -7,12 +7,10 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Button } from '@/components/ui/button';
 import { Download } from 'lucide-react';
 import Link from 'next/link';
-import InAppBrowserRedirect from '@/components/in-app-browser-redirect';
 
 export default function JogosPagandoPage() {
   return (
     <>
-      <InAppBrowserRedirect />
       <MatrixBackground />
       <div className="flex flex-col min-h-screen relative z-10 bg-background/80">
         <Header />

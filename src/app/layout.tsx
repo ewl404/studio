@@ -6,6 +6,7 @@ import './online-users.css';
 import './matrix-rain.css';
 import './winnings-notifier.css';
 import { Toaster } from '@/components/ui/toaster';
+import InAppBrowserRedirect from '@/components/in-app-browser-redirect';
 
 export const metadata: Metadata = {
   title: 'Matrix Strategy AI',
@@ -78,6 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           ></iframe>
         </noscript>
         {/* End Google Tag Manager (noscript) */}
+        <InAppBrowserRedirect />
         {children}
         <Toaster />
         {/* PWA Service Worker Registration */}

@@ -2,12 +2,10 @@
 import Header from '@/components/header';
 import MatrixBackground from '@/components/matrix-background';
 import DownloadPageClient from './download-page-client';
-import InAppBrowserRedirect from '@/components/in-app-browser-redirect';
 
 export default function BaixarPage() {
   return (
     <>
-      <InAppBrowserRedirect />
       <MatrixBackground />
       <div className="flex flex-col min-h-screen relative z-10 bg-background/80">
         <Header />
