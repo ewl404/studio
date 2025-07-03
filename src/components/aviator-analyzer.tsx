@@ -15,7 +15,8 @@ const casinoOptions = [
   { name: 'Lotogreen', url: 'https://go.aff.lotogreen.com/e67fdkuy?utm_campaign=apphack' },
   { name: 'Bora1bet', url: 'https://bora1.bet/register?code=GIPYCLEZEG' },
   { name: 'Hanzbet', url: 'https://go.aff.hanz.bet.br/izyagc1z?utm_campaign=apphack' },
-  { name: '777Rico', url: 'https://madetoinvest.pro/777rico-apphack' }
+  { name: '777Rico', url: 'https://madetoinvest.pro/777rico-apphack' },
+  { name: 'Mcgames', url: 'https://madetoinvest.pro/mcgames-app' }
 ];
 
 const aviatorAnalyzerSchema = z.object({
