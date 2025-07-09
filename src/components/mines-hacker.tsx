@@ -5,25 +5,18 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button';
 import { Cpu, Target, Timer, Star, Bomb } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const TOTAL_CELLS = 25;
 
 type CellState = 'hidden' | 'safe' | 'bomb';
 
-const casinoOptions = [
-  { name: 'Lotogreen', url: 'https://go.aff.lotogreen.com/e67fdkuy?utm_campaign=apphack' },
-  { name: 'Bora1bet', url: 'https://bora1.bet/register?code=GIPYCLEZEG' },
-  { name: 'Hanzbet', url: 'https://go.aff.hanz.bet.br/izyagc1z?utm_campaign=apphack' },
-  { name: '777Rico', url: 'https://madetoinvest.pro/777rico-apphack' },
-];
-
 interface MinesHackerProps {
     safeCellsCount?: number;
     showBombs?: boolean;
+    selectedCasinoUrl: string;
 }
 
-const MinesHacker = ({ safeCellsCount = 4, showBombs = false }: MinesHackerProps) => {
+const MinesHacker = ({ safeCellsCount = 4, showBombs = false, selectedCasinoUrl }: MinesHackerProps) => {
     const BOMB_COUNT = 3;
     const [grid, setGrid] = useState<CellState[]>(Array(TOTAL_CELLS).fill('hidden'));
     const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +26,6 @@ const MinesHacker = ({ safeCellsCount = 4, showBombs = false }: MinesHackerProps
     const [validityCountdown, setValidityCountdown] = useState(0);
     const [accuracy, setAccuracy] = useState(0);
     const [hasHackedOnce, setHasHackedOnce] = useState(false);
-    const [selectedCasinoUrl, setSelectedCasinoUrl] = useState(casinoOptions[1].url);
 
     useEffect(() => {
         if (buttonCountdown > 0) {
@@ -101,28 +93,10 @@ const MinesHacker = ({ safeCellsCount = 4, showBombs = false }: MinesHackerProps
     };
 
     return (
-        <div className="w-full flex flex-col items-center gap-6">
-            <Card className="w-full max-w-sm bg-background/70 border-primary/20 shadow-lg shadow-primary/5">
-                <CardHeader className="p-4 pb-2">
-                    <CardTitle className="text-primary text-xl font-bold">1. Selecione a Plataforma</CardTitle>
-                </CardHeader>
-                <CardContent className="p-4 pt-2">
-                  <Select onValueChange={setSelectedCasinoUrl} defaultValue={selectedCasinoUrl}>
-                    <SelectTrigger className="w-full text-lg h-12">
-                      <SelectValue placeholder="Selecione a casa de apostas..." />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {casinoOptions.map(casino => (
-                        <SelectItem key={casino.name} value={casino.url}>{casino.name}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </CardContent>
-            </Card>
-
+        <>
             <Card className="w-full max-w-[285px] bg-background/70 border-2 border-primary/20 shadow-2xl shadow-primary/10 backdrop-blur-sm font-code">
                 <CardHeader className="items-center text-center p-4 space-y-1">
-                    <CardTitle className="text-2xl text-primary font-bold tracking-widest">2. MINES PRO</CardTitle>
+                    <CardTitle className="text-2xl text-primary font-bold tracking-widest">3. MINES PRO</CardTitle>
                      {isHacked ? (
                         <p className="text-foreground animate-fade-in-up h-5 text-sm">
                             {showBombs ? 'POSSÍVEIS BOMBAS:' : 'Probabilidade de acerto:'}{' '}
@@ -207,7 +181,7 @@ const MinesHacker = ({ safeCellsCount = 4, showBombs = false }: MinesHackerProps
                 </p>
               </div>
             )}
-        </div>
+        </>
     );
 };
 
