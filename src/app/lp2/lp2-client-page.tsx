@@ -76,7 +76,7 @@ export default function Lp2ClientPage() {
             className="w-full md:w-auto h-16 text-xl font-bold animate-green-shadow-pulse"
         >
             <a href="https://lastlink.com/p/CBF6D432C/checkout-payment/" target="_blank" rel="noopener noreferrer">
-                ACESSAR O MÉTODO AGORA
+                ACESSAR AGORA
             </a>
         </Button>
     );
@@ -127,11 +127,11 @@ export default function Lp2ClientPage() {
             
             {/* VSL Section */}
             <section ref={videoRef} className="animate-fade-in-down">
-                <h1 className="text-3xl md:text-5xl font-bold text-primary !leading-tight font-headline mb-6">
-                    O MÉTODO SECRETO QUE TRANSFORMA R$50 EM ATÉ R$2.385,47 POR DIA...
+                <h1 className="text-3xl md:text-5xl font-bold text-primary !leading-tight font-headline mb-6 uppercase">
+                    Essa IA entende padrões matemáticos ocultos nos jogos — e tá colocando <span className="text-foreground" style={{ textShadow: '0 0 10px hsl(var(--primary))' }}>R$94</span> a <span className="text-foreground" style={{ textShadow: '0 0 10px hsl(var(--primary))' }}>R$487</span> por dia no bolso de quem segue ela
                 </h1>
                 <p className="text-lg text-foreground/80 mb-8 max-w-2xl mx-auto">
-                    Assista ao vídeo abaixo para descobrir como nossa Inteligência Artificial encontra as brechas que os cassinos não querem que você saiba.
+                    Assista ao vídeo abaixo e veja com os próprios olhos...
                 </p>
                 <div className="relative w-full max-w-[360px] mx-auto">
                     <LiveViewerCount />

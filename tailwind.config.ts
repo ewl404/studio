@@ -101,7 +101,7 @@ export default {
         },
         'green-shadow-pulse': {
           '50%': {
-            'box-shadow': '0 0 12px hsl(var(--primary))',
+            'box-shadow': '0 0 25px hsl(var(--primary))',
           },
         },
         'green-pulse-once': {
