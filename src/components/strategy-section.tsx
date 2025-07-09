@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Bot, Cpu, Target, Timer, Turtle, Zap, Crown, Gem, ShieldCheck } from 'lucide-react';
+import { Bot, Cpu, Target, Timer, Turtle, Zap, Crown, Gem, ShieldCheck, Star } from 'lucide-react';
 import WinRateProgressBar from './win-rate-progress-bar';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -77,6 +77,7 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
   const [oraculoStatusText, setOraculoStatusText] = useState('');
   const [oraculoResult, setOraculoResult] = useState<{ bankroll: number; bet: number; } | null>(null);
   const [oraculoSwitches, setOraculoSwitches] = useState({ influencer: false, multiplier: false, forcePay: false });
+  const [potentialGain, setPotentialGain] = useState(0);
   const [oraculoCountdown, setOraculoCountdown] = useState(0);
   const [hasOraculoBeenGenerated, setHasOraculoBeenGenerated] = useState(false);
 
@@ -104,6 +105,21 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
     }, 1000);
     return () => clearTimeout(timer);
   }, [oraculoCountdown]);
+
+  useEffect(() => {
+    if (!oraculoResult) {
+      setPotentialGain(0);
+      return;
+    }
+
+    let baseMultiplier = 20;
+    if(oraculoSwitches.influencer) baseMultiplier += 15;
+    if(oraculoSwitches.multiplier) baseMultiplier += 50;
+    if(oraculoSwitches.forcePay) baseMultiplier += 25;
+
+    setPotentialGain(oraculoResult.bet * baseMultiplier);
+
+  }, [oraculoResult, oraculoSwitches]);
 
   const form = useForm<StrategyFormValues>({
     resolver: zodResolver(StrategyFormSchema),
@@ -241,9 +257,9 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
                     bet: Math.random() * (10 - 1) + 1,
                 });
                 setOraculoSwitches({
-                    influencer: Math.random() > 0.5,
-                    multiplier: Math.random() > 0.5,
-                    forcePay: Math.random() > 0.5,
+                    influencer: false,
+                    multiplier: false,
+                    forcePay: false,
                 });
                 setIsLoading(false);
                 setIsOraculoLoading(false);
@@ -465,24 +481,37 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
                                     <Label htmlFor="influencer-mode" className="flex items-center gap-3 text-base">
                                         <Crown className="w-5 h-5 text-primary"/> Modo Influencer
                                     </Label>
-                                    <Switch id="influencer-mode" checked={oraculoSwitches.influencer} />
+                                    <Switch 
+                                      id="influencer-mode" 
+                                      checked={oraculoSwitches.influencer}
+                                      onCheckedChange={(checked) => setOraculoSwitches(prev => ({...prev, influencer: checked}))}
+                                    />
                                 </div>
                                 <div className="flex items-center justify-between p-3 bg-accent/30 border border-primary/20 rounded-lg">
                                     <Label htmlFor="multiplier-mode" className="flex items-center gap-3 text-base">
                                         <Gem className="w-5 h-5 text-primary"/> Multiplicador 2500x
                                     </Label>
-                                    <Switch id="multiplier-mode" checked={oraculoSwitches.multiplier} />
+                                    <Switch 
+                                      id="multiplier-mode" 
+                                      checked={oraculoSwitches.multiplier} 
+                                      onCheckedChange={(checked) => setOraculoSwitches(prev => ({...prev, multiplier: checked}))}
+                                    />
                                 </div>
                                 <div className="flex items-center justify-between p-3 bg-accent/30 border border-primary/20 rounded-lg">
                                     <Label htmlFor="force-pay-mode" className="flex items-center gap-3 text-base">
                                         <ShieldCheck className="w-5 h-5 text-primary"/> Forçar Pague
                                     </Label>
-                                    <Switch id="force-pay-mode" checked={oraculoSwitches.forcePay} />
+                                    <Switch 
+                                      id="force-pay-mode" 
+                                      checked={oraculoSwitches.forcePay}
+                                      onCheckedChange={(checked) => setOraculoSwitches(prev => ({...prev, forcePay: checked}))}
+                                    />
                                 </div>
                             </div>
                             <div className="space-y-3 pt-2">
                                 <InfoRow icon={Target} label="Banca Recomendada:" value={oraculoResult.bankroll.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} />
                                 <InfoRow icon={Zap} label="Valor da Bet:" value={oraculoResult.bet.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} />
+                                <InfoRow icon={Star} label="Ganho Potencial:" value={potentialGain.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} />
                                 <InfoRow icon={Timer} label="Validade do Sinal:" value={formatTime(oraculoCountdown)} />
                             </div>
                         </CardContent>
