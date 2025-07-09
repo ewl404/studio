@@ -102,7 +102,7 @@ export default function LpsClientPage() {
                             min={10}
                             max={500}
                             step={10}
-                            defaultValue={[bet]}
+                            value={[bet]}
                             onValueChange={(value) => setBet(value[0])}
                         />
                     </div>
