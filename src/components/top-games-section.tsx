@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -31,7 +32,7 @@ const gamesDataDefinition = [
     href: 'https://madetoinvest.pro/777rico-apphack',
   },
   {
-    name: '1win',
+    name: '1WIN',
     logo: 'https://madetoinvest.pro/wp-content/uploads/2025/07/logo.png',
     href: 'https://madetoinvest.pro/1win-app',
   },
