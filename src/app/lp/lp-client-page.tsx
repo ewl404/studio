@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, BrainCircuit, ShieldCheck, Star, ArrowUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import LiveViewerCount from '@/components/live-viewer-count';
 
 // Placeholder for a vertical video.
 const SalesVideo = () => (
@@ -78,6 +79,7 @@ export default function LpsClientPage() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-16 text-center">
+            <LiveViewerCount />
             
             {/* VSL Section */}
             <section ref={videoRef} className="animate-fade-in-down">

@@ -1,0 +1,54 @@
+.live-viewer-count {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background-color: #d32f2f;
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.875rem;
+    z-index: 50;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    animation: fade-in-down 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.live-dot-red {
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border-radius: 50%;
+    animation: pulse-red 1.5s infinite;
+}
+
+@keyframes pulse-red {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+.live-text {
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
+}
+
+.live-divider {
+    width: 1px;
+    height: 16px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.viewer-number {
+    font-size: 0.9rem;
+}
