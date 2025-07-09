@@ -8,13 +8,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Bot, Cpu, Target, Timer, Turtle, Zap } from 'lucide-react';
+import { Bot, Cpu, Target, Timer, Turtle, Zap, Crown, Gem, ShieldCheck } from 'lucide-react';
 import WinRateProgressBar from './win-rate-progress-bar';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
 
 const StrategyFormSchema = z.object({
-  strategy: z.enum(['Horários de distribuição', 'Intercalação vencedora', 'Agente IA Pro'], {
+  strategy: z.enum(['Horários de distribuição', 'Intercalação vencedora', 'Agente IA Pro', 'Oráculo do Dragão'], {
     required_error: 'Por favor, selecione uma estratégia.',
   }),
 });
@@ -70,6 +72,14 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
   
   const [selectedCasinoUrl, setSelectedCasinoUrl] = useState(casinoOptions[1].url);
 
+  const [showOraculoResult, setShowOraculoResult] = useState(false);
+  const [isOraculoLoading, setIsOraculoLoading] = useState(false);
+  const [oraculoStatusText, setOraculoStatusText] = useState('');
+  const [oraculoResult, setOraculoResult] = useState<{ bankroll: number; bet: number; } | null>(null);
+  const [oraculoSwitches, setOraculoSwitches] = useState({ influencer: false, multiplier: false, forcePay: false });
+  const [oraculoCountdown, setOraculoCountdown] = useState(0);
+  const [hasOraculoBeenGenerated, setHasOraculoBeenGenerated] = useState(false);
+
 
   useEffect(() => {
     if (countdown <= 0) return;
@@ -86,6 +96,14 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
     }, 1000);
     return () => clearTimeout(timer);
   }, [horariosCountdown]);
+
+  useEffect(() => {
+    if (oraculoCountdown <= 0) return;
+    const timer = setTimeout(() => {
+        setOraculoCountdown(oraculoCountdown - 1);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [oraculoCountdown]);
 
   const form = useForm<StrategyFormValues>({
     resolver: zodResolver(StrategyFormSchema),
@@ -128,7 +146,7 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
 
 
   async function onSubmit(data: StrategyFormValues) {
-    if (redirectOnSubmit && (data.strategy === 'Horários de distribuição' || data.strategy === 'Intercalação vencedora')) {
+    if (redirectOnSubmit && (data.strategy === 'Horários de distribuição' || data.strategy === 'Intercalação vencedora' || data.strategy === 'Oráculo do Dragão')) {
         router.push('/jogos-pagando');
         return;
     }
@@ -198,11 +216,48 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
     } else if (data.strategy === 'Intercalação vencedora') {
         setInterleavingResult(null);
         runInterleavingAnalysis();
+    } else if (data.strategy === 'Oráculo do Dragão') {
+        setOraculoResult(null);
+        setIsLoading(true);
+        setIsOraculoLoading(true);
+        setShowOraculoResult(true);
+        
+        const processingSteps = [
+            'Analisando escrituras do dragão...',
+            'Decifrando padrões de sorte...',
+            'Forjando sua fortuna...',
+            'Oráculo revelado!',
+        ];
+
+        let stepIndex = 0;
+        const processNextStep = () => {
+            if (stepIndex < processingSteps.length) {
+                setOraculoStatusText(processingSteps[stepIndex]);
+                stepIndex++;
+                setTimeout(processNextStep, 2000);
+            } else {
+                setOraculoResult({
+                    bankroll: Math.random() * (1000 - 100) + 100,
+                    bet: Math.random() * (10 - 1) + 1,
+                });
+                setOraculoSwitches({
+                    influencer: Math.random() > 0.5,
+                    multiplier: Math.random() > 0.5,
+                    forcePay: Math.random() > 0.5,
+                });
+                setIsLoading(false);
+                setIsOraculoLoading(false);
+                setOraculoCountdown(180);
+                setHasOraculoBeenGenerated(true);
+            }
+        };
+        processNextStep();
     }
   }
   
   const selectedStrategy = form.watch('strategy');
   const isHorariosOnCooldown = selectedStrategy === 'Horários de distribuição' && horariosCountdown > 0;
+  const isOraculoOnCooldown = selectedStrategy === 'Oráculo do Dragão' && oraculoCountdown > 0;
 
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
@@ -210,7 +265,7 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
     return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
 
-  const showIframe = (selectedStrategy === 'Horários de distribuição' && generatedTimes.length > 0 && !isHorariosLoading) || (selectedStrategy === 'Intercalação vencedora' && hasInterleavingBeenGenerated);
+  const showIframe = (selectedStrategy === 'Horários de distribuição' && generatedTimes.length > 0 && !isHorariosLoading) || (selectedStrategy === 'Intercalação vencedora' && hasInterleavingBeenGenerated) || (selectedStrategy === 'Oráculo do Dragão' && hasOraculoBeenGenerated && !isOraculoLoading);
 
   return (
     <section className="w-full max-w-4xl mx-auto">
@@ -258,6 +313,7 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
                         field.onChange(value);
                         setShowHorariosResult(false);
                         setShowInterleavingResult(false);
+                        setShowOraculoResult(false);
                       }} 
                       defaultValue={field.value}
                     >
@@ -269,6 +325,7 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
                       <SelectContent>
                         <SelectItem value="Horários de distribuição">Horários de distribuição</SelectItem>
                         <SelectItem value="Intercalação vencedora">Intercalação vencedora</SelectItem>
+                        <SelectItem value="Oráculo do Dragão">Oráculo do Dragão</SelectItem>
                         <SelectItem value="Agente IA Pro">Agente IA Pro</SelectItem>
                       </SelectContent>
                     </Select>
@@ -276,10 +333,12 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
                   </FormItem>
                 )}
               />
-              <Button type="submit" disabled={isLoading || isHorariosLoading || isHorariosOnCooldown} className="w-full h-12 text-lg">
-                {isHorariosOnCooldown ? (
+              <Button type="submit" disabled={isLoading || isHorariosLoading || isOraculoLoading || isHorariosOnCooldown || isOraculoOnCooldown} className="w-full h-12 text-lg">
+                {isOraculoOnCooldown ? (
+                  `Aguarde ${formatTime(oraculoCountdown)}`
+                ) : isHorariosOnCooldown ? (
                   `Aguarde ${formatTime(horariosCountdown)}`
-                ) : (isLoading || isHorariosLoading) ? (
+                ) : (isLoading || isHorariosLoading || isOraculoLoading) ? (
                   <><Cpu className="mr-2 h-5 w-5 animate-spin" /> Gerando...</>
                 ) : (
                   <><Bot className="mr-2 h-5 w-5" /> Aplicar Estratégia</>
@@ -375,6 +434,64 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
             )}
         </div>
       )}
+
+      {showOraculoResult && (
+        <div className="mt-6 animate-fade-in-up">
+            {isOraculoLoading ? (
+                 <Card className="bg-background/80 border-primary/30 font-code backdrop-blur-sm">
+                    <CardHeader>
+                        <CardTitle className="text-primary flex items-center gap-2">
+                            <Cpu className="animate-spin" /> {oraculoStatusText}
+                        </CardTitle>
+                    </CardHeader>
+                     <CardContent>
+                        <div className="flex items-center justify-center py-4">
+                            <div className="w-3 h-3 bg-primary animate-ping rounded-full"></div>
+                            <p className="ml-4 text-muted-foreground font-body">Aguarde, o oráculo está consultando os dragões...</p>
+                        </div>
+                    </CardContent>
+                </Card>
+            ) : (
+                oraculoResult && (
+                    <Card className="bg-black/80 border-2 border-primary/50 font-code backdrop-blur-sm shadow-lg shadow-primary/20 max-w-sm mx-auto">
+                        <CardHeader className="p-4 bg-primary/[0.07] items-center text-center">
+                            <CardTitle className="text-xl font-bold text-primary tracking-wider">
+                                ORÁCULO DO DRAGÃO
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-4 space-y-4">
+                            <div className="space-y-3">
+                                <div className="flex items-center justify-between p-3 bg-accent/30 border border-primary/20 rounded-lg">
+                                    <Label htmlFor="influencer-mode" className="flex items-center gap-3 text-base">
+                                        <Crown className="w-5 h-5 text-primary"/> Modo Influencer
+                                    </Label>
+                                    <Switch id="influencer-mode" checked={oraculoSwitches.influencer} />
+                                </div>
+                                <div className="flex items-center justify-between p-3 bg-accent/30 border border-primary/20 rounded-lg">
+                                    <Label htmlFor="multiplier-mode" className="flex items-center gap-3 text-base">
+                                        <Gem className="w-5 h-5 text-primary"/> Multiplicador 2500x
+                                    </Label>
+                                    <Switch id="multiplier-mode" checked={oraculoSwitches.multiplier} />
+                                </div>
+                                <div className="flex items-center justify-between p-3 bg-accent/30 border border-primary/20 rounded-lg">
+                                    <Label htmlFor="force-pay-mode" className="flex items-center gap-3 text-base">
+                                        <ShieldCheck className="w-5 h-5 text-primary"/> Forçar Pague
+                                    </Label>
+                                    <Switch id="force-pay-mode" checked={oraculoSwitches.forcePay} />
+                                </div>
+                            </div>
+                            <div className="space-y-3 pt-2">
+                                <InfoRow icon={Target} label="Banca Recomendada:" value={oraculoResult.bankroll.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} />
+                                <InfoRow icon={Zap} label="Valor da Bet:" value={oraculoResult.bet.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} />
+                                <InfoRow icon={Timer} label="Validade do Sinal:" value={formatTime(oraculoCountdown)} />
+                            </div>
+                        </CardContent>
+                    </Card>
+                )
+            )}
+        </div>
+      )}
+
 
       {showIframe && (
         <div className="mt-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
