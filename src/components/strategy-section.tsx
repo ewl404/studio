@@ -215,7 +215,7 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
                     return times;
                 };
 
-                const times = generateTimes(10, 28);
+                const times = generateTimes(5, 28);
                 setGeneratedTimes(times);
                 
                 const randomProgress = Math.random() * (100 - 93) + 93;
