@@ -125,10 +125,10 @@ export default function LpsClientPage() {
             
             {/* VSL Section */}
             <section ref={videoRef} className="animate-fade-in-down">
-                <h1 className="text-3xl md:text-5xl font-bold text-primary !leading-tight font-headline mb-6 uppercase">
-                    Essa IA entende padrões matemáticos ocultos nos jogos — e tá colocando <span className="text-foreground" style={{ textShadow: '0 0 10px hsl(var(--primary))' }}>R$94</span> a <span className="text-foreground" style={{ textShadow: '0 0 10px hsl(var(--primary))' }}>R$487</span> por dia no bolso de quem segue ela
+                <h1 className="text-3xl md:text-5xl font-bold text-primary !leading-tight font-headline mb-6">
+                    <span className="text-foreground" style={{ textShadow: '0 0 10px hsl(var(--primary))' }}>R$94 a R$487 por dia</span> seguindo os padrões que essa IA detecta nos jogos
                 </h1>
-                <p className="text-lg text-foreground/80 mb-8 max-w-2xl mx-auto">
+                <p className="text-sm text-foreground/80 mb-8 max-w-2xl mx-auto">
                     Assista ao vídeo abaixo e veja com os próprios olhos...
                 </p>
                 <div className="relative w-full max-w-[360px] mx-auto">
