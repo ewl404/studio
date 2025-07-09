@@ -18,6 +18,7 @@ const LiveViewerCount = () => {
         <div className="live-viewer-count">
             <span className="live-dot-red"></span>
             <span className="live-text">AO VIVO</span>
+            <div className="separator-line"></div>
             <span className="viewer-number">{count}</span>
             <Eye className="w-4 h-4 text-white" />
         </div>
