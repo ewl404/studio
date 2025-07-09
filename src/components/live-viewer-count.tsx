@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Eye } from 'lucide-react';
 
 const LiveViewerCount = () => {
-    const [count, setCount] = useState(52);
+    const [count, setCount] = useState(87);
 
     useEffect(() => {
         const interval = setInterval(() => {
