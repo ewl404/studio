@@ -454,16 +454,16 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
       {showOraculoResult && (
         <div className="mt-6 animate-fade-in-up">
             {isOraculoLoading ? (
-                 <Card className="bg-background/80 border-primary/30 font-code backdrop-blur-sm">
+                <Card className="bg-black border-primary/30 font-code max-w-sm mx-auto">
                     <CardHeader>
                         <CardTitle className="text-primary flex items-center gap-2">
-                            <Cpu className="animate-spin" /> {oraculoStatusText}
+                            <Cpu /> Terminal do Oráculo
                         </CardTitle>
                     </CardHeader>
-                     <CardContent>
-                        <div className="flex items-center justify-center py-4">
-                            <div className="w-3 h-3 bg-primary animate-ping rounded-full"></div>
-                            <p className="ml-4 text-muted-foreground font-body">Aguarde, o oráculo está consultando os dragões...</p>
+                    <CardContent>
+                        <div className="space-y-2">
+                            <p className="text-green-400">$ {oraculoStatusText}</p>
+                            {oraculoStatusText.includes('revelada') && <div className="w-4 h-4 bg-primary animate-ping ml-2 inline-block"></div>}
                         </div>
                     </CardContent>
                 </Card>
