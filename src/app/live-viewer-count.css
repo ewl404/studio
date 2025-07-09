@@ -1,7 +1,7 @@
 .live-viewer-count {
-    position: fixed;
+    position: absolute;
     top: 1rem;
-    left: 1rem;
+    right: 1rem;
     background-color: #d32f2f;
     color: white;
     padding: 0.4rem 1rem;
@@ -41,12 +41,6 @@
 .live-text {
     letter-spacing: 0.05em;
     font-size: 0.9rem;
-}
-
-.live-divider {
-    width: 1px;
-    height: 16px;
-    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .viewer-number {

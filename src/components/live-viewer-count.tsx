@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Eye } from 'lucide-react';
 
 const LiveViewerCount = () => {
     const [count, setCount] = useState(52);
@@ -16,9 +17,9 @@ const LiveViewerCount = () => {
     return (
         <div className="live-viewer-count">
             <span className="live-dot-red"></span>
-            <span className="live-text">LIVE</span>
-            <span className="live-divider"></span>
+            <span className="live-text">AO VIVO</span>
             <span className="viewer-number">{count}</span>
+            <Eye className="w-4 h-4 text-white" />
         </div>
     );
 };

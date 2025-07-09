@@ -79,7 +79,6 @@ export default function LpsClientPage() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-16 text-center">
-            <LiveViewerCount />
             
             {/* VSL Section */}
             <section ref={videoRef} className="animate-fade-in-down">
@@ -89,7 +88,10 @@ export default function LpsClientPage() {
                 <p className="text-lg text-foreground/80 mb-8 max-w-2xl mx-auto">
                     Assista ao vídeo abaixo para descobrir como nossa Inteligência Artificial encontra as brechas que os cassinos não querem que você saiba.
                 </p>
-                <SalesVideo />
+                <div className="relative w-full max-w-[360px] mx-auto">
+                    <LiveViewerCount />
+                    <SalesVideo />
+                </div>
             </section>
 
             {/* CTA Button */}
