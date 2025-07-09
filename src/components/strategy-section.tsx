@@ -239,10 +239,10 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
         setShowOraculoResult(true);
         
         const processingSteps = [
-            'Analisando escrituras do dragão...',
-            'Decifrando padrões de sorte...',
-            'Forjando sua fortuna...',
-            'Oráculo revelado!',
+            'Decifrando os códigos do sistema...',
+            'Descriptografando padrões de pagamento...',
+            'Analisando sistema de segurança...',
+            'Sistema decodificado! Estratégia revelada.',
         ];
 
         let stepIndex = 0;
