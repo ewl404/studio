@@ -1,11 +1,13 @@
 import Lp2ClientPage from './lp2-client-page';
 import MatrixBackground from '@/components/matrix-background';
+import WinningsNotifier from '@/components/winnings-notifier';
 
 export default function Lp2Page() {
   return (
     <>
       <MatrixBackground />
       <div className="relative z-10 bg-background/90 min-h-screen">
+        <WinningsNotifier />
         <main className="container mx-auto px-4 py-8">
           <Lp2ClientPage />
         </main>
