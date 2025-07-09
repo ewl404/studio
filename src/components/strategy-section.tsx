@@ -366,39 +366,51 @@ export default function StrategySection({ redirectOnSubmit = false, showCasinoSe
       </Card>
       
       {showHorariosResult && (
-        <Card className="mt-6 bg-background/80 border-primary/30 font-code backdrop-blur-sm">
-            <CardHeader>
+        <div className="mt-6 animate-fade-in-up">
+          {isHorariosLoading ? (
+            <Card className="bg-black border-primary/30 font-code max-w-md mx-auto">
+              <CardHeader>
                 <CardTitle className="text-primary flex items-center gap-2">
-                    <Cpu className={isHorariosLoading ? "animate-spin" : ""} /> {horariosStatusText}
+                  <Cpu /> Terminal de Análise
                 </CardTitle>
-            </CardHeader>
-            { (isHorariosLoading || generatedTimes.length > 0) &&
-            <CardContent>
-                { generatedTimes.length > 0 && !isHorariosLoading ? (
-                    <div className="space-y-4 animate-fade-in-up">
-                        <p className="text-muted-foreground font-body">Estes são os horários com maior probabilidade de prêmios altos nas próximas rodadas. Jogue entre 5 e 10 rodadas em cada um.</p>
-                        <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
-                            {generatedTimes.map(time => (
-                                <div key={time} className="bg-accent/50 border border-primary/30 text-primary font-bold rounded-md p-2 text-center text-lg">
-                                    {time}
-                                </div>
-                            ))}
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2">
+                  <p className="text-green-400">$ {horariosStatusText}</p>
+                  {horariosStatusText.includes('Oportunidades encontradas!') && <div className="w-4 h-4 bg-primary animate-ping ml-2 inline-block"></div>}
+                </div>
+              </CardContent>
+            </Card>
+          ) : (
+            generatedTimes.length > 0 && (
+              <Card className="bg-background/80 border-primary/30 font-code backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-primary flex items-center gap-2">
+                    <Cpu className={isHorariosLoading ? 'animate-spin' : ''} /> {horariosStatusText}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4 animate-fade-in-up">
+                    <p className="text-muted-foreground font-body">
+                      Estes são os horários com maior probabilidade de prêmios altos nas próximas rodadas. Jogue entre 5 e 10 rodadas em cada um.
+                    </p>
+                    <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
+                      {generatedTimes.map((time) => (
+                        <div key={time} className="bg-accent/50 border border-primary/30 text-primary font-bold rounded-md p-2 text-center text-lg">
+                          {time}
                         </div>
-
-                        <div className="pt-4">
-                            <p className="font-bold text-base mb-2 text-foreground font-body">Taxa de Assertividade da Estratégia:</p>
-                            <WinRateProgressBar winRate={progress} />
-                        </div>
+                      ))}
                     </div>
-                ) : (
-                    <div className="flex items-center justify-center py-4">
-                        <div className="w-3 h-3 bg-primary animate-ping rounded-full"></div>
-                        <p className="ml-4 text-muted-foreground font-body">Aguarde, nossa IA está trabalhando...</p>
+                    <div className="pt-4">
+                      <p className="font-bold text-base mb-2 text-foreground font-body">Taxa de Assertividade da Estratégia:</p>
+                      <WinRateProgressBar winRate={progress} />
                     </div>
-                )}
-            </CardContent>
-            }
-        </Card>
+                  </div>
+                </CardContent>
+              </Card>
+            )
+          )}
+        </div>
       )}
       
       {showInterleavingResult && (
