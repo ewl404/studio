@@ -5,7 +5,7 @@ import { Bar, BarChart, CartesianGrid, ResponsiveContainer, XAxis, YAxis, Toolti
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { ArrowUp, Award, Bot, Instagram, MessageCircle, Send, Users, Youtube } from 'lucide-react';
+import { ArrowUp, Award, Bot, Instagram, MessageCircle, Send, Users, Youtube, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart';
@@ -19,7 +19,7 @@ import Autoplay from "embla-carousel-autoplay"
 const links = [
     { title: 'HanzBet', href: 'https://madetoinvest.pro/hanzbet-apphack' },
     { title: 'LotoGreen', href: 'https://madetoinvest.pro/lotogreen-apphack' },
-    { title: '1Win', href: 'https://madetoinvest.pro/1win-app' },
+    { title: '1WIN', href: 'https://madetoinvest.pro/1win-app' },
 ];
 
 const mainLinks = [
@@ -123,7 +123,10 @@ const BioClientPage = () => {
                     <CardContent className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         {links.map((link) => (
                             <Button key={link.title} asChild variant="outline">
-                                <Link href={link.href} target="_blank" rel="noopener noreferrer">{link.title}</Link>
+                                <Link href={link.href} target="_blank" rel="noopener noreferrer">
+                                    {link.title}
+                                    <ExternalLink className="ml-auto h-4 w-4" />
+                                </Link>
                             </Button>
                         ))}
                     </CardContent>
@@ -132,7 +135,7 @@ const BioClientPage = () => {
                 <div className="space-y-3">
                     {mainLinks.map((link) => (
                         <Button key={link.title} asChild size="lg" className="w-full h-14 text-lg justify-start">
-                            <Link href={link.href} target={link.href.startsWith('/') ? '_self' : '_blank'} rel="noopener noreferrer">
+                            <Link href={link.href} target={link.href.startsWith('http') ? '_blank' : '_self'} rel="noopener noreferrer">
                                 <link.icon className="mr-4" />
                                 {link.title}
                             </Link>
