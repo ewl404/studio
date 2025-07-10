@@ -1,16 +1,18 @@
 
 'use client';
 
-import { Bar, BarChart, CartesianGrid, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import { Bar, BarChart, CartesianGrid, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, LineChart, Line } from 'recharts';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { ArrowUp, Award, Instagram, MessageCircle, Send, Users, Youtube } from 'lucide-react';
+import { ArrowUp, Award, Bot, Instagram, MessageCircle, Send, Users, Youtube } from 'lucide-react';
 import Link from 'next/link';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
 
 
 const links = [
@@ -21,7 +23,8 @@ const links = [
 
 const mainLinks = [
     { title: 'Grupo de Lives Telegram', icon: Send, href: 'https://madetoinvest.pro/grupo-telegram' },
-    { title: 'Mentoria Vela Rosa 100x R$ 29,90', icon: Award, href: 'https://lastlink.com/p/C89B2C992/checkout-payment/' },
+    { title: 'Mentoria Vela Rosa por R$29,90', icon: Award, href: 'https://lastlink.com/p/C89B2C992/checkout-payment/' },
+    { title: 'App Matrix IA', icon: Bot, href: '/jogos-pagando'},
     { title: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/wallace.velarosa' },
     { title: 'Youtube', icon: Youtube, href: 'https://www.youtube.com/@wallaceaviator' },
 ];
@@ -30,41 +33,59 @@ const testimonials = [
     {
         quote: "A mentoria foi um divisor de águas. O network no grupo do WhatsApp é surreal, todo mundo se ajuda. Parei de perder dinheiro e comecei a lucrar de verdade.",
         name: "Carlos R.",
-        image: "https://i.imgur.com/uRLLplB.jpg"
     },
     {
         quote: "Estar perto de pessoas com o mesmo objetivo muda tudo. Aprendi estratégias que nunca imaginei. O Wallace realmente entrega o ouro. Recomendo 100%!",
         name: "Juliana F.",
-        image: "https://i.imgur.com/5u2s7K9.jpg"
     },
     {
         quote: "O valor que paguei na mentoria voltou em 2 dias. O acesso direto ao Wallace e à comunidade não tem preço. Se você quer levar isso a sério, é o único caminho.",
         name: "Pedro M.",
-        image: "https://i.imgur.com/bSzrF3k.jpg"
+    },
+     {
+        quote: "Pensei que era só mais um curso, mas a comunidade é o diferencial. A troca de ideia no grupo vale ouro. Finalmente consistente!",
+        name: "Lucas G.",
+    },
+    {
+        quote: "A melhor decisão que tomei. O suporte do Wallace e dos colegas me deu a confiança que faltava para operar com tranquilidade.",
+        name: "Fernanda L.",
+    },
+    {
+        quote: "Cansei de quebrar a banca. A mentoria me ensinou a gerenciar meu capital e a ter uma visão de longo prazo. Recomendo de olhos fechados.",
+        name: "Ricardo S.",
     },
 ];
 
-const chartData = [
-    { month: 'Jan', semMentoria: 45, comMentoria: 210 },
-    { month: 'Fev', semMentoria: 60, comMentoria: 350 },
-    { month: 'Mar', semMentoria: 30, comMentoria: 480 },
-    { month: 'Abr', semMentoria: 75, comMentoria: 620 },
-    { month: 'Mai', semMentoria: 50, comMentoria: 750 },
+const withMentorshipData = [
+  { day: 'Seg', banca: 50 },
+  { day: 'Ter', banca: 35 },
+  { day: 'Qua', banca: 90 },
+  { day: 'Qui', banca: 180 },
+  { day: 'Sex', banca: 150 },
+  { day: 'Sáb', banca: 320 },
+  { day: 'Dom', banca: 500 },
+];
+
+const withoutMentorshipData = [
+  { day: 'Seg', banca: 50 },
+  { day: 'Ter', banca: 65 },
+  { day: 'Qua', banca: 40 },
+  { day: 'Qui', banca: 25 },
+  { day: 'Sex', banca: 35 },
+  { day: 'Sáb', banca: 10 },
+  { day: 'Dom', banca: 5 },
 ];
 
 const chartConfig = {
-    comMentoria: {
-        label: 'Com Mentoria',
+    banca: {
+        label: 'Banca (R$)',
         color: 'hsl(var(--primary))',
-    },
-    semMentoria: {
-        label: 'Sem Mentoria',
-        color: 'hsl(var(--muted))',
     },
 };
 
 const BioClientPage = () => {
     const [showScrollTop, setShowScrollTop] = useState(false);
+    const [withMentorship, setWithMentorship] = useState(true);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -109,7 +130,7 @@ const BioClientPage = () => {
                 <div className="space-y-3">
                     {mainLinks.map((link) => (
                         <Button key={link.title} asChild size="lg" className="w-full h-14 text-lg justify-start">
-                            <Link href={link.href} target="_blank" rel="noopener noreferrer">
+                            <Link href={link.href} target={link.href.startsWith('/') ? '_self' : '_blank'} rel="noopener noreferrer">
                                 <link.icon className="mr-4" />
                                 {link.title}
                             </Link>
@@ -123,22 +144,31 @@ const BioClientPage = () => {
                     <CardHeader>
                         <CardTitle className="text-2xl text-center text-primary">A Evolução dos Membros da Mentoria</CardTitle>
                         <CardDescription className="text-center">Veja a diferença que o acompanhamento certo faz.</CardDescription>
+                         <div className="flex items-center justify-center space-x-2 pt-4">
+                            <Label htmlFor="mentorship-toggle" className={!withMentorship ? 'text-primary' : 'text-muted-foreground'}>Sem Acompanhamento</Label>
+                            <Switch
+                                id="mentorship-toggle"
+                                checked={withMentorship}
+                                onCheckedChange={setWithMentorship}
+                            />
+                            <Label htmlFor="mentorship-toggle" className={withMentorship ? 'text-primary' : 'text-muted-foreground'}>Com Acompanhamento</Label>
+                        </div>
                     </CardHeader>
                     <CardContent>
                         <ChartContainer config={chartConfig} className="w-full h-[300px]">
                             <ResponsiveContainer>
-                                <BarChart data={chartData} margin={{ top: 20, right: 20, left: -10, bottom: 5 }}>
+                                <LineChart 
+                                    data={withMentorship ? withMentorshipData : withoutMentorshipData} 
+                                    margin={{ top: 20, right: 20, left: -10, bottom: 5 }}>
                                     <CartesianGrid vertical={false} strokeDasharray="3 3" />
-                                    <XAxis dataKey="month" tickLine={false} axisLine={false} />
-                                    <YAxis tickLine={false} axisLine={false} tickFormatter={(value) => `R$${value}`} />
+                                    <XAxis dataKey="day" tickLine={false} axisLine={false} />
+                                    <YAxis tickLine={false} axisLine={false} domain={[0, 'dataMax + 50']} tickFormatter={(value) => `R$${value}`} />
                                     <Tooltip
-                                        cursor={{ fill: 'hsl(var(--accent) / 0.5)' }}
-                                        content={<ChartTooltipContent />}
+                                        cursor={{ stroke: 'hsl(var(--accent))', strokeWidth: 2, strokeDasharray: '3 3' }}
+                                        content={<ChartTooltipContent indicator="dot" />}
                                     />
-                                    <Legend />
-                                    <Bar dataKey="semMentoria" fill="var(--color-semMentoria)" radius={4} />
-                                    <Bar dataKey="comMentoria" fill="var(--color-comMentoria)" radius={4} />
-                                </BarChart>
+                                    <Line type="monotone" dataKey="banca" strokeWidth={3} stroke="var(--color-banca)" dot={{ r: 5, fill: 'var(--color-banca)' }} activeDot={{ r: 8 }} />
+                                </LineChart>
                             </ResponsiveContainer>
                         </ChartContainer>
                     </CardContent>
@@ -168,7 +198,6 @@ const BioClientPage = () => {
                             <CarouselItem key={index}>
                                 <Card className="bg-background/70 border-primary/20">
                                     <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
-                                        <Image src={testimonial.image} alt={testimonial.name} width={80} height={80} className="rounded-full border-2 border-primary" data-ai-hint="person portrait" />
                                         <p className="italic text-foreground/90">"{testimonial.quote}"</p>
                                         <p className="font-bold text-primary">- {testimonial.name}</p>
                                     </CardContent>
