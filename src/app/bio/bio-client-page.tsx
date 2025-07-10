@@ -9,10 +9,11 @@ import { ArrowUp, Award, Bot, Instagram, MessageCircle, Send, Users, Youtube } f
 import Link from 'next/link';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
+import Autoplay from "embla-carousel-autoplay"
 
 
 const links = [
@@ -86,6 +87,7 @@ const chartConfig = {
 const BioClientPage = () => {
     const [showScrollTop, setShowScrollTop] = useState(false);
     const [withMentorship, setWithMentorship] = useState(true);
+    const autoplayPlugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
 
     useEffect(() => {
         const handleScroll = () => {
@@ -192,7 +194,12 @@ const BioClientPage = () => {
 
              <section className="space-y-6 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
                 <h2 className="text-2xl text-center font-bold text-primary">O que os Alunos Dizem</h2>
-                 <Carousel className="w-full">
+                 <Carousel 
+                    className="w-full"
+                    plugins={[autoplayPlugin.current]}
+                    onMouseEnter={() => autoplayPlugin.current.stop()}
+                    onMouseLeave={() => autoplayPlugin.current.play()}
+                 >
                     <CarouselContent>
                         {testimonials.map((testimonial, index) => (
                             <CarouselItem key={index}>
