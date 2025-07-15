@@ -7,7 +7,6 @@ import './matrix-rain.css';
 import './winnings-notifier.css';
 import './live-viewer-count.css';
 import { Toaster } from '@/components/ui/toaster';
-import InAppBrowserRedirect from '@/components/in-app-browser-redirect';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
@@ -103,7 +102,6 @@ fbq('track', 'PageView');
           ></iframe>
         </noscript>
         {/* End Google Tag Manager (noscript) */}
-        <InAppBrowserRedirect />
         {children}
         <Toaster />
         <SpeedInsights/>
