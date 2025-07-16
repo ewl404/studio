@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -12,8 +13,15 @@ import { Slider } from "@/components/ui/slider";
 
 // Placeholder for a vertical video.
 const SalesVideo = () => (
-    <div className="w-full max-w-[360px] mx-auto aspect-[9/16] bg-black border-2 border-primary/30 rounded-2xl flex items-center justify-center">
-        <p className="text-primary">[Seu Vídeo de Vendas Aqui]</p>
+    <div className="w-full max-w-[420px] mx-auto relative" style={{padding: '177.78% 0 0 0'}}>
+        <iframe 
+            src="https://player.vimeo.com/video/984852085?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1" 
+            frameBorder="0" 
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+            style={{position:'absolute', top:0, left:0, width:'100%', height:'100%'}} 
+            title="ASSISTA AGORA">
+        </iframe>
+        <script src="https://player.vimeo.com/api/player.js"></script>
     </div>
 );
 
@@ -125,13 +133,13 @@ export default function LpsClientPage() {
             
             {/* VSL Section */}
             <section ref={videoRef} className="animate-fade-in-down">
-                <h1 className="text-3xl md:text-5xl font-bold text-primary !leading-tight font-headline mb-6">
-                    <span className="text-foreground" style={{ textShadow: '0 0 10px hsl(var(--primary))' }}>R$94 a R$487 por dia</span> seguindo os padrões que essa IA detecta nos jogos
+                <h1 className="text-3xl md:text-5xl font-bold text-primary !leading-tight font-headline mb-6 uppercase">
+                    A IA que entende padrões matemáticos para <span className="text-foreground" style={{ textShadow: '0 0 10px hsl(var(--primary))' }}>jogadas mais inteligentes</span>
                 </h1>
-                <p className="text-sm text-foreground/80 mb-8 max-w-2xl mx-auto">
+                <p className="text-xs text-foreground/80 mb-8 max-w-2xl mx-auto">
                     Assista ao vídeo abaixo e veja com os próprios olhos...
                 </p>
-                <div className="relative w-full max-w-[360px] mx-auto">
+                <div className="relative w-full max-w-[420px] mx-auto">
                     <LiveViewerCount />
                     <SalesVideo />
                 </div>
