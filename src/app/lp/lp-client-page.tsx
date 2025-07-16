@@ -134,7 +134,7 @@ export default function LpsClientPage() {
             {/* VSL Section */}
             <section ref={videoRef} className="animate-fade-in-down">
                 <h1 className="text-3xl md:text-5xl font-bold text-primary !leading-tight font-headline mb-6 uppercase">
-                    95% joga no escuro. Você não precisa mais ser um deles
+                    95% jogam no escuro e Você não precisa mais ser um deles
                 </h1>
                 <p className="text-xs text-foreground/80 mb-8 max-w-2xl mx-auto">
                     Assista ao vídeo abaixo e veja com os próprios olhos...
